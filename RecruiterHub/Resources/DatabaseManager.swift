@@ -149,7 +149,8 @@ public class DatabaseManager {
                 
                 let newElement = [
                     "url": url.videoUrl,
-                    "thumbnail": url.thumbnailUrl
+                    "thumbnail": url.thumbnailUrl,
+                    "likes": ""
                 ]
                 usersCollection.append(newElement)
                 
@@ -163,7 +164,8 @@ public class DatabaseManager {
                 let newCollection: [[String: String]] = [
                     [
                         "url": url.videoUrl,
-                        "thumbnail": url.thumbnailUrl
+                        "thumbnail": url.thumbnailUrl,
+                        "likes": ""
                     ]
                 ]
                 
@@ -187,10 +189,11 @@ public class DatabaseManager {
         })
     }
     
-    public func getAllUserPosts(with email: String, completion: @escaping (([[String:String]]?) -> Void)) {
+    public func getAllUserPosts(with email: String, completion: @escaping (([[String:Any]]?) -> Void)) {
         database.child("\(email)/Posts").observeSingleEvent(of: .value, with: { snapshot in
             
-            guard let posts = snapshot.value as? [[String:String]] else {
+            guard let posts = snapshot.value as? [[String:Any]] else {
+                print("Failed to get all user posts")
                 completion(nil)
                 return
             }
@@ -238,5 +241,43 @@ public class DatabaseManager {
                               bats: bats)
             completion(userData)
         })
+    }
+    
+    public func like(with email: String, likerEmail: String, postNumber: Int) {
+        print("Like")
+        
+        let ref = database.child("\(email.safeDatabaseKey())/Posts/\(postNumber)/likes")
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            
+            // No likes
+            if "" == snapshot.value as? String {
+                ref.setValue([likerEmail])
+                return
+            }
+            
+            guard var likes = snapshot.value as? [String] else {
+                return
+            }
+            
+            // Person already liked, delete their like
+            if likes.contains(likerEmail) {
+                print("Already liked")
+                if let index = likes.firstIndex(of: likerEmail) {
+                    likes.remove(at: index)
+                    ref.setValue(likes)
+                }
+                return
+            }
+            
+            // Add new like
+            let newElement = likerEmail
+            likes.append(newElement)
+            ref.setValue(likes)
+        })
+        
+//        database.child("\(email.safeDatabaseKey())/Posts/\(postNumber)").setValue(["\(email)"], withCompletionBlock: { result , error  in
+//            print(error)
+//        })
     }
 }

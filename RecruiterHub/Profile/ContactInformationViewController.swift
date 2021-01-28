@@ -9,9 +9,10 @@ import UIKit
 
 class ContactInformationViewController: UIViewController {
 
+    private let user: RHUser
+    
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ryan Helgeson"
         label.layer.borderWidth = 1
         label.layer.borderColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
         label.layer.cornerRadius = 10.0
@@ -63,5 +64,15 @@ class ContactInformationViewController: UIViewController {
                                  height: 20)
         emailLabel.textAlignment = .left
     }
-
+    
+    init(user: RHUser) {
+        self.user = user
+        nameLabel.text = "\(user.firstName) \(user.lastName)"
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }

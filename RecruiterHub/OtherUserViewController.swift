@@ -15,7 +15,7 @@ class OtherUserViewController: UIViewController {
     
     private var user: RHUser
     
-    private var posts: [[String:String]]?
+    private var posts: [[String: Any]]?
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -101,13 +101,18 @@ extension OtherUserViewController: UICollectionViewDelegate {
         guard let posts = posts else {
             return
         }
-        guard let url = URL(string: posts[indexPath.row]["url"]!) as URL? else {
+        guard let url = URL(string: posts[indexPath.row]["url"]! as! String) as URL? else {
             return
         }
-        let post = Post(title: "Post", url: url)
+        
+        guard let likes = posts[indexPath.row]["likes"]! as? [String] else {
+            return
+        }
+        
+        let post = Post(likes: likes, title: "Post", url: url )
         
         print("Selected Item at \(indexPath.row)")
-        let vc = ViewPostViewController(post: post)
+        let vc = ViewPostViewController(post: post, user: user, postNumber: indexPath.row)
         let navVC = UINavigationController(rootViewController: vc)
         
         vc.title = "Post"
@@ -133,7 +138,7 @@ extension OtherUserViewController: UICollectionViewDataSource {
         }
         let urlString = posts[indexPath.row]["thumbnail"]!
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoCollectionViewCell.identifier, for: indexPath) as! VideoCollectionViewCell
-        cell.configure(with: URL(string: urlString)!)
+        cell.configure(with: URL(string: urlString as! String)!)
         return cell
     }
     
@@ -160,7 +165,7 @@ extension OtherUserViewController: UICollectionViewDelegateFlowLayout {
 
 extension OtherUserViewController: ProfileHeaderDelegate {
     func didTapContactInfo(_ header: ProfileHeader) {
-        let vc = ContactInformationViewController()
+        let vc = ContactInformationViewController(user: user)
         vc.title = "Contact Information"
         vc.modalPresentationStyle = .pageSheet
         present(vc, animated: true)

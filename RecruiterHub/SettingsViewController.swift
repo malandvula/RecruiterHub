@@ -72,6 +72,10 @@ class SettingsViewController: UIViewController {
     }
     
     private func didTapEditProfile() {
+        let vc = UIViewController()
+        vc.title = "Edite Profile"
+        vc.view.backgroundColor = .blue
+        navigationController?.pushViewController(vc, animated: true)
         
     }
     
