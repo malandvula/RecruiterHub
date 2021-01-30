@@ -10,9 +10,8 @@ import AVFoundation
 
 class ViewPostViewController: UIViewController {
 
-    private var url: URL
+    private var post: Post
     private let user: RHUser
-    private let postNumber: Int
     
     private let likeButton: UIButton = {
         let button = UIButton()
@@ -22,16 +21,21 @@ class ViewPostViewController: UIViewController {
         return button
     }()
     
+    private let likesLabel: UILabel = {
+        let label = UILabel()
+        label.isUserInteractionEnabled = true
+        return label
+    }()
+    
     private var player: AVPlayer?
     private var playerLayer = AVPlayerLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .done, target: self, action: #selector(didTapBack))
         likeButton.addTarget(self, action: #selector(didTapLike), for: .touchUpInside)
 
         // Do any additional setup after loading the view.
-        let asset = AVAsset(url: url)
+        let asset = AVAsset(url: post.url)
         let playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)
         
@@ -42,8 +46,11 @@ class ViewPostViewController: UIViewController {
         //4. Add playerLayer to view's layer
         view.layer.addSublayer(playerLayer)
         view.addSubview(likeButton)
+        view.addSubview(likesLabel)
+        configureLikesLabel()
         playerLayer.player = player
         player?.play()
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,36 +60,70 @@ class ViewPostViewController: UIViewController {
                                   y: view.safeAreaInsets.top + playerLayer.frame.height,
                                   width: 30,
                                   height: 30)
+        
+        likesLabel.frame = CGRect(x: 10, y: likeButton.bottom + 10, width: view.width - 20, height: 20)
     }
     
-    init(post: Post, user: RHUser, postNumber: Int) {
-        self.url = post.url
+    /// ViewPostViewController initializer, sets the post, user, and postnumber
+    init(post: Post, user: RHUser) {
+        self.post = post
         self.user = user
-        self.postNumber = postNumber
         super.init(nibName: nil, bundle: nil)
         self.title = title
     }
     
+    // Required init function
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func didTapBack() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+    // Function that is called when the like button is tapped
     @objc private func didTapLike() {
-        guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String  else {
+        print("Tapped Like")
+        
+        // Cast the user email to a String
+        guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String,
+              let currentUsername = UserDefaults.standard.value(forKey: "username") as? String,
+              let currentName = UserDefaults.standard.value(forKey: "name") as? String
+        else {
+            print("Failed to get User Defaults")
             return
         }
+        
+        let postLike = PostLike(username: currentUsername, email: currentEmail.safeDatabaseKey(), name: currentName)
+        
+        // Update the like status
         DatabaseManager.shared.like(with: user.emailAddress.safeDatabaseKey(),
-                                    likerEmail: currentEmail,
-                                    postNumber: postNumber)
+                                    likerInfo: postLike,
+                                    postNumber: post.number)
+    }
+    
+    private func configureLikesLabel() {
+        let numberOfLikes = post.likes.count
+        likesLabel.text = "\(numberOfLikes) likes"
+        
+        likesLabel.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapLikesLabel))
+        likesLabel.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func didTapLikesLabel() {
+        let vc = ListViewController(data: post.likes)
+        vc.title = "Likes"
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
+// Structure that holds all information related to a post
 struct Post {
-    let likes: [String]
+    let likes: [PostLike]
     let title: String
     let url: URL
+    let number: Int
+}
+
+public struct PostLike: Equatable {
+    let username: String
+    let email: String
+    let name: String
 }

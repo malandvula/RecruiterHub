@@ -30,13 +30,13 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
                               heightInches: 6,
                               weight: 240,
                               arm: "R",
-                              bats: "R")
+                              bats: "R",
+                              profilePicUrl: "https://firebasestorage.googleapis.com/v0/b/recruiterhub-cb0ef.appspot.com/o/bruss1-gmail-com%2Fthumbnails%2Fbruss1-gmail-com_Jan%2027,%202021%20at%209:15:41%20PM%20CST.png?alt=media&token=d17ee630-9e3d-48b8-9a5d-499cd7db8500")
     
     private let profilePhotoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "RyanPic")
-        imageView.backgroundColor = .red
         imageView.layer.masksToBounds = true
+        imageView.backgroundColor = .secondarySystemBackground
         return imageView
     }()
     
@@ -161,6 +161,16 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
             
         }
         positionLabel.text = positions
+        
+        do {
+            if let url = URL(string: user.profilePicUrl) {
+                let data = try Data(contentsOf: url)
+                profilePhotoImageView.image = UIImage(data: data)
+            }
+        }
+        catch {
+            print("Caught Error")
+        }
     }
     
     private func configureNameLabel() {

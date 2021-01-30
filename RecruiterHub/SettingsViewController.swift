@@ -25,7 +25,6 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .done, target: self, action: #selector(didTapBack))
         configureModels()
         view.backgroundColor = .systemBackground
         view.addSubview(table)
@@ -85,10 +84,6 @@ class SettingsViewController: UIViewController {
     
     private func didTapSaveOriginalPosts() {
         
-    }
-    
-    @objc private func didTapBack() {
-        self.dismiss(animated: true, completion: nil)
     }
     
     enum SettingsURLType {

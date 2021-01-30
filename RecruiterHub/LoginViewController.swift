@@ -150,14 +150,21 @@ class LoginViewController: UIViewController {
             
             guard let result = authResult, error == nil else {
                 print("Failed to login user with email: \(email)")
+                print(error)
                 return
             }
             
             let user = result.user
             
             DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: { result in
+                guard let result = result else {
+                    print("Failed to cast user result")
+                    return
+                }
                 
-                UserDefaults.standard.set(result?.emailAddress, forKey: "email")
+                UserDefaults.standard.set(result.emailAddress, forKey: "email")
+                UserDefaults.standard.setValue(result.username, forKey: "username")
+                UserDefaults.standard.setValue("\(result.firstName) \(result.lastName)", forKey: "name")
             })
             
             

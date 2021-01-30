@@ -25,14 +25,10 @@ class ProfileViewController: UIViewController {
                                       heightInches: nil,
                                       weight: nil,
                                       arm: nil,
-                                      bats: nil)
+                                      bats: nil,
+                                      profilePicUrl: "gs://recruiterhub-cb0ef.appspot.com/images/barth-gmail-com")
     
     private var posts: [[String:Any]]?
-    
-    let profileImageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
     
     let backgroundImage: UIImageView = {
         let imageView = UIImageView()
@@ -52,7 +48,7 @@ class ProfileViewController: UIViewController {
         layout.itemSize = CGSize(width: size, height: size)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
     
         collectionView?.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: VideoCollectionViewCell.identifier)
         
@@ -90,6 +86,13 @@ class ProfileViewController: UIViewController {
         collectionView?.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.width, height: view.height - view.safeAreaInsets.top)
     }
     
+    @objc private func didTapEditButton() {
+        let vc = SettingsViewController()
+//        let navVC = UINavigationController(rootViewController: vc)
+        vc.title = "Settings"
+        navigationController?.pushViewController(vc, animated: false)
+    }
+    
     private func fetchPosts() {
         guard var email = UserDefaults.standard.value(forKey: "email") as! String? else {
             return
@@ -100,9 +103,18 @@ class ProfileViewController: UIViewController {
         DatabaseManager.shared.getAllUserPosts(with: email, completion: { [weak self] fetchedPosts in
             self?.posts = fetchedPosts
             
-            DispatchQueue.main.async {
-                self?.collectionView!.reloadData()
-            }
+            DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
+                [weak self] user in
+
+                guard let user = user else {
+                    return
+                }
+                self?.user = user
+
+                DispatchQueue.main.async {
+                    self?.collectionView!.reloadData()
+                }
+            })
         })
     }
 }
@@ -114,26 +126,32 @@ extension ProfileViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        print("Selected Item")
         guard let posts = posts else {
             return
         }
         guard let url = URL(string: posts[indexPath.row]["url"]! as! String) as URL? else {
             return
         }
-        guard let likes = posts[indexPath.row]["likes"] as? [String] else {
-            return
+        var postLikes :[PostLike] = []
+        if let likes = posts[indexPath.row]["likes"] as? [[String:String]] {
+            for like in likes {
+                let postLike = PostLike(username: like["username"]!, email: like["email"]!, name: like["name"]!)
+                postLikes.append(postLike)
+            }
+        }
+        else {
+            postLikes = []
         }
         
-        let post = Post(likes: likes, title: "Post", url: url)
+        let post = Post(likes: postLikes, title: "Post", url: url, number: indexPath.row)
         
-        let vc = ViewPostViewController(post: post, user: user, postNumber: indexPath.row)
-        let navVC = UINavigationController(rootViewController: vc)
+        let vc = ViewPostViewController(post: post, user: user)
         
         vc.title = "Post"
-        navVC.modalPresentationStyle = .fullScreen
         vc.navigationItem.largeTitleDisplayMode = .never
         
-        present(navVC, animated: true)
+        navigationController?.pushViewController(vc, animated: false)
     }
 }
 
@@ -183,7 +201,7 @@ extension ProfileViewController: UICollectionViewDataSource {
                 return
             }
             
-            profileHeader.configure(user: result )
+            profileHeader.configure(user: result)
         })
         return profileHeader
     }
@@ -207,10 +225,10 @@ extension ProfileViewController: ProfileHeaderDelegate {
     func didTapContactInfo(_ header: ProfileHeader) {
         let vc = ContactInformationViewController(user: user)
         vc.title = "Contact Information"
-        vc.modalPresentationStyle = .pageSheet
-        present(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: false)
     }
     func didTapReload(_ header: ProfileHeader) {
+        print("Reload Tapped")
         fetchPosts()
     }
 }
@@ -221,10 +239,6 @@ extension ProfileViewController: ProfileTopBarDelegate {
         let vc = SettingsViewController()
         let navVC = UINavigationController(rootViewController: vc)
         vc.title = "Settings"
-        vc.modalTransitionStyle = .crossDissolve
-        navVC.modalPresentationStyle = .formSheet
         present(navVC, animated: true, completion: nil)
     }
-    
-    
 }

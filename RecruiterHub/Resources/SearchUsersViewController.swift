@@ -28,24 +28,24 @@ class SearchUserViewController: UIViewController {
     private let tableView: UITableView = {
         let table = UITableView()
         table.isHidden = true
-        table.separatorStyle = .singleLine
         table.register(SearchUsersTableViewCell.self, forCellReuseIdentifier: SearchUsersTableViewCell.identifier)
+       
         return table
     }()
     
-    private let noResultsLabel: UILabel = {
-        let label = UILabel()
-        label.isHidden = true
-        label.text = "No results.. "
-        label.textAlignment = .center
-        label.textColor = .green
-        label.font = .systemFont(ofSize: 21, weight: .medium)
-        return label
-    }()
+//    private let noResultsLabel: UILabel = {
+//        let label = UILabel()
+//        label.isHidden = true
+//        label.text = "No results.. "
+//        label.textAlignment = .center
+//        label.textColor = .green
+//        label.font = .systemFont(ofSize: 21, weight: .medium)
+//        return label
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(noResultsLabel)
+//        view.addSubview(noResultsLabel)
         view.addSubview(tableView)
         
         tableView.delegate = self
@@ -53,8 +53,6 @@ class SearchUserViewController: UIViewController {
         
         searchBar.delegate = self
 
-        view.backgroundColor = .systemBackground
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(dismissSelf))
         view.addSubview(searchBar)
         searchBar.becomeFirstResponder()
     }
@@ -67,11 +65,7 @@ class SearchUserViewController: UIViewController {
                                  y: searchBar.bottom,
                                  width: view.width,
                                  height: view.height - searchBar.height)
-        noResultsLabel.frame = CGRect(x: view.width / 4, y: (view.height-200) / 2, width: view.width / 2, height: 200)
-    }
-
-    @objc func dismissSelf() {
-        dismiss(animated: true, completion: nil)
+//        noResultsLabel.frame = CGRect(x: view.width / 4, y: (view.height-200) / 2, width: view.width / 2, height: 200)
     }
     
 }
@@ -112,8 +106,12 @@ extension SearchUserViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        results = []
         searchBar.text = ""
         searchBar.resignFirstResponder()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func filterUsers(with term: String) {
@@ -140,7 +138,6 @@ extension SearchUserViewController: UISearchBarDelegate {
             
             return SearchResult(name: name, email: email)
         })
-        print(results)
         self.results = results
         
         updateUI()
@@ -148,11 +145,11 @@ extension SearchUserViewController: UISearchBarDelegate {
     
     func updateUI() {
         if results.isEmpty {
-            noResultsLabel.isHidden = false
+//            noResultsLabel.isHidden = false
             tableView.isHidden = true
         }
         else {
-            noResultsLabel.isHidden = true
+//            noResultsLabel.isHidden = true
             tableView.isHidden = false
             tableView.reloadData()
         }
@@ -165,7 +162,10 @@ struct SearchResult {
 }
 
 extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         results.count
@@ -174,7 +174,7 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = results[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchUsersTableViewCell.identifier, for: indexPath) as! SearchUsersTableViewCell
-//        cell.textLabel?.text = results[indexPath.row].name
+        print(model)
         cell.nameLabel.text = model.name
         cell.usernameLabel.text = model.email
         return cell
@@ -184,37 +184,20 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         //Start Conversation
         let targetUserData  = results[indexPath.row]
-        DatabaseManager.shared.getDataForUser(user: targetUserData.email, completion: { [weak self] snapshot in
+        DatabaseManager.shared.getDataForUser(user: targetUserData.email.safeDatabaseKey(), completion: { [weak self] snapshot in
             
             guard let snapshot = snapshot else {
                 return
             }
             let vc = OtherUserViewController(user: snapshot)
-            vc.modalPresentationStyle = .fullScreen
             vc.title = targetUserData.email
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationCapturesStatusBarAppearance = true
-            navVC.modalPresentationStyle = .fullScreen
-            self?.present(navVC, animated: true)
+            self?.navigationController?.pushViewController(vc, animated: false)
         })
-//        let user = RHUser(username: "Username",
-//                          firstName: "firstname",
-//                          lastName: "lastname",
-//                          emailAddress: "email@email.com",
-//                          positions: ["P", "OF", "SS"],
-//                          highShcool: "Rochester",
-//                          state: "MN",
-//                          gradYear: 2004,
-//                          heightFeet: 6,
-//                          heightInches: 8,
-//                          weight: 300,
-//                          arm: "R",
-//                          bats: "R")
-//
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 70
         
     }
 }

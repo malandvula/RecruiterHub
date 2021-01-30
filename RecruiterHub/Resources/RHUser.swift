@@ -21,12 +21,14 @@ public struct RHUser {
     let weight: Int?
     let arm: String?
     let bats: String?
+    let profilePicUrl: String
     
     var safeEmail: String {
         var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         return safeEmail
     }
+    
     
     var profilePictureFileName: String {
         //"ryanhelgeson14-gmail-com_profile_picture.png"

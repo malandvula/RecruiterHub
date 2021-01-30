@@ -191,15 +191,16 @@ public class DatabaseManager {
     
     public func getAllUserPosts(with email: String, completion: @escaping (([[String:Any]]?) -> Void)) {
         database.child("\(email)/Posts").observeSingleEvent(of: .value, with: { snapshot in
-            
+
             guard let posts = snapshot.value as? [[String:Any]] else {
                 print("Failed to get all user posts")
                 completion(nil)
                 return
             }
-            
+
             completion(posts)
         })
+        completion(nil)
     }
     
     public func getDataForUser(user: String, completion: @escaping ((RHUser?) -> Void)) {
@@ -221,8 +222,9 @@ public class DatabaseManager {
                   let arm = info["arm"] as? String,
                   let bats = info["bats"] as? String,
                   let lastname = info["lastname"] as? String,
-                  let firstname = info["firstname"] as? String else {
-               
+                  let firstname = info["firstname"] as? String,
+                  let profilePicUrl = info["profilePicUrl"] as? String else {
+               print("Failed to get user data")
                 completion(nil)
                 return
             }
@@ -238,32 +240,36 @@ public class DatabaseManager {
                               heightInches: heightInches,
                               weight: weight,
                               arm: arm,
-                              bats: bats)
+                              bats: bats,
+                              profilePicUrl: profilePicUrl)
             completion(userData)
         })
     }
     
-    public func like(with email: String, likerEmail: String, postNumber: Int) {
+    public func like(with email: String, likerInfo: PostLike, postNumber: Int) {
         print("Like")
         
         let ref = database.child("\(email.safeDatabaseKey())/Posts/\(postNumber)/likes")
         
         ref.observeSingleEvent(of: .value, with: { snapshot in
-            
+        
+            let element = [
+                "email": likerInfo.email,
+                "name": likerInfo.name,
+                "username": likerInfo.username
+            ]
             // No likes
-            if "" == snapshot.value as? String {
-                ref.setValue([likerEmail])
-                return
-            }
-            
-            guard var likes = snapshot.value as? [String] else {
+            print(snapshot.value)
+            guard var likes = snapshot.value as? [[String:String]] else {
+                print("Not type of postlike")
+                ref.setValue([element])
                 return
             }
             
             // Person already liked, delete their like
-            if likes.contains(likerEmail) {
+            if likes.contains(element) {
                 print("Already liked")
-                if let index = likes.firstIndex(of: likerEmail) {
+                if let index = likes.firstIndex(of: element) {
                     likes.remove(at: index)
                     ref.setValue(likes)
                 }
@@ -271,7 +277,7 @@ public class DatabaseManager {
             }
             
             // Add new like
-            let newElement = likerEmail
+            let newElement = element
             likes.append(newElement)
             ref.setValue(likes)
         })
@@ -279,5 +285,9 @@ public class DatabaseManager {
 //        database.child("\(email.safeDatabaseKey())/Posts/\(postNumber)").setValue(["\(email)"], withCompletionBlock: { result , error  in
 //            print(error)
 //        })
+    }
+    
+    public func setProfilePic(with email: String, url: String) {
+        database.child("\(email.safeDatabaseKey())/profilePicUrl").setValue(url)
     }
 }

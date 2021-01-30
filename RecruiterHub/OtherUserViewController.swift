@@ -49,9 +49,6 @@ class OtherUserViewController: UIViewController {
         layout.itemSize = CGSize(width: size, height: size)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .done, target: self, action: #selector(didTapBack))
-        
         collectionView?.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: VideoCollectionViewCell.identifier)
         
         collectionView?.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.identifier)
@@ -85,10 +82,7 @@ class OtherUserViewController: UIViewController {
             }
         })
     }
-    
-    @objc private func didTapBack() {
-        self.dismiss(animated: true, completion: nil)
-    }
+
 }
 
 extension OtherUserViewController: UICollectionViewDelegate {
@@ -99,27 +93,30 @@ extension OtherUserViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let posts = posts else {
+            print("Failed to get posts")
             return
         }
         guard let url = URL(string: posts[indexPath.row]["url"]! as! String) as URL? else {
             return
         }
         
-        guard let likes = posts[indexPath.row]["likes"]! as? [String] else {
-            return
+        var postLikes: [PostLike] = []
+        if let likes = posts[indexPath.row]["likes"] as? [[String:String]] {
+            for like in likes {
+                let postLike = PostLike(username: like["username"]!, email: like["email"]!, name: like["name"]!)
+                postLikes.append(postLike)
+            }
+        }
+        else {
+            postLikes = []
         }
         
-        let post = Post(likes: likes, title: "Post", url: url )
+        let post = Post(likes: postLikes, title: "Post", url: url, number: indexPath.row )
         
         print("Selected Item at \(indexPath.row)")
-        let vc = ViewPostViewController(post: post, user: user, postNumber: indexPath.row)
-        let navVC = UINavigationController(rootViewController: vc)
-        
+        let vc = ViewPostViewController(post: post, user: user)
         vc.title = "Post"
-        navVC.modalPresentationStyle = .fullScreen
-        vc.navigationItem.largeTitleDisplayMode = .never
-        
-        present(navVC, animated: true)
+        navigationController?.pushViewController(vc, animated: false)
     }
 }
 

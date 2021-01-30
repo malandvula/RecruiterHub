@@ -431,7 +431,8 @@ class RegisterViewController: UIViewController {
                           heightInches: Int(heightInches),
                           weight: Int(weight),
                           arm: arm,
-                          bats: bats)
+                          bats: bats,
+                          profilePicUrl: "gs://recruiterhub-cb0ef.appspot.com/images/barth-gmail-com")
         
         AuthManager.shared.registerNewUser(username: username, email: email, password: password, user: user) { [weak self] registered in
             if registered {
@@ -442,10 +443,21 @@ class RegisterViewController: UIViewController {
                 
                 let fileName = DatabaseManager.safeEmail(emailAddress: email)
                     
-                StorageManager.shared.uploadProfilePic(with: data, filename: fileName, completion: {_ in
+                StorageManager.shared.uploadProfilePic(with: data, filename: fileName, completion: { [weak self] result in
+                    switch result {
+                    case .success(let urlString):
+                        DatabaseManager.shared.setProfilePic(with: email, url: urlString)
+                    case .failure(let error):
+                        print(error)
+                    }
+                    
+                    self?.dismiss(animated: true, completion: nil)
+                    
+                    UserDefaults.standard.setValue(email, forKey: "email")
+                    UserDefaults.standard.setValue(user.username, forKey: "username")
+                    UserDefaults.standard.setValue("\(user.firstName) \(user.lastName)", forKey: "name")
                     
                 })
-                self?.dismiss(animated: true, completion: nil)
             }
             else {
                 // Failed
