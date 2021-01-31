@@ -73,8 +73,7 @@ class OtherUserViewController: UIViewController {
     }
     
     private func fetchPosts() {
-        
-        DatabaseManager.shared.getAllUserPosts(with: user.emailAddress.safeDatabaseKey(), completion: { [weak self] fetchedPosts in
+        DatabaseManager.shared.getAllUserPosts(with: self.user.emailAddress.safeDatabaseKey(), completion: { [weak self] fetchedPosts in
             self?.posts = fetchedPosts
             
             DispatchQueue.main.async {
@@ -82,7 +81,6 @@ class OtherUserViewController: UIViewController {
             }
         })
     }
-
 }
 
 extension OtherUserViewController: UICollectionViewDelegate {

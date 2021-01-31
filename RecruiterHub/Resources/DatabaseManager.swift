@@ -145,13 +145,15 @@ public class DatabaseManager {
     public func insertNewPost(with email: String, url: Upload) {
         database.child("\(email)/Posts").observeSingleEvent(of: .value, with: { [weak self] snapshot in
             
+            let newElement = [
+                "url": url.videoUrl,
+                "thumbnail": url.thumbnailUrl,
+                "likes": ""
+            ]
+            
             if var usersCollection = snapshot.value as? [[String: String]] {
                 
-                let newElement = [
-                    "url": url.videoUrl,
-                    "thumbnail": url.thumbnailUrl,
-                    "likes": ""
-                ]
+                
                 usersCollection.append(newElement)
                 
                 self?.database.child("\(email)/Posts").setValue(usersCollection, withCompletionBlock:  { error, _ in
@@ -161,15 +163,44 @@ public class DatabaseManager {
                 })
             }
             else {
+                let newCollection: [[String: String]] = [newElement]
+                
+                self?.database.child("\(email)/Posts").setValue(newCollection, withCompletionBlock:  { error, _ in
+                    guard error == nil else {
+                        return
+                    }
+                })
+            }
+            self?.insertFeedPost(email: email, url: url.videoUrl)
+            
+        })
+    }
+    
+    private func insertFeedPost(email: String, url: String) {
+        database.child("FeedPosts").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            if var feedCollection = snapshot.value as? [[String: String]] {
+                
+                let newElement = [
+                    "email": email,
+                    "url": url
+                ]
+                feedCollection.append(newElement)
+                
+                self?.database.child("FeedPosts").setValue(feedCollection, withCompletionBlock:  { error, _ in
+                    guard error == nil else {
+                        return
+                    }
+                })
+            }
+            else {
                 let newCollection: [[String: String]] = [
                     [
-                        "url": url.videoUrl,
-                        "thumbnail": url.thumbnailUrl,
-                        "likes": ""
+                        "email": email,
+                        "url": url
                     ]
                 ]
                 
-                self?.database.child("\(email)/Posts").setValue(newCollection, withCompletionBlock:  { error, _ in
+                self?.database.child("FeedPosts").setValue(newCollection, withCompletionBlock:  { error, _ in
                     guard error == nil else {
                         return
                     }
@@ -259,7 +290,6 @@ public class DatabaseManager {
                 "username": likerInfo.username
             ]
             // No likes
-            print(snapshot.value)
             guard var likes = snapshot.value as? [[String:String]] else {
                 print("Not type of postlike")
                 ref.setValue([element])
@@ -281,13 +311,20 @@ public class DatabaseManager {
             likes.append(newElement)
             ref.setValue(likes)
         })
-        
-//        database.child("\(email.safeDatabaseKey())/Posts/\(postNumber)").setValue(["\(email)"], withCompletionBlock: { result , error  in
-//            print(error)
-//        })
     }
     
     public func setProfilePic(with email: String, url: String) {
         database.child("\(email.safeDatabaseKey())/profilePicUrl").setValue(url)
+    }
+    
+    public func getFeedPosts(completion: @escaping (([[String:String]]?) -> Void))  {
+        database.child("FeedPosts").observeSingleEvent(of: .value, with: { snapshot in
+            guard let feedPosts = snapshot.value as? [[String:String]] else {
+                completion(nil)
+                return
+            }
+            
+            completion(feedPosts)
+        })
     }
 }

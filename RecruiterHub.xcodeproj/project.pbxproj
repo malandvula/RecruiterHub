@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8478858931F3AF385F451E63 /* Pods_RecruiterHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */; };
 		E63660D725C3BC0D007A4EFD /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660D625C3BC0D007A4EFD /* ListViewController.swift */; };
+		E63660DA25C619A9007A4EFD /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660D925C619A9007A4EFD /* FeedViewController.swift */; };
+		E63660DD25C61CD9007A4EFD /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660DC25C61CD9007A4EFD /* FeedTableViewCell.swift */; };
+		E63660E525C73C62007A4EFD /* ProfileTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660E425C73C61007A4EFD /* ProfileTabs.swift */; };
 		E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E325B11CB600D15230 /* AppDelegate.swift */; };
 		E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E525B11CB600D15230 /* SceneDelegate.swift */; };
 		E68B73EB25B11CB600D15230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E68B73E925B11CB600D15230 /* Main.storyboard */; };
@@ -29,7 +32,6 @@
 		E68B743A25B7E1D400D15230 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B743925B7E1D400D15230 /* NewPostViewController.swift */; };
 		E68B743D25BA4D3400D15230 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B743C25BA4D3400D15230 /* VideoCollectionViewCell.swift */; };
 		E68B744025BA90F100D15230 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B743F25BA90F100D15230 /* LoginViewController.swift */; };
-		E68B744325BAAC0900D15230 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B744225BAAC0900D15230 /* TabViewController.swift */; };
 		E68B744625BB425600D15230 /* ViewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B744525BB425600D15230 /* ViewPostViewController.swift */; };
 		E68B745E25BF8D2200D15230 /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B745D25BF8D2200D15230 /* SearchUsersViewController.swift */; };
 		E68B746125BFAC3900D15230 /* SearchUsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */; };
@@ -42,6 +44,9 @@
 		6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecruiterHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7A5D147E3D111AF11D2A94 /* Pods-RecruiterHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.debug.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.debug.xcconfig"; sourceTree = "<group>"; };
 		E63660D625C3BC0D007A4EFD /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		E63660D925C619A9007A4EFD /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		E63660DC25C61CD9007A4EFD /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		E63660E425C73C61007A4EFD /* ProfileTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabs.swift; sourceTree = "<group>"; };
 		E68B73E025B11CB600D15230 /* RecruiterHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecruiterHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E68B73E325B11CB600D15230 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E68B73E525B11CB600D15230 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +69,6 @@
 		E68B743925B7E1D400D15230 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		E68B743C25BA4D3400D15230 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E68B743F25BA90F100D15230 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		E68B744225BAAC0900D15230 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		E68B744525BB425600D15230 /* ViewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostViewController.swift; sourceTree = "<group>"; };
 		E68B745D25BF8D2200D15230 /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
 		E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewCell.swift; sourceTree = "<group>"; };
@@ -117,11 +121,11 @@
 				E68B742F25B2527C00D15230 /* RegisterViewController.swift */,
 				E68B743925B7E1D400D15230 /* NewPostViewController.swift */,
 				E68B743F25BA90F100D15230 /* LoginViewController.swift */,
-				E68B744225BAAC0900D15230 /* TabViewController.swift */,
 				E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */,
 				E68B746325C0801C00D15230 /* OtherUserViewController.swift */,
 				E68B746A25C0E6F500D15230 /* SettingsViewController.swift */,
 				E63660D625C3BC0D007A4EFD /* ListViewController.swift */,
+				E63660DC25C61CD9007A4EFD /* FeedTableViewCell.swift */,
 			);
 			path = RecruiterHub;
 			sourceTree = "<group>";
@@ -135,6 +139,7 @@
 				E68B740F25B170C400D15230 /* ContactInformationViewController.swift */,
 				E68B743C25BA4D3400D15230 /* VideoCollectionViewCell.swift */,
 				E68B746725C0D72E00D15230 /* ProfileTopBar.swift */,
+				E63660E425C73C61007A4EFD /* ProfileTabs.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				E68B743525B2615B00D15230 /* RHUser.swift */,
 				E68B744525BB425600D15230 /* ViewPostViewController.swift */,
 				E68B745D25BF8D2200D15230 /* SearchUsersViewController.swift */,
+				E63660D925C619A9007A4EFD /* FeedViewController.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -293,8 +299,8 @@
 				E68B740D25B1372700D15230 /* PhotoCollectionViewCell.swift in Sources */,
 				E68B743025B2527C00D15230 /* RegisterViewController.swift in Sources */,
 				E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */,
+				E63660DD25C61CD9007A4EFD /* FeedTableViewCell.swift in Sources */,
 				E68B740A25B12AD500D15230 /* DemoData.swift in Sources */,
-				E68B744325BAAC0900D15230 /* TabViewController.swift in Sources */,
 				E68B746825C0D72E00D15230 /* ProfileTopBar.swift in Sources */,
 				E68B743D25BA4D3400D15230 /* VideoCollectionViewCell.swift in Sources */,
 				E68B743625B2615B00D15230 /* RHUser.swift in Sources */,
@@ -309,7 +315,9 @@
 				E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */,
 				E68B740025B120C100D15230 /* ViewExtension.swift in Sources */,
 				E68B744025BA90F100D15230 /* LoginViewController.swift in Sources */,
+				E63660E525C73C62007A4EFD /* ProfileTabs.swift in Sources */,
 				E68B742A25B24FE900D15230 /* AuthManager.swift in Sources */,
+				E63660DA25C619A9007A4EFD /* FeedViewController.swift in Sources */,
 				E68B743325B25F7700D15230 /* StorageManager.swift in Sources */,
 				E68B743A25B7E1D400D15230 /* NewPostViewController.swift in Sources */,
 			);

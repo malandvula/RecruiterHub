@@ -53,7 +53,8 @@ class ProfileViewController: UIViewController {
         collectionView?.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: VideoCollectionViewCell.identifier)
         
         collectionView?.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.identifier)
-        collectionView?.register(ProfileTopBar.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileTopBar.identifier)
+        
+        collectionView?.register(ProfileTabs.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileTabs.identifier)
         
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -62,6 +63,7 @@ class ProfileViewController: UIViewController {
         }
         view.addSubview(collectionView)
         print("Fetching posts..")
+        navigationController?.navigationBar.backgroundColor = .systemBlue
         fetchPosts()
     }
 
@@ -180,21 +182,26 @@ extension ProfileViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        // Check that the kind is of section header
         guard kind == UICollectionView.elementKindSectionHeader else {
             return UICollectionReusableView()
         }
         
-        if indexPath.section == 0 {
-            let topBar = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileTopBar.identifier, for: indexPath) as! ProfileTopBar
-            topBar.delegate = self
-            return topBar
+        if indexPath.section == 1 {
+            let profileTabs = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileTabs.identifier, for: indexPath) as! ProfileTabs
+            profileTabs.delegate = self
+            return profileTabs
         }
         
+        // Dequeue reusable view of type ProfileHeader
         let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileHeader.identifier, for: indexPath) as! ProfileHeader
         profileHeader.delegate = self
+        
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
             return UICollectionReusableView()
         }
+        
         DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
             result in
             guard let result = result else {
@@ -203,6 +210,7 @@ extension ProfileViewController: UICollectionViewDataSource {
             
             profileHeader.configure(user: result)
         })
+        
         return profileHeader
     }
     
@@ -210,10 +218,11 @@ extension ProfileViewController: UICollectionViewDataSource {
 
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        if section == 0 {
-            return CGSize(width: view.width, height: 30)
+       
+        if section == 1 {
+            return CGSize(width: view.width, height: 50)
         }
+        
         return CGSize(width: view.width, height: view.height/2)
     }
     
@@ -233,12 +242,17 @@ extension ProfileViewController: ProfileHeaderDelegate {
     }
 }
 
-extension ProfileViewController: ProfileTopBarDelegate {
-    func didTapSettingsButton(_ profileTopBar: ProfileTopBar) {
-        
-        let vc = SettingsViewController()
-        let navVC = UINavigationController(rootViewController: vc)
-        vc.title = "Settings"
-        present(navVC, animated: true, completion: nil)
+extension ProfileViewController: ProfileTabsDelegate {
+    func didTapGridButtonTab() {
+        print("Tapped the grid")
+        let vc = ContactInformationViewController(user: user)
+        vc.title = "Contact Information"
+        navigationController?.pushViewController(vc, animated: false)
     }
+    
+    func didTapTaggedButtonTab() {
+        
+    }
+    
+    
 }

@@ -49,7 +49,7 @@ class ContactInformationViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         nameLabel.frame = CGRect(x: 20,
-                                 y: 15,
+                                 y: (navigationController?.navigationBar.bottom)! + 10,
                                  width: view.width - 40,
                                  height: 50)
         nameLabel.textAlignment = .center

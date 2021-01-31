@@ -36,6 +36,7 @@ class SearchUsersTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         nameLabel.frame = CGRect(x: 10, y: 10, width: width/2, height: 20)
         usernameLabel.frame = CGRect(x: 10, y: nameLabel.bottom + 10, width: width/2, height: 20)
     }

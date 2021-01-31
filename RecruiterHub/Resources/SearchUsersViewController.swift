@@ -46,6 +46,8 @@ class SearchUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        view.addSubview(noResultsLabel)
+        navigationController?.navigationBar.topItem?.titleView = searchBar
+        
         view.addSubview(tableView)
         
         tableView.delegate = self
@@ -53,16 +55,15 @@ class SearchUserViewController: UIViewController {
         
         searchBar.delegate = self
 
-        view.addSubview(searchBar)
+//        view.addSubview(searchBar)
         searchBar.becomeFirstResponder()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        searchBar.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.width, height: 40)
         
         tableView.frame = CGRect(x: 0,
-                                 y: searchBar.bottom,
+                                 y: 0,
                                  width: view.width,
                                  height: view.height - searchBar.height)
 //        noResultsLabel.frame = CGRect(x: view.width / 4, y: (view.height-200) / 2, width: view.width / 2, height: 200)

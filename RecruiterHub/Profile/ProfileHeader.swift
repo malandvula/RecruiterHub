@@ -74,15 +74,7 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         label.numberOfLines = 1
         return label
     }()
-    
-    private let viewContactInfoButton:UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .link
-        button.setTitleColor(.label, for: .normal)
-        button.setTitle("Contact Info", for: .normal)
-        return button
-    }()
-    
+
     private let reloadButton:UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGray
@@ -102,17 +94,12 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         configureBodyLabels()
         clipsToBounds = true
         backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
-        viewContactInfoButton.addTarget(self, action: #selector(didTapContactInfo), for: .touchUpInside)
-        
+
         reloadButton.addTarget(self, action: #selector(didTapReloadButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func didTapContactInfo() {
-        delegate?.didTapContactInfo(self)
     }
     
     @objc private func didTapReloadButton() {
@@ -126,7 +113,6 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         addSubview(gradLabel)
         addSubview(bodyLabel)
         addSubview(handLabel)
-        addSubview(viewContactInfoButton)
         addSubview(reloadButton)
     }
     
@@ -254,14 +240,8 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
                                  height: 20)
         handLabel.textAlignment = .center
         
-        viewContactInfoButton.frame = CGRect(x: 20,
-                                             y: handLabel.bottom + 5,
-                                             width: width - 40,
-                                             height: 20)
-        viewContactInfoButton.layer.cornerRadius = 3.0
-
         reloadButton.frame = CGRect(x: 20,
-                                             y: viewContactInfoButton.bottom + 5,
+                                             y: handLabel.bottom + 5,
                                              width: width - 40,
                                              height: 20)
         reloadButton.layer.cornerRadius = 3.0
