@@ -9,7 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
-    private var posts: [[String: String]]?
+    private var posts: [[String: String]] = []
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -48,31 +48,18 @@ class FeedViewController: UIViewController {
                 self?.tableView.reloadData()
             }
         })
-        
-//        (with: "ryanhelgeson14-gmail-com", completion: { [weak self] fetchedPosts in
-//            self?.posts = fetchedPosts
-//
-//            DispatchQueue.main.async {
-//                self?.tableView.reloadData()
-//            }
-//        })
     }
 }
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected Feed Row")
-        tableView.deselectRow(at: indexPath, animated: false)
-//        let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell.identifier, for: indexPath) as! FeedTableViewCell
-//
-//        guard let user = cell.getUser() else {
-//            return
-//        }
-//
-        let model = posts?[indexPath.row]
         
-        guard let email = model?["email"] else {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        let model = posts[posts.count - indexPath.row - 1]
+        
+        guard let email = model["email"] else {
             return
         }
         
@@ -90,18 +77,17 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let posts = posts else {
-            return 0
-        }
+        
         return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = posts?[indexPath.row]
+        
+        let model = posts[posts.count - indexPath.row - 1]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell.identifier, for: indexPath) as! FeedTableViewCell
         
-        guard let urlString = model?["url"] else {
+        guard let urlString = model["url"] else {
             print("Failed to get url")
             return UITableViewCell()
         }
@@ -110,7 +96,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        guard let email = model?["email"] else {
+        guard let email = model["email"] else {
             return UITableViewCell()
         }
         
