@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8478858931F3AF385F451E63 /* Pods_RecruiterHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */; };
-		E63660D725C3BC0D007A4EFD /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660D625C3BC0D007A4EFD /* ListViewController.swift */; };
 		E63660DA25C619A9007A4EFD /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660D925C619A9007A4EFD /* FeedViewController.swift */; };
 		E63660DD25C61CD9007A4EFD /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660DC25C61CD9007A4EFD /* FeedTableViewCell.swift */; };
 		E63660E525C73C62007A4EFD /* ProfileTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660E425C73C61007A4EFD /* ProfileTabs.swift */; };
+		E63660FC25C7906C007A4EFD /* ProfileConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660FB25C7906C007A4EFD /* ProfileConnections.swift */; };
+		E63660FF25C7C259007A4EFD /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660FE25C7C259007A4EFD /* ListsViewController.swift */; };
 		E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E325B11CB600D15230 /* AppDelegate.swift */; };
 		E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E525B11CB600D15230 /* SceneDelegate.swift */; };
 		E68B73EB25B11CB600D15230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E68B73E925B11CB600D15230 /* Main.storyboard */; };
@@ -43,10 +44,11 @@
 /* Begin PBXFileReference section */
 		6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecruiterHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7A5D147E3D111AF11D2A94 /* Pods-RecruiterHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.debug.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.debug.xcconfig"; sourceTree = "<group>"; };
-		E63660D625C3BC0D007A4EFD /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E63660D925C619A9007A4EFD /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		E63660DC25C61CD9007A4EFD /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		E63660E425C73C61007A4EFD /* ProfileTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabs.swift; sourceTree = "<group>"; };
+		E63660FB25C7906C007A4EFD /* ProfileConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConnections.swift; sourceTree = "<group>"; };
+		E63660FE25C7C259007A4EFD /* ListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
 		E68B73E025B11CB600D15230 /* RecruiterHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecruiterHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E68B73E325B11CB600D15230 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E68B73E525B11CB600D15230 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,8 +126,8 @@
 				E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */,
 				E68B746325C0801C00D15230 /* OtherUserViewController.swift */,
 				E68B746A25C0E6F500D15230 /* SettingsViewController.swift */,
-				E63660D625C3BC0D007A4EFD /* ListViewController.swift */,
 				E63660DC25C61CD9007A4EFD /* FeedTableViewCell.swift */,
+				E63660FE25C7C259007A4EFD /* ListsViewController.swift */,
 			);
 			path = RecruiterHub;
 			sourceTree = "<group>";
@@ -140,6 +142,7 @@
 				E68B743C25BA4D3400D15230 /* VideoCollectionViewCell.swift */,
 				E68B746725C0D72E00D15230 /* ProfileTopBar.swift */,
 				E63660E425C73C61007A4EFD /* ProfileTabs.swift */,
+				E63660FB25C7906C007A4EFD /* ProfileConnections.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -308,11 +311,12 @@
 				E68B740525B124A700D15230 /* ProfileHeader.swift in Sources */,
 				E68B744625BB425600D15230 /* ViewPostViewController.swift in Sources */,
 				E68B741025B170C400D15230 /* ContactInformationViewController.swift in Sources */,
-				E63660D725C3BC0D007A4EFD /* ListViewController.swift in Sources */,
+				E63660FF25C7C259007A4EFD /* ListsViewController.swift in Sources */,
 				E68B746425C0801C00D15230 /* OtherUserViewController.swift in Sources */,
 				E68B746B25C0E6F500D15230 /* SettingsViewController.swift in Sources */,
 				E68B745E25BF8D2200D15230 /* SearchUsersViewController.swift in Sources */,
 				E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */,
+				E63660FC25C7906C007A4EFD /* ProfileConnections.swift in Sources */,
 				E68B740025B120C100D15230 /* ViewExtension.swift in Sources */,
 				E68B744025BA90F100D15230 /* LoginViewController.swift in Sources */,
 				E63660E525C73C62007A4EFD /* ProfileTabs.swift in Sources */,

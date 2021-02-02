@@ -150,7 +150,6 @@ class LoginViewController: UIViewController {
             
             guard let result = authResult, error == nil else {
                 print("Failed to login user with email: \(email)")
-                print(error)
                 return
             }
             

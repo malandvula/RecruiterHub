@@ -1,15 +1,15 @@
 //
-//  ListViewController.swift
+//  ListsViewController.swift
 //  RecruiterHub
 //
-//  Created by Ryan Helgeson on 1/28/21.
+//  Created by Ryan Helgeson on 1/31/21.
 //
 
 import UIKit
 
-class ListViewController: UIViewController {
+class ListsViewController: UIViewController {
 
-    private let data: [PostLike]
+    private let data: [[String:String]]
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -19,7 +19,7 @@ class ListViewController: UIViewController {
     
     // MARK: - Init
     
-    init(data: [PostLike]) {
+    init(data: [[String:String]]) {
         self.data = data
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,7 +44,7 @@ class ListViewController: UIViewController {
     }
 }
 
-extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ListsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -55,21 +55,33 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let email = data[indexPath.row]["email"] else {
+            return cell
+        }
+        DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
+            user in
+            guard let user = user else {
+                return
+            }
+            
+            cell.textLabel?.text = user.name
+        })
         
-        cell.textLabel?.text = data[indexPath.row].name
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let email = data[indexPath.row].email
+        guard let email = data[indexPath.row]["email"] else {
+            return
+        }
         DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
             [weak self] user in
             guard let user = user else {
                 return
             }
             let vc = OtherUserViewController(user: user)
-            vc.title = "\(user.firstName) \(user.lastName)"
+            vc.title = user.name
             self?.navigationController?.pushViewController(vc, animated: true)
         })
         
@@ -81,3 +93,4 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return 75
     }
 }
+

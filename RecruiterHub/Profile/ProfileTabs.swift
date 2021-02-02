@@ -43,7 +43,7 @@ class ProfileTabs: UICollectionReusableView {
         backgroundColor = .systemBackground
         addSubview(gridButton)
         addSubview(taggedButton)
-        
+        backgroundColor = .black
         gridButton.addTarget(self,
                              action: #selector(didTapGridButton),
                              for: .touchUpInside)

@@ -56,6 +56,8 @@ class ProfileViewController: UIViewController {
         
         collectionView?.register(ProfileTabs.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileTabs.identifier)
         
+        collectionView?.register(ProfileConnections.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileConnections.identifier)
+        
         collectionView?.delegate = self
         collectionView?.dataSource = self
         guard let collectionView = collectionView else {
@@ -63,7 +65,8 @@ class ProfileViewController: UIViewController {
         }
         view.addSubview(collectionView)
         print("Fetching posts..")
-        navigationController?.navigationBar.backgroundColor = .systemBlue
+        navigationController?.navigationBar.barTintColor = .blue
+        tabBarController?.tabBar.barTintColor = .blue
         fetchPosts()
     }
 
@@ -123,7 +126,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -152,7 +155,6 @@ extension ProfileViewController: UICollectionViewDelegate {
         
         vc.title = "Post"
         vc.navigationItem.largeTitleDisplayMode = .never
-        
         navigationController?.pushViewController(vc, animated: false)
     }
 }
@@ -164,7 +166,7 @@ extension ProfileViewController: UICollectionViewDataSource {
             return 0
         }
         
-        if section == 0 {
+        if section != 2 {
             return 0
         }
         
@@ -194,23 +196,27 @@ extension ProfileViewController: UICollectionViewDataSource {
             return profileTabs
         }
         
+        if indexPath.section == 2 {
+            let profileConnections = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileConnections.identifier, for: indexPath) as! ProfileConnections
+            profileConnections.delegate = self
+            return profileConnections
+        }
+        
         // Dequeue reusable view of type ProfileHeader
         let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileHeader.identifier, for: indexPath) as! ProfileHeader
         profileHeader.delegate = self
         
-        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
-            return UICollectionReusableView()
-        }
-        
-        DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
-            result in
-            guard let result = result else {
-                return
-            }
+        if let email = UserDefaults.standard.value(forKey: "email") as? String {
+            DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
+                result in
+                guard let result = result else {
+                    return
+                }
+                
+                profileHeader.configure(user: result)
+            })
             
-            profileHeader.configure(user: result)
-        })
-        
+        }
         return profileHeader
     }
     
@@ -221,6 +227,10 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
        
         if section == 1 {
             return CGSize(width: view.width, height: 50)
+        }
+        
+        if section == 2 {
+            return CGSize(width: view.width, height: 70)
         }
         
         return CGSize(width: view.width, height: view.height/2)
@@ -251,6 +261,39 @@ extension ProfileViewController: ProfileTabsDelegate {
     }
     
     func didTapTaggedButtonTab() {
+        
+    }
+}
+
+extension ProfileViewController: ProfileConnectionsDelegate {
+    func didTapFollowingButton(_ profileConnections: ProfileConnections) {
+        print("Did tap following")
+        DatabaseManager.shared.getUserFollowing(email: user.emailAddress.safeDatabaseKey(), completion: { [weak self] followers in
+            var data:[[String:String]] = []
+            if let followers = followers {
+                    data = followers
+            }
+            let vc = ListsViewController(data: data)
+            vc.title = "Following"
+            self?.navigationController?.pushViewController(vc, animated: false)
+            return
+        })
+    }
+    
+    func didTapFollowersButton(_ profileConnections: ProfileConnections) {
+        DatabaseManager.shared.getUserFollowers(email: user.emailAddress.safeDatabaseKey(), completion: { [weak self] followers in
+            var data:[[String:String]] = []
+            if let followers = followers {
+                    data = followers
+            }
+            let vc = ListsViewController(data: data)
+            vc.title = "Followers"
+            self?.navigationController?.pushViewController(vc, animated: false)
+            return
+        })
+    }
+    
+    func didTapConnectionsButton(_ profileConnections: ProfileConnections) {
         
     }
     

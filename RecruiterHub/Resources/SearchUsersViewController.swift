@@ -14,10 +14,13 @@ class SearchUserViewController: UIViewController {
     
     private var users = [[String: String]]()
     
+    // Variable to store search results
     private var results = [SearchResult]()
     
+    // Whether the table has fetched
     private var hasFetched = false
     
+    // Initialize search bar
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.showsCancelButton = true
@@ -25,6 +28,7 @@ class SearchUserViewController: UIViewController {
         return searchBar
     }()
     
+    // Initialize tableView
     private let tableView: UITableView = {
         let table = UITableView()
         table.isHidden = true
@@ -33,29 +37,31 @@ class SearchUserViewController: UIViewController {
         return table
     }()
     
-//    private let noResultsLabel: UILabel = {
-//        let label = UILabel()
-//        label.isHidden = true
-//        label.text = "No results.. "
-//        label.textAlignment = .center
-//        label.textColor = .green
-//        label.font = .systemFont(ofSize: 21, weight: .medium)
-//        return label
-//    }()
+    // Initialize the no results label
+    private let noResultsLabel: UILabel = {
+        let label = UILabel()
+        label.isHidden = true
+        label.text = "No results.. "
+        label.textAlignment = .center
+        label.textColor = .green
+        label.font = .systemFont(ofSize: 21, weight: .medium)
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.addSubview(noResultsLabel)
+        
+        // Add search bar to the navigation bar
         navigationController?.navigationBar.topItem?.titleView = searchBar
         
         view.addSubview(tableView)
+        view.addSubview(noResultsLabel)
         
         tableView.delegate = self
         tableView.dataSource = self
         
         searchBar.delegate = self
-
-//        view.addSubview(searchBar)
+        
         searchBar.becomeFirstResponder()
     }
     
@@ -66,7 +72,7 @@ class SearchUserViewController: UIViewController {
                                  y: 0,
                                  width: view.width,
                                  height: view.height - searchBar.height)
-//        noResultsLabel.frame = CGRect(x: view.width / 4, y: (view.height-200) / 2, width: view.width / 2, height: 200)
+        noResultsLabel.frame = CGRect(x: view.width / 4, y: (view.height-200) / 2, width: view.width / 2, height: 200)
     }
     
 }
@@ -146,11 +152,11 @@ extension SearchUserViewController: UISearchBarDelegate {
     
     func updateUI() {
         if results.isEmpty {
-//            noResultsLabel.isHidden = false
+            noResultsLabel.isHidden = false
             tableView.isHidden = true
         }
         else {
-//            noResultsLabel.isHidden = true
+            noResultsLabel.isHidden = true
             tableView.isHidden = false
             tableView.reloadData()
         }
@@ -185,13 +191,14 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         //Start Conversation
         let targetUserData  = results[indexPath.row]
-        DatabaseManager.shared.getDataForUser(user: targetUserData.email.safeDatabaseKey(), completion: { [weak self] snapshot in
+        DatabaseManager.shared.getDataForUser(user: targetUserData.email.safeDatabaseKey(), completion: { [weak self] user in
             
-            guard let snapshot = snapshot else {
+            guard let user = user else {
                 return
             }
-            let vc = OtherUserViewController(user: snapshot)
-            vc.title = targetUserData.email
+            
+            let vc = OtherUserViewController(user: user)
+            vc.title = user.name
             self?.navigationController?.pushViewController(vc, animated: false)
         })
 

@@ -78,7 +78,7 @@ class FeedTableViewCell: UITableViewCell {
             }
         }
         catch {
-            print("Caught Error")
+            
         }
         // Do any additional setup after loading the view.
         let asset = AVAsset(url: post.url)

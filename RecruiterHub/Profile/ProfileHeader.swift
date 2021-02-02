@@ -155,7 +155,7 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
             }
         }
         catch {
-            print("Caught Error")
+            
         }
     }
     

@@ -13,30 +13,18 @@ class NewPostViewController: UIViewController {
 
     private let testingButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Test", for: .normal)
+        button.setTitle("New Video", for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 4.0
         button.backgroundColor = .systemGreen
         return button
     }()
     
-    private let getVideo: UIButton = {
-        let button = UIButton()
-        button.setTitle("Get Video", for: .normal)
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 4.0
-        button.backgroundColor = .link
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         testingButton.addTarget(self, action: #selector(didTapTest), for: .touchUpInside)
-        getVideo.addTarget(self, action: #selector(didTapGetVideo), for: .touchUpInside)
         
         view.addSubview(testingButton)
-        view.addSubview(getVideo)
-        // Do any additional setup after loading the view.
     }
     
 
@@ -44,7 +32,6 @@ class NewPostViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         testingButton.frame = CGRect(x: 20, y: view.safeAreaInsets.top + 10, width: view.width - 40, height: 52)
-        getVideo.frame = CGRect(x: 20, y: testingButton.bottom + 10, width: view.width - 40, height: 52)
     }
     
     @objc private func didTapTest() {
@@ -74,38 +61,6 @@ class NewPostViewController: UIViewController {
         }))
         
         present(actionSheet, animated: true)
-    }
-    
-    @objc private func didTapGetVideo() {
-        DatabaseManager.shared.getVideo(completion: { [weak self] videoUrlString in
-            guard let videoUrl = URL(string: videoUrlString!) else {
-                return
-            }
-            let player = AVPlayer(url: videoUrl)
-            let vc = AVPlayerViewController()
-            vc.player = player
-
-            self?.present(vc, animated: true) {
-                vc.player?.play()
-            }
-        })
-        
-    }
-}
-
-extension NewPostViewController: UIDocumentPickerDelegate {
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        
-        print("picked document ")
-        
-
-        
-        print("picked document ")
-
-    }
-    
-    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        dismiss(animated: true, completion: nil)
     }
 }
 

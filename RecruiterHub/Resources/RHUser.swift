@@ -28,7 +28,10 @@ public struct RHUser {
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         return safeEmail
     }
-    
+    var name: String {
+        let name = firstName + " " + lastName
+        return name
+    }
     
     var profilePictureFileName: String {
         //"ryanhelgeson14-gmail-com_profile_picture.png"

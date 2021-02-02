@@ -13,6 +13,7 @@ class ViewPostViewController: UIViewController {
     private var post: Post
     private let user: RHUser
     
+    // Like button
     private let likeButton: UIButton = {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .thin)
@@ -21,46 +22,59 @@ class ViewPostViewController: UIViewController {
         return button
     }()
     
+    // Likes label
     private let likesLabel: UILabel = {
         let label = UILabel()
         label.isUserInteractionEnabled = true
         return label
     }()
     
+    // Player
     private var player: AVPlayer?
     private var playerLayer = AVPlayerLayer()
     
+    // Occurs then the view loads
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add like button function call
         likeButton.addTarget(self, action: #selector(didTapLike), for: .touchUpInside)
 
-        // Do any additional setup after loading the view.
         let asset = AVAsset(url: post.url)
         let playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)
         
-        //3. Create AVPlayerLayer object
+        // AVPlayer Layer Configuration
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = .resizeAspect
         
-        //4. Add playerLayer to view's layer
+        // Add subviews and layers
         view.layer.addSublayer(playerLayer)
         view.addSubview(likeButton)
         view.addSubview(likesLabel)
+        
+        // Configure likes label
         configureLikesLabel()
+        
+        // Add player and start playing
         playerLayer.player = player
         player?.play()
         
     }
     
+    // Design layout
     override func viewDidLayoutSubviews() {
+        
+        // Place player layer
         playerLayer.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.width, height: view.height / 2)
         
+        // Place like button
         likeButton.frame = CGRect(x: 10,
                                   y: view.safeAreaInsets.top + playerLayer.frame.height,
                                   width: 30,
                                   height: 30)
         
+        // Place likes label
         likesLabel.frame = CGRect(x: 10, y: likeButton.bottom + 10, width: view.width - 20, height: 20)
     }
     
@@ -81,7 +95,7 @@ class ViewPostViewController: UIViewController {
     @objc private func didTapLike() {
         print("Tapped Like")
         
-        // Cast the user email to a String
+        // Cast the user info to Strings
         guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String,
               let currentUsername = UserDefaults.standard.value(forKey: "username") as? String,
               let currentName = UserDefaults.standard.value(forKey: "name") as? String
@@ -90,6 +104,7 @@ class ViewPostViewController: UIViewController {
             return
         }
         
+        // Create Post Like
         let postLike = PostLike(username: currentUsername, email: currentEmail.safeDatabaseKey(), name: currentName)
         
         // Update the like status
@@ -98,6 +113,7 @@ class ViewPostViewController: UIViewController {
                                     postNumber: post.number)
     }
     
+    // Configure the like button
     private func configureLikesLabel() {
         let numberOfLikes = post.likes.count
         likesLabel.text = "\(numberOfLikes) likes"
@@ -107,8 +123,14 @@ class ViewPostViewController: UIViewController {
         likesLabel.addGestureRecognizer(gesture)
     }
     
+    // Callback for like label interaction
     @objc private func didTapLikesLabel() {
-        let vc = ListViewController(data: post.likes)
+        var likes: [[String:String]] = []
+        for like in post.likes {
+            let newElement = ["email":like.email]
+            likes.append(newElement)
+        }
+        let vc = ListsViewController(data: likes)
         vc.title = "Likes"
         navigationController?.pushViewController(vc, animated: true)
     }

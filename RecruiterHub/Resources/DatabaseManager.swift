@@ -327,4 +327,28 @@ public class DatabaseManager {
             completion(feedPosts)
         })
     }
+    
+    public func getUserFollowers( email: String, completion: @escaping (([[String:String]]?) -> Void))  {
+        
+        database.child("\(email)/followers").observeSingleEvent(of: .value, with: { snapshot in
+            guard let feedPosts = snapshot.value as? [[String:String]] else {
+                completion(nil)
+                return
+            }
+        
+            completion(feedPosts)
+        })
+    }
+    
+    public func getUserFollowing( email: String, completion: @escaping (([[String:String]]?) -> Void))  {
+        
+        database.child("\(email)/following").observeSingleEvent(of: .value, with: { snapshot in
+            guard let feedPosts = snapshot.value as? [[String:String]] else {
+                completion(nil)
+                return
+            }
+        
+            completion(feedPosts)
+        })
+    }
 }
