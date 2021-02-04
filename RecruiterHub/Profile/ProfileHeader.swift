@@ -36,6 +36,8 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
     private let profilePhotoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
+        imageView.layer.borderColor = UIColor.secondarySystemBackground.cgColor
+        imageView.layer.borderWidth = 5
         imageView.backgroundColor = .secondarySystemBackground
         return imageView
     }()
@@ -93,8 +95,7 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         configurePositionLabel()
         configureBodyLabels()
         clipsToBounds = true
-        backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
-
+        backgroundColor = .systemBackground
         reloadButton.addTarget(self, action: #selector(didTapReloadButton), for: .touchUpInside)
     }
     

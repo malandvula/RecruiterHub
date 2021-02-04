@@ -15,6 +15,8 @@ struct SettingCellModel {
 
 class SettingsViewController: UIViewController {
 
+    private let user: RHUser
+    
     private let table:UITableView = {
         let tableView = UITableView (frame: .zero, style: .grouped)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -31,6 +33,15 @@ class SettingsViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         // Do any additional setup after loading the view.
+    }
+    
+    init(user: RHUser) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLayoutSubviews() {
@@ -71,9 +82,8 @@ class SettingsViewController: UIViewController {
     }
     
     private func didTapEditProfile() {
-        let vc = UIViewController()
-        vc.title = "Edite Profile"
-        vc.view.backgroundColor = .blue
+        let vc = EditProfileViewController(user: user)
+        vc.title = "Edit Profile"
         navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -111,7 +121,6 @@ class SettingsViewController: UIViewController {
         present(vc, animated: true)
 
     }
-
     
     private func didTapLogOut() {
         let actionSheet = UIAlertController(title: "Log Out",
@@ -150,13 +159,6 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        guard section == 1 else {
-//            return nil
-//        }
-//        return "Private Information"
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data[section].count

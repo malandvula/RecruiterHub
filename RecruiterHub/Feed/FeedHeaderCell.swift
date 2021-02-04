@@ -1,28 +1,23 @@
 //
-//  FeedTableViewCell.swift
+//  FeedHeaderCell.swift
 //  RecruiterHub
 //
-//  Created by Ryan Helgeson on 1/30/21.
+//  Created by Ryan Helgeson on 2/2/21.
 //
 
 import UIKit
-import AVFoundation
 
-protocol FeedTableViewCellDelegate: AnyObject {
-    func didTapUsername(_ feedTableViewCell: FeedTableViewCell, user: RHUser)
+protocol FeedHeaderCellDelegate: AnyObject {
+    func didTapUsername(_ feedHeaderCell: FeedHeaderCell, user: RHUser)
 }
 
-
-class FeedTableViewCell: UITableViewCell {
-
-    static let identifier = "FeedTableViewCell"
+class FeedHeaderCell: UITableViewCell {
     
-    public weak var delegate: FeedTableViewCellDelegate?
+    static let identifier = "FeedHeaderCell"
+    
+    public weak var delegate: FeedHeaderCellDelegate?
     
     private var user: RHUser?
-    
-    private var player: AVPlayer?
-    private var playerLayer = AVPlayerLayer()
     
     private let usernameLabel: UILabel = {
         let label = UILabel()
@@ -53,24 +48,23 @@ class FeedTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        profilePicImageView.frame = CGRect(x: 5, y: 10, width: 40, height: 40)
+        let padding = 5
+        profilePicImageView.frame = CGRect(x: 10,
+                                           y: padding,
+                                           width: 40,
+                                           height: Int(contentView.height) -  (padding * 2) )
         profilePicImageView.layer.cornerRadius = profilePicImageView.width / 2
         
-        usernameLabel.frame = CGRect(x: profilePicImageView.right + 10,
-                                     y: 0,
-                                     width: contentView.width,
-                                     height: 60)
-        playerLayer.frame = CGRect(x: 0,
-                                   y: usernameLabel.bottom,
-                                   width: contentView.width,
-                                   height: contentView.height - usernameLabel.height)
+        usernameLabel.frame = CGRect(x: Int(profilePicImageView.right) + 10,
+                                     y: padding,
+                                     width: Int(contentView.width),
+                                     height: Int(contentView.height) -  (padding * 2) )
     }
-    
-    public func configure(post: Post, user: RHUser) {
-    
+ 
+    public func configure(user: RHUser) {
+
         usernameLabel.text = user.username
-        
+
         do {
             if let url = URL(string: user.profilePicUrl) {
                 let data = try Data(contentsOf: url)
@@ -78,21 +72,8 @@ class FeedTableViewCell: UITableViewCell {
             }
         }
         catch {
-            
+
         }
-        // Do any additional setup after loading the view.
-        let asset = AVAsset(url: post.url)
-        let playerItem = AVPlayerItem(asset: asset)
-        player = AVPlayer(playerItem: playerItem)
-        
-        //3. Create AVPlayerLayer object
-        playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = .resizeAspectFill
-        
-        //4. Add playerLayer to view's layer
-        layer.addSublayer(playerLayer)
-        playerLayer.player = player
-        player?.play()
     }
     
     override func prepareForReuse() {

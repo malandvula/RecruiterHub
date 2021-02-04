@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9uP-e8-PW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19" y="1567"/>
+            <point key="canvasLocation" x="19" y="1554"/>
         </scene>
         <!--Search User View Controller-->
         <scene sceneID="3Z0-c5-1gJ">
@@ -93,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="02B-zj-zje" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="1585"/>
+            <point key="canvasLocation" x="1009" y="1554"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="klv-aK-VWZ">
@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Hh-Io-qPD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2038" y="1584"/>
+            <point key="canvasLocation" x="2038" y="1554"/>
         </scene>
         <!--New Post-->
         <scene sceneID="x7A-Tq-JYj">
@@ -130,11 +130,11 @@
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="847.76785714285711"/>
         </scene>
-        <!--Item-->
+        <!--Feed-->
         <scene sceneID="X3H-6u-eGK">
             <objects>
                 <navigationController id="YxZ-gL-WJi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="newspaper" catalog="system" id="BBG-3r-xQq"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="newspaper" catalog="system" id="BBG-3r-xQq"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7cH-KL-lwL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -147,11 +147,11 @@
             </objects>
             <point key="canvasLocation" x="2038" y="848"/>
         </scene>
-        <!--Item-->
+        <!--Search-->
         <scene sceneID="geY-e5-Wto">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rFB-5o-ccT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="magnifyingglass" catalog="system" id="efn-eg-TF2"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="efn-eg-TF2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mG4-LU-O7J">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

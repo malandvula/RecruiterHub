@@ -181,9 +181,16 @@ extension SearchUserViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = results[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchUsersTableViewCell.identifier, for: indexPath) as! SearchUsersTableViewCell
-        print(model)
-        cell.nameLabel.text = model.name
-        cell.usernameLabel.text = model.email
+        
+        DatabaseManager.shared.getDataForUser(user: model.email.safeDatabaseKey(), completion: {
+            user in
+            guard let user = user else {
+                return
+            }
+            
+            cell.nameLabel.text = user.name
+            cell.usernameLabel.text = user.username
+        })
         return cell
     }
     

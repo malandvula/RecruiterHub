@@ -30,13 +30,6 @@ class ProfileViewController: UIViewController {
     
     private var posts: [[String:Any]]?
     
-    let backgroundImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "gradient")
-        imageView.layer.masksToBounds = true
-        return imageView
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let layout = UICollectionViewFlowLayout()
@@ -50,19 +43,22 @@ class ProfileViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
     
-        collectionView?.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: VideoCollectionViewCell.identifier)
-        
-        collectionView?.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.identifier)
-        
-        collectionView?.register(ProfileTabs.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileTabs.identifier)
-        
-        collectionView?.register(ProfileConnections.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileConnections.identifier)
-        
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
         guard let collectionView = collectionView else {
             return
         }
+        
+        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: VideoCollectionViewCell.identifier)
+        
+        collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.identifier)
+        
+        collectionView.register(ProfileTabs.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileTabs.identifier)
+        
+        collectionView.register(ProfileConnections.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileConnections.identifier)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .systemBackground
+        
         view.addSubview(collectionView)
         print("Fetching posts..")
         navigationController?.navigationBar.barTintColor = .blue
@@ -92,8 +88,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func didTapEditButton() {
-        let vc = SettingsViewController()
-//        let navVC = UINavigationController(rootViewController: vc)
+        let vc = SettingsViewController(user: user)
         vc.title = "Settings"
         navigationController?.pushViewController(vc, animated: false)
     }
@@ -233,9 +228,8 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: view.width, height: 70)
         }
         
-        return CGSize(width: view.width, height: view.height/2)
+        return CGSize(width: view.width, height: view.height/2 - 50)
     }
-    
     
 }
 

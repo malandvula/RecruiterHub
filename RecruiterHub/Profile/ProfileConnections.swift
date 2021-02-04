@@ -62,8 +62,6 @@ class ProfileConnections: UICollectionReusableView {
         addSubview(followersButton)
         addSubview(connectionsButton)
         
-        backgroundColor = .black
-        
         followingButton.addTarget(self,
                              action: #selector(didTapFollowing),
                              for: .touchUpInside)

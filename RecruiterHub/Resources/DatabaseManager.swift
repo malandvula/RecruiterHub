@@ -351,4 +351,21 @@ public class DatabaseManager {
             completion(feedPosts)
         })
     }
+    
+    public func updateUserInfor( user: RHUser) {
+        let email = user.emailAddress.safeDatabaseKey()
+        
+        database.child(email).child("username").setValue(user.username)
+        database.child(email).child("firstname").setValue(user.firstName)
+        database.child(email).child("lastname").setValue(user.lastName)
+        database.child(email).child("positions").setValue(user.positions)
+        database.child(email).child("heightFeet").setValue(user.heightFeet)
+        database.child(email).child("heightInches").setValue(user.heightInches)
+        database.child(email).child("highschool").setValue(user.highShcool)
+        database.child(email).child("state").setValue(user.state)
+        database.child(email).child("weight").setValue(user.weight)
+        database.child(email).child("arm").setValue(user.arm)
+        database.child(email).child("bats").setValue(user.bats)
+        database.child(email).child("gradYear").setValue(user.gradYear)
+    }
 }

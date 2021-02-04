@@ -8,19 +8,19 @@
 import Foundation
 
 public struct RHUser {
-    let username: String
-    let firstName: String
-    let lastName: String
+    var username: String
+    var firstName: String
+    var lastName: String
     let emailAddress:String
-    let positions: [String]
-    let highShcool: String?
-    let state: String?
-    let gradYear: Int?
-    let heightFeet: Int?
-    let heightInches: Int?
-    let weight: Int?
-    let arm: String?
-    let bats: String?
+    var positions: [String]
+    var highShcool: String?
+    var state: String?
+    var gradYear: Int?
+    var heightFeet: Int?
+    var heightInches: Int?
+    var weight: Int?
+    var arm: String?
+    var bats: String?
     let profilePicUrl: String
     
     var safeEmail: String {

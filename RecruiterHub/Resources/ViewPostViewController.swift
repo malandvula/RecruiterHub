@@ -26,6 +26,7 @@ class ViewPostViewController: UIViewController {
     private let likesLabel: UILabel = {
         let label = UILabel()
         label.isUserInteractionEnabled = true
+        label.font = UIFont.boldSystemFont(ofSize: 20.0)
         return label
     }()
     
