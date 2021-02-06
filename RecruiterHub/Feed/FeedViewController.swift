@@ -70,7 +70,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if indexPath.row % 3 == 0 {
+        if indexPath.row % 4 == 0 {
             let model = posts[posts.count - (indexPath.row/3) - 1]
             
             guard let email = model["email"] else {
@@ -89,17 +89,23 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
 
             })
         }
+        else if indexPath.row % 4 == 1 {
+            let cell = tableView.cellForRow(at: indexPath) as! FeedTableViewCell
+            tableView.deselectRow(at: indexPath, animated: false)
+            cell.play()
+        }
+        
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return posts.count * 3
+        return posts.count * 4
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath.row)
-        let model = posts[posts.count - (indexPath.row / 3) - 1]
+        let model = posts[posts.count - (indexPath.row / 4) - 1]
         guard let urlString = model["url"] else {
             print("Failed to get url")
             return UITableViewCell()
@@ -113,48 +119,47 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         if indexPath.row % 4 == 2 {
-            print("Actions Cell")
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedActionsCell.identifier, for: indexPath) as! FeedActionsCell
             cell.delegate = self
             return cell
         }
         else if indexPath.row % 4 == 0 {
-            print("Header Cell")
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedHeaderCell.identifier, for: indexPath) as! FeedHeaderCell
-            DatabaseManager.shared.getDataForUser(user: email, completion: {
-                user in
-                guard let user = user else {
-                    return
-                }
-                
-                cell.configure( user: user)
-                cell.delegate = self
-            })
+            DispatchQueue.main.async {
+                DatabaseManager.shared.getDataForUser(user: email, completion: {
+                    user in
+                    guard let user = user else {
+                        return
+                    }
+                    
+                    cell.configure( user: user)
+                    cell.delegate = self
+                })
+            }
+            
             return cell
         }
         else if indexPath.row % 4 == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedPostInfoCell.identifier, for: indexPath) as! FeedPostInfoCell
             return cell
-            
         }
         else {
-            print("Post Cell")
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell.identifier, for: indexPath) as! FeedTableViewCell
             
             let post = Post(likes: [], title: "Post", url: url, number: indexPath.row )
-            
-            DatabaseManager.shared.getDataForUser(user: email, completion: {
-                user in
-                guard let user = user else {
-                    return
-                }
-                
-                cell.configure(post: post, user: user)
-                cell.delegate = self
-            })
-            
+            DispatchQueue.main.async {
+                DatabaseManager.shared.getDataForUser(user: email, completion: {
+                    user in
+                    guard let user = user else {
+                        return
+                    }
+                    
+                    cell.configure(post: post, user: user)
+                    cell.delegate = self
+                })
+            }
             return cell
-            
         }
     }
     
@@ -169,7 +174,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             return 50
         }
         else {
-            return view.height - 50
+            return view.height * 3.0 / 4.0
         }
     }
 }

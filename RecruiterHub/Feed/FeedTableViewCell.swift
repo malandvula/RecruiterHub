@@ -27,6 +27,12 @@ class FeedTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        
+        //3. Create AVPlayerLayer object
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = .resizeAspectFill
+        
+        layer.addSublayer(playerLayer)
     }
     
     required init?(coder: NSCoder) {
@@ -50,20 +56,28 @@ class FeedTableViewCell: UITableViewCell {
         let playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)
 
-        //3. Create AVPlayerLayer object
-        playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = .resizeAspectFill
 
         //4. Add playerLayer to view's layer
-        layer.addSublayer(playerLayer)
+        
         playerLayer.player = player
-        player?.play()
+    }
+    
+    public func play() {
+        if player?.rate != 0 {
+            print("Playing")
+        }
+        else {
+            if player?.currentTime().seconds != 0 {
+                player?.seek(to: CMTime(seconds: 0.0, preferredTimescale: 1))
+            }
+            player?.play()
+        }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         player = nil
-        playerLayer.player = player
+        playerLayer.player = nil
     }
 
     public func getUser() -> RHUser? {

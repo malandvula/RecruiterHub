@@ -61,15 +61,14 @@ class ProfileViewController: UIViewController {
         
         view.addSubview(collectionView)
         print("Fetching posts..")
-        navigationController?.navigationBar.barTintColor = .blue
-        tabBarController?.tabBar.barTintColor = .blue
+        navigationController?.navigationBar.barTintColor = .clear
+        tabBarController?.tabBar.barTintColor = .clear
         fetchPosts()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         handleNotAuthenticated()
-       
     }
     
     func handleNotAuthenticated() {
@@ -94,10 +93,17 @@ class ProfileViewController: UIViewController {
     }
     
     private func fetchPosts() {
-        guard var email = UserDefaults.standard.value(forKey: "email") as! String? else {
+        
+        guard let isLoggedIn = UserDefaults.standard.value(forKey: "isLoggedIn") as? String,
+              isLoggedIn == "Yes" else {
+            print("Is not logged in")
             return
         }
-        
+        print("Is logged in")
+        guard var email = UserDefaults.standard.value(forKey: "email") as? String else {
+            print("failed")
+            return
+        }
         email = DatabaseManager.safeEmail(emailAddress: email)
         
         DatabaseManager.shared.getAllUserPosts(with: email, completion: { [weak self] fetchedPosts in
@@ -105,15 +111,14 @@ class ProfileViewController: UIViewController {
             
             DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
                 [weak self] user in
-
                 guard let user = user else {
                     return
                 }
                 self?.user = user
-
-                DispatchQueue.main.async {
-                    self?.collectionView!.reloadData()
-                }
+                
+                
+                self?.collectionView!.reloadData()
+                
             })
         })
     }
@@ -202,15 +207,16 @@ extension ProfileViewController: UICollectionViewDataSource {
         profileHeader.delegate = self
         
         if let email = UserDefaults.standard.value(forKey: "email") as? String {
-            DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
-                result in
-                guard let result = result else {
-                    return
-                }
-                
-                profileHeader.configure(user: result)
-            })
-            
+           
+                DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
+                    result in
+                    guard let result = result else {
+                        return
+                    }
+                    
+                    profileHeader.configure(user: result)
+                })
+        
         }
         return profileHeader
     }
@@ -228,18 +234,20 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: view.width, height: 70)
         }
         
-        return CGSize(width: view.width, height: view.height/2 - 50)
+        return CGSize(width: view.width, height: view.height/2)
     }
     
 }
 
 extension ProfileViewController: ProfileHeaderDelegate {
-    
-    func didTapContactInfo(_ header: ProfileHeader) {
-        let vc = ContactInformationViewController(user: user)
-        vc.title = "Contact Information"
-        navigationController?.pushViewController(vc, animated: false)
+    func didTapFollowButton(_ header: ProfileHeader) {
+        print("Tapped Follow")
+        guard let email =  UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        DatabaseManager.shared.follow(email: user.emailAddress.safeDatabaseKey(), followerEmail: email.safeDatabaseKey())
     }
+    
     func didTapReload(_ header: ProfileHeader) {
         print("Reload Tapped")
         fetchPosts()

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProfileHeaderDelegate: AnyObject {
-    func didTapContactInfo(_ header: ProfileHeader)
+    func didTapFollowButton(_ header: ProfileHeader)
     func didTapReload(_ header: ProfileHeader)
 }
 
@@ -17,6 +17,8 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
     static let identifier = "ProfileHeader"
     
     public weak var delegate: ProfileHeaderDelegate?
+    
+    public var size = 0
     
     private let user = RHUser(username: "None",
                               firstName: "Ryan",
@@ -85,6 +87,14 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         return button
     }()
 
+    private let followButton:UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .link
+        button.setTitleColor( .label, for: .normal)
+        button.setTitle("Follow", for: .normal)
+        return button
+    }()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -97,6 +107,7 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         clipsToBounds = true
         backgroundColor = .systemBackground
         reloadButton.addTarget(self, action: #selector(didTapReloadButton), for: .touchUpInside)
+        followButton.addTarget(self, action: #selector(didTapFollowButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -107,6 +118,18 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         delegate?.didTapReload(self)
     }
     
+    @objc private func didTapFollowButton() {
+        if followButton.titleLabel?.text == "Unfollow" {
+            followButton.setTitle("Follow", for: .normal)
+            followButton.backgroundColor = .link
+        }
+        else {
+            followButton.setTitle("Unfollow", for: .normal)
+            followButton.backgroundColor = .lightGray
+        }
+        delegate?.didTapFollowButton(self)
+    }
+    
     private func addSubviews() {
         addSubview(profilePhotoImageView)
         addSubview(nameLabel)
@@ -115,6 +138,7 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         addSubview(bodyLabel)
         addSubview(handLabel)
         addSubview(reloadButton)
+        addSubview(followButton)
     }
     
     public func configure(user: RHUser) {
@@ -158,6 +182,24 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         catch {
             
         }
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        
+        if email == user.emailAddress.safeDatabaseKey() {
+            followButton.isHidden = true
+        }
+        
+        DatabaseManager.shared.getUserFollowing(email: email.safeDatabaseKey(), completion: { [weak self]
+            result in
+            guard let result = result else {
+                return
+            }
+            if result.contains(["email": user.emailAddress.safeDatabaseKey()]) {
+                self?.followButton.setTitle("Unfollow", for: .normal)
+                self?.followButton.backgroundColor = .lightGray
+            }
+        })
     }
     
     private func configureNameLabel() {
@@ -246,6 +288,11 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
                                              width: width - 40,
                                              height: 20)
         reloadButton.layer.cornerRadius = 3.0
+        followButton.frame = CGRect(x: 20,
+                                             y: reloadButton.bottom + 5,
+                                             width: width - 40,
+                                             height: 20)
+        followButton.layer.cornerRadius = 3.0
         
     }
     

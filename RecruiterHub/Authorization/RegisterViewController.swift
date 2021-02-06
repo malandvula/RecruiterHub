@@ -96,125 +96,125 @@ class RegisterViewController: UIViewController {
         return textField
     }()
     
-    private let highSchoolField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "High School..."
-        textField.returnKeyType = .next
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.backgroundColor = .secondarySystemBackground
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        return textField
-    }()
+//    private let highSchoolField: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "High School..."
+//        textField.returnKeyType = .next
+//        textField.leftViewMode = .always
+//        textField.autocapitalizationType = .none
+//        textField.autocorrectionType = .no
+//        textField.layer.masksToBounds = true
+//        textField.layer.cornerRadius = Constants.cornerRadius
+//        textField.backgroundColor = .secondarySystemBackground
+//        textField.layer.borderWidth = 1.0
+//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
+//        return textField
+//    }()
     
-    private let stateField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "State..."
-        textField.returnKeyType = .next
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.backgroundColor = .secondarySystemBackground
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        return textField
-    }()
+//    private let stateField: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "State..."
+//        textField.returnKeyType = .next
+//        textField.leftViewMode = .always
+//        textField.autocapitalizationType = .none
+//        textField.autocorrectionType = .no
+//        textField.layer.masksToBounds = true
+//        textField.layer.cornerRadius = Constants.cornerRadius
+//        textField.backgroundColor = .secondarySystemBackground
+//        textField.layer.borderWidth = 1.0
+//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
+//        return textField
+//    }()
     
-    private let weightField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Weight..."
-        textField.returnKeyType = .next
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.backgroundColor = .secondarySystemBackground
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        return textField
-    }()
-    
-    private let heightInchesField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Height in inches..."
-        textField.returnKeyType = .next
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.backgroundColor = .secondarySystemBackground
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        return textField
-    }()
-    
-    private let heightfeetField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Height in feet..."
-        textField.returnKeyType = .next
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.backgroundColor = .secondarySystemBackground
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        return textField
-    }()
-    
-    private let gradYearField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Grad Year..."
-        textField.returnKeyType = .next
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.backgroundColor = .secondarySystemBackground
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        return textField
-    }()
-    
-    private let armField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Arm..."
-        textField.returnKeyType = .next
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.backgroundColor = .secondarySystemBackground
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        return textField
-    }()
-    
-    private let batsField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Bats..."
-        textField.returnKeyType = .next
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.autocorrectionType = .no
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.backgroundColor = .secondarySystemBackground
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        return textField
-    }()
+//    private let weightField: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "Weight..."
+//        textField.returnKeyType = .next
+//        textField.leftViewMode = .always
+//        textField.autocapitalizationType = .none
+//        textField.autocorrectionType = .no
+//        textField.layer.masksToBounds = true
+//        textField.layer.cornerRadius = Constants.cornerRadius
+//        textField.backgroundColor = .secondarySystemBackground
+//        textField.layer.borderWidth = 1.0
+//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
+//        return textField
+//    }()
+//
+//    private let heightInchesField: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "Height in inches..."
+//        textField.returnKeyType = .next
+//        textField.leftViewMode = .always
+//        textField.autocapitalizationType = .none
+//        textField.autocorrectionType = .no
+//        textField.layer.masksToBounds = true
+//        textField.layer.cornerRadius = Constants.cornerRadius
+//        textField.backgroundColor = .secondarySystemBackground
+//        textField.layer.borderWidth = 1.0
+//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
+//        return textField
+//    }()
+//
+//    private let heightfeetField: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "Height in feet..."
+//        textField.returnKeyType = .next
+//        textField.leftViewMode = .always
+//        textField.autocapitalizationType = .none
+//        textField.autocorrectionType = .no
+//        textField.layer.masksToBounds = true
+//        textField.layer.cornerRadius = Constants.cornerRadius
+//        textField.backgroundColor = .secondarySystemBackground
+//        textField.layer.borderWidth = 1.0
+//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
+//        return textField
+//    }()
+//
+//    private let gradYearField: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "Grad Year..."
+//        textField.returnKeyType = .next
+//        textField.leftViewMode = .always
+//        textField.autocapitalizationType = .none
+//        textField.autocorrectionType = .no
+//        textField.layer.masksToBounds = true
+//        textField.layer.cornerRadius = Constants.cornerRadius
+//        textField.backgroundColor = .secondarySystemBackground
+//        textField.layer.borderWidth = 1.0
+//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
+//        return textField
+//    }()
+//
+//    private let armField: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "Arm..."
+//        textField.returnKeyType = .next
+//        textField.leftViewMode = .always
+//        textField.autocapitalizationType = .none
+//        textField.autocorrectionType = .no
+//        textField.layer.masksToBounds = true
+//        textField.layer.cornerRadius = Constants.cornerRadius
+//        textField.backgroundColor = .secondarySystemBackground
+//        textField.layer.borderWidth = 1.0
+//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
+//        return textField
+//    }()
+//
+//    private let batsField: UITextField = {
+//        let textField = UITextField()
+//        textField.placeholder = "Bats..."
+//        textField.returnKeyType = .next
+//        textField.leftViewMode = .always
+//        textField.autocapitalizationType = .none
+//        textField.autocorrectionType = .no
+//        textField.layer.masksToBounds = true
+//        textField.layer.cornerRadius = Constants.cornerRadius
+//        textField.backgroundColor = .secondarySystemBackground
+//        textField.layer.borderWidth = 1.0
+//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
+//        return textField
+//    }()
     
     private let passwordField: UITextField = {
         let textField = UITextField()
@@ -259,26 +259,26 @@ class RegisterViewController: UIViewController {
         usernameField.delegate = self
         emailField.delegate = self
         passwordField.delegate = self
-        picker.delegate = self
-        picker.dataSource = self
+//        picker.delegate = self
+//        picker.dataSource = self
         
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
         scrollView.addSubview(usernameField)
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
-        scrollView.addSubview(highSchoolField)
+//        scrollView.addSubview(highSchoolField)
         scrollView.addSubview(registerButton)
-        scrollView.addSubview(picker)
-        scrollView.addSubview(stateField)
+//        scrollView.addSubview(picker)
+//        scrollView.addSubview(stateField)
         scrollView.addSubview(lastNameField)
-        scrollView.addSubview(weightField)
-        scrollView.addSubview(heightfeetField)
-        scrollView.addSubview(heightInchesField)
+//        scrollView.addSubview(weightField)
+//        scrollView.addSubview(heightfeetField)
+//        scrollView.addSubview(heightInchesField)
         scrollView.addSubview(firstNameField)
-        scrollView.addSubview(gradYearField)
-        scrollView.addSubview(armField)
-        scrollView.addSubview(batsField)
+//        scrollView.addSubview(gradYearField)
+//        scrollView.addSubview(armField)
+//        scrollView.addSubview(batsField)
         view.backgroundColor = .systemBackground
         
         imageView.isUserInteractionEnabled = true
@@ -302,41 +302,41 @@ class RegisterViewController: UIViewController {
                                      y: firstNameField.bottom + 10,
                                      width: view.width - 40,
                                      height: 52)
-        stateField.frame = CGRect(x: 20,
-                                     y: lastNameField.bottom + 10,
-                                     width: view.width - 40,
-                                     height: 52)
-        highSchoolField.frame = CGRect(x: 20,
-                                  y: stateField.bottom + 10,
-                                  width: view.width - 40,
-                                  height: 52)
-        weightField.frame = CGRect(x: 20,
-                                  y: highSchoolField.bottom + 10,
-                                  width: view.width - 40,
-                                  height: 52)
-        heightfeetField.frame = CGRect(x: 20,
-                                  y: weightField.bottom + 10,
-                                  width: view.width - 40,
-                                  height: 52)
-        heightInchesField.frame = CGRect(x: 20,
-                                  y: heightfeetField.bottom + 10,
-                                  width: view.width - 40,
-                                  height: 52)
-        armField.frame = CGRect(x: 20,
-                                  y: heightInchesField.bottom + 10,
-                                  width: view.width - 40,
-                                  height: 52)
-        batsField.frame = CGRect(x: 20,
-                                  y: armField.bottom + 10,
-                                  width: view.width - 40,
-                                  height: 52)
-        gradYearField.frame = CGRect(x: 20,
-                                  y: batsField.bottom + 10,
-                                  width: view.width - 40,
-                                  height: 52)
-        
+//        stateField.frame = CGRect(x: 20,
+//                                     y: lastNameField.bottom + 10,
+//                                     width: view.width - 40,
+//                                     height: 52)
+//        highSchoolField.frame = CGRect(x: 20,
+//                                  y: stateField.bottom + 10,
+//                                  width: view.width - 40,
+//                                  height: 52)
+//        weightField.frame = CGRect(x: 20,
+//                                  y: highSchoolField.bottom + 10,
+//                                  width: view.width - 40,
+//                                  height: 52)
+//        heightfeetField.frame = CGRect(x: 20,
+//                                  y: weightField.bottom + 10,
+//                                  width: view.width - 40,
+//                                  height: 52)
+//        heightInchesField.frame = CGRect(x: 20,
+//                                  y: heightfeetField.bottom + 10,
+//                                  width: view.width - 40,
+//                                  height: 52)
+//        armField.frame = CGRect(x: 20,
+//                                  y: heightInchesField.bottom + 10,
+//                                  width: view.width - 40,
+//                                  height: 52)
+//        batsField.frame = CGRect(x: 20,
+//                                  y: armField.bottom + 10,
+//                                  width: view.width - 40,
+//                                  height: 52)
+//        gradYearField.frame = CGRect(x: 20,
+//                                  y: batsField.bottom + 10,
+//                                  width: view.width - 40,
+//                                  height: 52)
+//
         usernameField.frame = CGRect(x: 20,
-                                     y: gradYearField.bottom + 10,
+                                     y: lastNameField.bottom + 10,
                                      width: view.width - 40,
                                      height: 52)
         emailField.frame = CGRect(x: 20,
@@ -347,12 +347,12 @@ class RegisterViewController: UIViewController {
                                      y: emailField.bottom + 10,
                                      width: view.width - 40,
                                      height: 52)
-        picker.frame = CGRect(x: 20,
-                              y: passwordField.bottom + 10,
-                              width: view.width - 40,
-                              height: 100)
+//        picker.frame = CGRect(x: 20,
+//                              y: passwordField.bottom + 10,
+//                              width: view.width - 40,
+//                              height: 100)
         registerButton.frame = CGRect(x: 20,
-                                      y: picker.bottom + 10,
+                                      y: passwordField.bottom + 10,
                                       width: view.width - 40,
                                       height: 52)
     }
@@ -410,14 +410,14 @@ class RegisterViewController: UIViewController {
         guard let email = emailField.text, !email.isEmpty,
               let firstname = firstNameField.text, !firstname.isEmpty,
               let lastname = lastNameField.text, !lastname.isEmpty,
-              let state = stateField.text, !state.isEmpty,
-              let highschool = highSchoolField.text, !highschool.isEmpty,
-              let arm = armField.text, !arm.isEmpty,
-              let bats = batsField.text, !bats.isEmpty,
-              let gradYear = gradYearField.text, !gradYear.isEmpty,
-              let weight = weightField.text, !weight.isEmpty,
-              let heightInches = heightInchesField.text, !heightInches.isEmpty,
-              let heightFeet = heightfeetField.text, !heightFeet.isEmpty,
+//              let state = stateField.text, !state.isEmpty,
+//              let highschool = highSchoolField.text, !highschool.isEmpty,
+//              let arm = armField.text, !arm.isEmpty,
+//              let bats = batsField.text, !bats.isEmpty,
+//              let gradYear = gradYearField.text, !gradYear.isEmpty,
+//              let weight = weightField.text, !weight.isEmpty,
+//              let heightInches = heightInchesField.text, !heightInches.isEmpty,
+//              let heightFeet = heightfeetField.text, !heightFeet.isEmpty,
               let password = passwordField.text, !password.isEmpty, password.count >= 8,
               let username = usernameField.text, !username.isEmpty else {
             return
@@ -428,15 +428,24 @@ class RegisterViewController: UIViewController {
                           lastName: lastname,
                           emailAddress: email,
                           positions: ["RHP", "OF", "1B"],
-                          highShcool: highschool,
-                          state: state,
-                          gradYear: Int(gradYear),
-                          heightFeet: Int(heightFeet),
-                          heightInches: Int(heightInches),
-                          weight: Int(weight),
-                          arm: arm,
-                          bats: bats,
-                          profilePicUrl: "gs://recruiterhub-cb0ef.appspot.com/images/barth-gmail-com")
+                          highShcool: "N/A",
+                          state: "N/A",
+                          gradYear: 0,
+                          heightFeet: 0,
+                          heightInches: 0,
+                          weight: 0,
+                          arm: "N/A",
+                          bats: "N/A",
+                         
+//                          highShcool: highschool,
+//                          state: state,
+//                          gradYear: Int(gradYear),
+//                          heightFeet: Int(heightFeet),
+//                          heightInches: Int(heightInches),
+//                          weight: Int(weight),
+//                          arm: arm,
+//                          bats: bats,
+                          profilePicUrl: "N/A")
         
         AuthManager.shared.registerNewUser(username: username, email: email, password: password, user: user) { [weak self] registered in
             if registered {
@@ -460,6 +469,7 @@ class RegisterViewController: UIViewController {
                     UserDefaults.standard.setValue(email, forKey: "email")
                     UserDefaults.standard.setValue(user.username, forKey: "username")
                     UserDefaults.standard.setValue("\(user.firstName) \(user.lastName)", forKey: "name")
+                    UserDefaults.standard.setValue("Yes", forKey: "isLoggedIn")
                     
                 })
             }

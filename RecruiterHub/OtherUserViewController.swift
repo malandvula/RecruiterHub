@@ -159,11 +159,12 @@ extension OtherUserViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension OtherUserViewController: ProfileHeaderDelegate {
-    func didTapContactInfo(_ header: ProfileHeader) {
-        let vc = ContactInformationViewController(user: user)
-        vc.title = "Contact Information"
-        vc.modalPresentationStyle = .pageSheet
-        present(vc, animated: true)
+    func didTapFollowButton(_ header: ProfileHeader) {
+        print("Tapped Follow")
+        guard let email =  UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        DatabaseManager.shared.follow(email: user.emailAddress.safeDatabaseKey(), followerEmail: email.safeDatabaseKey())
     }
     
     func didTapReload(_ header: ProfileHeader) {

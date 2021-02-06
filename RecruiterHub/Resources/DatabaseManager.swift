@@ -151,9 +151,8 @@ public class DatabaseManager {
                 "likes": ""
             ]
             
-            if var usersCollection = snapshot.value as? [[String: String]] {
-                
-                
+            if var usersCollection = snapshot.value as? [[String: Any]] {
+                print("Collection Exists")
                 usersCollection.append(newElement)
                 
                 self?.database.child("\(email)/Posts").setValue(usersCollection, withCompletionBlock:  { error, _ in
@@ -163,6 +162,7 @@ public class DatabaseManager {
                 })
             }
             else {
+                print("New Collection")
                 let newCollection: [[String: String]] = [newElement]
                 
                 self?.database.child("\(email)/Posts").setValue(newCollection, withCompletionBlock:  { error, _ in
@@ -367,5 +367,67 @@ public class DatabaseManager {
         database.child(email).child("arm").setValue(user.arm)
         database.child(email).child("bats").setValue(user.bats)
         database.child(email).child("gradYear").setValue(user.gradYear)
+    }
+    
+    public func follow( email: String, followerEmail: String) {
+        print("Follow")
+        
+        let refFollower = database.child("\(email.safeDatabaseKey())/followers")
+        
+        refFollower.observeSingleEvent(of: .value, with: { snapshot in
+        
+            let element = [
+                "email": followerEmail
+            ]
+            // No followers
+            guard var likes = snapshot.value as? [[String:String]] else {
+                refFollower.setValue([element])
+                return
+            }
+            
+            // Person already liked, delete their like
+            if likes.contains(element) {
+                print("Already followed")
+                if let index = likes.firstIndex(of: element) {
+                    likes.remove(at: index)
+                    refFollower.setValue(likes)
+                }
+                return
+            }
+            
+            // Add new like
+            let newElement = element
+            likes.append(newElement)
+            refFollower.setValue(likes)
+        })
+        
+        let refCurrentUser = database.child("\(followerEmail.safeDatabaseKey())/following")
+        
+        refCurrentUser.observeSingleEvent(of: .value, with: { snapshot in
+        
+            let element = [
+                "email": email
+            ]
+            // No followers
+            guard var likes = snapshot.value as? [[String:String]] else {
+                refCurrentUser.setValue([element])
+                return
+            }
+            
+            // Person already liked, delete their like
+            if likes.contains(element) {
+                print("Already followed")
+                if let index = likes.firstIndex(of: element) {
+                    likes.remove(at: index)
+                    refCurrentUser.setValue(likes)
+                }
+                return
+            }
+            
+            // Add new like
+            let newElement = element
+            likes.append(newElement)
+            refCurrentUser.setValue(likes)
+        })
     }
 }

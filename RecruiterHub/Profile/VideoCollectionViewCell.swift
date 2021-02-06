@@ -19,6 +19,9 @@ class VideoCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = nil
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.layer.borderWidth = 5
+        imageView.layer.borderColor = UIColor.secondarySystemBackground.cgColor
         return imageView
     }()
     
@@ -38,12 +41,15 @@ class VideoCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with url: URL) {
-        do {
-            let data = try Data(contentsOf: url)
-            postImageView.image = UIImage(data: data)
-        }
-        catch {
-            postImageView.image = UIImage(named: "gradient")
+        DispatchQueue.main.async {
+            do {
+                let data = try Data(contentsOf: url)
+                self.postImageView.image = UIImage(data: data)
+            }
+            catch {
+                self.postImageView.image = UIImage(named: "gradient")
+            }
+            
         }
     }
 
