@@ -423,29 +423,11 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        let user = RHUser(username: username,
-                          firstName: firstname,
-                          lastName: lastname,
-                          emailAddress: email,
-                          positions: ["RHP", "OF", "1B"],
-                          highShcool: "N/A",
-                          state: "N/A",
-                          gradYear: 0,
-                          heightFeet: 0,
-                          heightInches: 0,
-                          weight: 0,
-                          arm: "N/A",
-                          bats: "N/A",
-                         
-//                          highShcool: highschool,
-//                          state: state,
-//                          gradYear: Int(gradYear),
-//                          heightFeet: Int(heightFeet),
-//                          heightInches: Int(heightInches),
-//                          weight: Int(weight),
-//                          arm: arm,
-//                          bats: bats,
-                          profilePicUrl: "N/A")
+        var user = RHUser()
+        user.username = username
+        user.firstName = firstname
+        user.lastName = lastname
+        user.emailAddress = email
         
         AuthManager.shared.registerNewUser(username: username, email: email, password: password, user: user) { [weak self] registered in
             if registered {

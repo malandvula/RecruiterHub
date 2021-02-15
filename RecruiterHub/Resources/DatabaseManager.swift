@@ -259,20 +259,24 @@ public class DatabaseManager {
                 completion(nil)
                 return
             }
-            let userData = RHUser(username: username,
-                              firstName: firstname,
-                              lastName: lastname,
-                              emailAddress: user,
-                              positions: ["RHP", "OF"],
-                              highShcool: highSchool,
-                              state: state,
-                              gradYear: gradYear,
-                              heightFeet: heightFeet,
-                              heightInches: heightInches,
-                              weight: weight,
-                              arm: arm,
-                              bats: bats,
-                              profilePicUrl: profilePicUrl)
+            var userData = RHUser()
+            userData.username = username
+            userData.firstName = firstname
+            userData.lastName = lastname
+            userData.emailAddress = user
+            userData.phone = "N/A"
+            userData.gpa = 0
+            userData.positions = ["RHP", "OF"]
+            userData.highShcool = highSchool
+            userData.state = state
+            userData.gradYear = gradYear
+            userData.heightFeet = heightFeet
+            userData.heightInches = heightInches
+            userData.weight = weight
+            userData.arm = arm
+            userData.bats = bats
+            userData.profilePicUrl = profilePicUrl
+            
             completion(userData)
         })
     }

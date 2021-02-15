@@ -52,6 +52,8 @@ class FeedViewController: UIViewController {
             
             self?.posts = feedPosts
             
+            
+            
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -126,18 +128,10 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         else if indexPath.row % 4 == 0 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedHeaderCell.identifier, for: indexPath) as! FeedHeaderCell
-            DispatchQueue.main.async {
-                DatabaseManager.shared.getDataForUser(user: email, completion: {
-                    user in
-                    guard let user = user else {
-                        return
-                    }
-                    
-                    cell.configure( user: user)
-                    cell.delegate = self
-                })
-            }
             
+            cell.configure( email: email)
+            cell.delegate = self
+
             return cell
         }
         else if indexPath.row % 4 == 3 {
@@ -148,17 +142,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell.identifier, for: indexPath) as! FeedTableViewCell
             
             let post = Post(likes: [], title: "Post", url: url, number: indexPath.row )
-            DispatchQueue.main.async {
-                DatabaseManager.shared.getDataForUser(user: email, completion: {
-                    user in
-                    guard let user = user else {
-                        return
-                    }
-                    
-                    cell.configure(post: post, user: user)
-                    cell.delegate = self
-                })
-            }
+           
+            cell.configure(post: post)
+            cell.delegate = self
             return cell
         }
     }

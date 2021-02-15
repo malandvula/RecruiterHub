@@ -49,17 +49,19 @@ class FeedTableViewCell: UITableViewCell {
                                    height: contentView.height)
     }
  
-    public func configure(post: Post, user: RHUser) {
-        
-        // Do any additional setup after loading the view.
-        let asset = AVAsset(url: post.url)
-        let playerItem = AVPlayerItem(asset: asset)
-        player = AVPlayer(playerItem: playerItem)
-
+    public func configure(post: Post) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            // Do any additional setup after loading the view.
+            let asset = AVAsset(url: post.url)
+            let playerItem = AVPlayerItem(asset: asset)
+            self?.player = AVPlayer(playerItem: playerItem)
+            
+            self?.playerLayer.player = self?.player
+        }
+       
 
         //4. Add playerLayer to view's layer
         
-        playerLayer.player = player
     }
     
     public func play() {

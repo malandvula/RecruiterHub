@@ -68,6 +68,10 @@ final class EditProfileViewController: UIViewController {
         models.append(model)
         model = EditProfileFormModel(label: "Bats", placeholder: "\(user.bats!)", value: nil)
         models.append(model)
+        model = EditProfileFormModel(label: "GPA", placeholder: "\(user.bats!)", value: nil)
+        models.append(model)
+        model = EditProfileFormModel(label: "", placeholder: "\(user.bats!)", value: nil)
+        models.append(model)
     }
     
     override func viewDidLayoutSubviews() {
@@ -213,9 +217,9 @@ extension EditProfileViewController: FormTableViewCellDelegate {
         case "Username":
             user.username = value
             break
-//        case "Phone":
-//            user.phone = value
-//            break
+        case "Phone":
+            user.phone = value
+            break
         case "High School":
             user.highShcool = value
             break

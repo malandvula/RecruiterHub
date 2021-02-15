@@ -61,23 +61,43 @@ class FeedHeaderCell: UITableViewCell {
                                      height: Int(contentView.height) -  (padding * 2) )
     }
  
-    public func configure(user: RHUser) {
-
-        usernameLabel.text = user.username
-
-        do {
-            if let url = URL(string: user.profilePicUrl) {
-                let data = try Data(contentsOf: url)
-                profilePicImageView.image = UIImage(data: data)
+    public func configure(email: String) {
+        
+        DatabaseManager.shared.getDataForUser(user: email, completion: { [weak self]
+            user in
+            guard let user = user else {
+                return
             }
-        }
-        catch {
+            DispatchQueue.main.async {
+                self?.usernameLabel.text = user.username
+            }
+            
+            if let url = URL(string: user.profilePicUrl) {
+                
+                    DispatchQueue.global(qos: .background).async {
+                        do {
+                            let data = try Data(contentsOf: url)
+                            
+                            DispatchQueue.main.async {
+                                self?.profilePicImageView.image = UIImage(data: data)
+                            }
+                        }
+                        catch {
+                            
+                        }
+                    }
+               
+            }
+        })
 
-        }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        DispatchQueue.main.async {
+            self.profilePicImageView.image = nil
+            self.usernameLabel.text = ""
+        }
     }
     
     @objc private func didTapUsername() {

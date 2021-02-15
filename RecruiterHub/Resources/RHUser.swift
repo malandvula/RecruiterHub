@@ -11,7 +11,12 @@ public struct RHUser {
     var username: String
     var firstName: String
     var lastName: String
-    let emailAddress:String
+    var emailAddress:String
+    var phone: String
+    var gpa: Double
+//    var fastball: Pitch
+//    var breakingBall: Pitch
+//    var change: Pitch
     var positions: [String]
     var highShcool: String?
     var state: String?
@@ -21,7 +26,7 @@ public struct RHUser {
     var weight: Int?
     var arm: String?
     var bats: String?
-    let profilePicUrl: String
+    var profilePicUrl: String
     
     var safeEmail: String {
         var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
@@ -37,4 +42,34 @@ public struct RHUser {
         //"ryanhelgeson14-gmail-com_profile_picture.png"
         return "\(safeEmail)_profile_picture.png"
     }
+    
+    init() {
+        username = ""
+        firstName = ""
+        lastName = ""
+        emailAddress = ""
+        phone = ""
+        gpa = 0.0
+//          ar fastball: Pitch
+        //  ar breakingBall: Pitch
+        //  ar change: Pitch
+        positions = []
+        highShcool = ""
+        state = ""
+        gradYear = 0
+        heightFeet = 0
+        heightInches = 0
+        weight = 0
+        arm = ""
+        bats = ""
+        profilePicUrl = ""
+    }
+}
+
+
+
+struct Pitch {
+    let topVelocity: Double
+    let vertBreak: Double
+    let horizBreak: Double
 }

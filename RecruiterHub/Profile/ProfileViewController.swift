@@ -13,20 +13,7 @@ class ProfileViewController: UIViewController {
 
     private var collectionView: UICollectionView?
     
-    private var user: RHUser = RHUser(username: "username",
-                                      firstName: "firstname",
-                                      lastName: "lastname",
-                                      emailAddress: "emailaddress",
-                                      positions: [],
-                                      highShcool: nil,
-                                      state: nil,
-                                      gradYear: nil,
-                                      heightFeet: nil,
-                                      heightInches: nil,
-                                      weight: nil,
-                                      arm: nil,
-                                      bats: nil,
-                                      profilePicUrl: "gs://recruiterhub-cb0ef.appspot.com/images/barth-gmail-com")
+    private var user: RHUser = RHUser()
     
     private var posts: [[String:Any]]?
     
@@ -61,8 +48,8 @@ class ProfileViewController: UIViewController {
         
         view.addSubview(collectionView)
         print("Fetching posts..")
-        navigationController?.navigationBar.barTintColor = .clear
-        tabBarController?.tabBar.barTintColor = .clear
+        navigationController?.navigationBar.barTintColor = .systemBackground
+        tabBarController?.tabBar.barTintColor = .systemBackground
         fetchPosts()
     }
 

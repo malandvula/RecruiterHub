@@ -20,20 +20,7 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
     
     public var size = 0
     
-    private let user = RHUser(username: "None",
-                              firstName: "Ryan",
-                              lastName: "Helgeson",
-                              emailAddress: "ryanhelgeson14@gmail.com",
-                              positions: ["RHP", "OF", "1B"],
-                              highShcool: "Minnetonka",
-                              state: "MN",
-                              gradYear: 2014,
-                              heightFeet: 6,
-                              heightInches: 6,
-                              weight: 240,
-                              arm: "R",
-                              bats: "R",
-                              profilePicUrl: "https://firebasestorage.googleapis.com/v0/b/recruiterhub-cb0ef.appspot.com/o/bruss1-gmail-com%2Fthumbnails%2Fbruss1-gmail-com_Jan%2027,%202021%20at%209:15:41%20PM%20CST.png?alt=media&token=d17ee630-9e3d-48b8-9a5d-499cd7db8500")
+    private let user = RHUser()
     
     private let profilePhotoImageView: UIImageView = {
         let imageView = UIImageView()
