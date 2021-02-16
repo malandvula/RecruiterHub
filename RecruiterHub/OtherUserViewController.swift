@@ -144,7 +144,7 @@ extension OtherUserViewController: UICollectionViewDataSource {
         
         let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileHeader.identifier, for: indexPath) as! ProfileHeader
         profileHeader.delegate = self
-        profileHeader.configure(user: user)
+        profileHeader.configure(user: user, hideFollowButton: false)
         return profileHeader
     }
     

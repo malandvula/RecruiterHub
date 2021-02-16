@@ -77,6 +77,7 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
     private let followButton:UIButton = {
         let button = UIButton()
         button.backgroundColor = .link
+        button.isHidden = true
         button.setTitleColor( .label, for: .normal)
         button.setTitle("Follow", for: .normal)
         return button
@@ -128,7 +129,12 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         addSubview(followButton)
     }
     
-    public func configure(user: RHUser) {
+    public func configure(user: RHUser, hideFollowButton: Bool) {
+        
+        if !hideFollowButton {
+            followButton.isHidden = false
+        }
+        
         nameLabel.text = user.firstName + " " + user.lastName
         guard let gradYear = user.gradYear else {
             gradLabel.text = "Year: N/A"
@@ -159,16 +165,20 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
             
         }
         positionLabel.text = positions
-        
-        do {
-            if let url = URL(string: user.profilePicUrl) {
-                let data = try Data(contentsOf: url)
-                profilePhotoImageView.image = UIImage(data: data)
+        DispatchQueue.global(qos: .background).async {
+            do {
+                if let url = URL(string: user.profilePicUrl) {
+                    let data = try Data(contentsOf: url)
+                    DispatchQueue.main.async {
+                        self.profilePhotoImageView.image = UIImage(data: data)
+                    }
+                }
+            }
+            catch {
+                
             }
         }
-        catch {
-            
-        }
+        
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
             return
         }

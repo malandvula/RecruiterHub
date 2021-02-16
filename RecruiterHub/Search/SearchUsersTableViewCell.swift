@@ -25,8 +25,8 @@ class SearchUsersTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        nameLabel.text = "Name"
-        usernameLabel.text = "Username"
+        nameLabel.text = ""
+        usernameLabel.text = ""
         addSubview(nameLabel)
         addSubview(usernameLabel)
     }

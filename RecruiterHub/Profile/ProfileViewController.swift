@@ -201,7 +201,7 @@ extension ProfileViewController: UICollectionViewDataSource {
                         return
                     }
                     
-                    profileHeader.configure(user: result)
+                    profileHeader.configure(user: result, hideFollowButton: true)
                 })
         
         }

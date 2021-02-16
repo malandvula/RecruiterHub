@@ -41,10 +41,13 @@ class VideoCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with url: URL) {
-        DispatchQueue.main.async {
+        
+        DispatchQueue.global(qos: .background).async {
             do {
                 let data = try Data(contentsOf: url)
-                self.postImageView.image = UIImage(data: data)
+                DispatchQueue.main.async {
+                    self.postImageView.image = UIImage(data: data)
+                }
             }
             catch {
                 self.postImageView.image = UIImage(named: "gradient")

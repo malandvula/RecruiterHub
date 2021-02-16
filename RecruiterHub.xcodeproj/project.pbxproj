@@ -19,6 +19,7 @@
 		E636610D25C8EA27007A4EFD /* FormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636610C25C8EA27007A4EFD /* FormTableViewCell.swift */; };
 		E636611125CA45BF007A4EFD /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636611025CA45BF007A4EFD /* FeedHeaderView.swift */; };
 		E636611425CA4983007A4EFD /* FeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636611325CA4982007A4EFD /* FeedHeaderCell.swift */; };
+		E665688125DB537300F04EFA /* ContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E665688025DB537300F04EFA /* ContactInfoCell.swift */; };
 		E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E325B11CB600D15230 /* AppDelegate.swift */; };
 		E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E525B11CB600D15230 /* SceneDelegate.swift */; };
 		E68B73EB25B11CB600D15230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E68B73E925B11CB600D15230 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		E636610C25C8EA27007A4EFD /* FormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewCell.swift; sourceTree = "<group>"; };
 		E636611025CA45BF007A4EFD /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		E636611325CA4982007A4EFD /* FeedHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderCell.swift; sourceTree = "<group>"; };
+		E665688025DB537300F04EFA /* ContactInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCell.swift; sourceTree = "<group>"; };
 		E68B73E025B11CB600D15230 /* RecruiterHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecruiterHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E68B73E325B11CB600D15230 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E68B73E525B11CB600D15230 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				E636610C25C8EA27007A4EFD /* FormTableViewCell.swift */,
+				E665688025DB537300F04EFA /* ContactInfoCell.swift */,
 				E636610225C8DD74007A4EFD /* EditProfileViewController.swift */,
 				E68B746A25C0E6F500D15230 /* SettingsViewController.swift */,
 				E68B73FC25B11D2A00D15230 /* ProfileViewController.swift */,
@@ -353,6 +356,7 @@
 				E68B740D25B1372700D15230 /* PhotoCollectionViewCell.swift in Sources */,
 				E68B743025B2527C00D15230 /* RegisterViewController.swift in Sources */,
 				E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */,
+				E665688125DB537300F04EFA /* ContactInfoCell.swift in Sources */,
 				E63660DD25C61CD9007A4EFD /* FeedTableViewCell.swift in Sources */,
 				E68B740A25B12AD500D15230 /* DemoData.swift in Sources */,
 				E68B746825C0D72E00D15230 /* ProfileTopBar.swift in Sources */,
