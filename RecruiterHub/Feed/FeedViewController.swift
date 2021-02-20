@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import AVFoundation
 
 class FeedViewController: UIViewController {
 
     private var posts: [[String: String]] = []
+    
+    private var ultimatePosts: [FeedPost] = []
     
     private let NUMBEROFCELLS = 4
     
@@ -51,13 +54,22 @@ class FeedViewController: UIViewController {
             }
             
             self?.posts = feedPosts
+        
             
-            
-            
+        })
+        
+        DatabaseManager.shared.newGetFeedPosts( completion: { [weak self] feedPosts in
+            guard let feedPosts = feedPosts else {
+                return
+            }
+            print(feedPosts)
+            self?.ultimatePosts = feedPosts
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         })
+        
+        
     }
 }
 
@@ -113,9 +125,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        guard let url = URL(string: urlString) as URL? else {
-            return UITableViewCell()
-        }
+//        guard let url = URL(string: urlString) as URL? else {
+//            return UITableViewCell()
+//        }
         
         guard let email = model["email"] else {
             return UITableViewCell()
@@ -126,24 +138,26 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         else if indexPath.row % 4 == 0 {
-            
+        
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedHeaderCell.identifier, for: indexPath) as! FeedHeaderCell
+            let temp = ultimatePosts[posts.count - (indexPath.row / 4) - 1]
             
-            cell.configure( email: email)
+            cell.configure( email: temp.email)
             cell.delegate = self
 
             return cell
         }
         else if indexPath.row % 4 == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedPostInfoCell.identifier, for: indexPath) as! FeedPostInfoCell
+            cell.configure(email: email, url: urlString)
             return cell
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell.identifier, for: indexPath) as! FeedTableViewCell
             
-            let post = Post(likes: [], title: "Post", url: url, number: indexPath.row )
-           
-            cell.configure(post: post)
+            
+            let temp = ultimatePosts[posts.count - (indexPath.row / 4) - 1]
+            cell.configure(url: temp.url)
             cell.delegate = self
             return cell
         }
@@ -197,6 +211,10 @@ extension FeedViewController: FeedActionsCellDelegate {
         
             print("Tapped Send")
     }
-    
-    
+}
+
+public struct FeedPost {
+    var email: String
+    let url: AVPlayer
+    let image: String
 }

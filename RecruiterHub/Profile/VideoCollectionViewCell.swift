@@ -50,7 +50,9 @@ class VideoCollectionViewCell: UICollectionViewCell {
                 }
             }
             catch {
-                self.postImageView.image = UIImage(named: "gradient")
+                DispatchQueue.main.async {
+                    self.postImageView.image = UIImage(named: "gradient")
+                }
             }
             
         }

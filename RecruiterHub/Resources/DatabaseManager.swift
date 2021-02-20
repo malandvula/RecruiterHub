@@ -254,6 +254,7 @@ public class DatabaseManager {
                   let bats = info["bats"] as? String,
                   let lastname = info["lastname"] as? String,
                   let firstname = info["firstname"] as? String,
+                  let phone = info["phone"] as? String,
                   let profilePicUrl = info["profilePicUrl"] as? String else {
                print("Failed to get user data")
                 completion(nil)
@@ -264,7 +265,7 @@ public class DatabaseManager {
             userData.firstName = firstname
             userData.lastName = lastname
             userData.emailAddress = user
-            userData.phone = "N/A"
+            userData.phone = phone
             userData.gpa = 0
             userData.positions = ["RHP", "OF"]
             userData.highShcool = highSchool
@@ -329,6 +330,41 @@ public class DatabaseManager {
             }
             
             completion(feedPosts)
+        })
+    }
+    
+    public func newGetFeedPosts(completion: @escaping (([FeedPost]?) -> Void))  {
+        database.child("FeedPosts").observeSingleEvent(of: .value, with: { snapshot in
+            guard let feedPosts = snapshot.value as? [[String:String]] else {
+                completion(nil)
+                return
+            }
+            var array = [FeedPost]()
+            for post in feedPosts {
+                
+                guard let email = post["email"] else {
+                    return
+                }
+                
+                guard let urlString = post["url"],
+                      let url = URL(string: urlString) else {
+                    print("Url Failed")
+                    return
+                }
+
+                let asset = AVAsset(url: url)
+                let playerItem = AVPlayerItem(asset: asset)
+                let player = AVPlayer(playerItem: playerItem)
+                
+                
+                let temp = FeedPost(email: email, url: player, image: "")
+                
+                array.append(temp)
+                
+                
+            }
+            
+            completion(array)
         })
     }
     
@@ -433,5 +469,19 @@ public class DatabaseManager {
             likes.append(newElement)
             refCurrentUser.setValue(likes)
         })
+    }
+    
+    public func getComments(with email: String, index: Int, completion: @escaping (([[String:String]]?) -> Void)) {
+        database.child("\(email)/Posts/\(index)/comments").observeSingleEvent(of: .value, with: { snapshot in
+            
+            guard let comments = snapshot.value as? [[String:String]] else {
+                print("Failed to get comments")
+                completion(nil)
+                return
+            }
+
+            completion(comments)
+        })
+        completion(nil)
     }
 }

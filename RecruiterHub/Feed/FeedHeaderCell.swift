@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol FeedHeaderCellDelegate: AnyObject {
     func didTapUsername(_ feedHeaderCell: FeedHeaderCell, user: RHUser)
@@ -74,19 +75,19 @@ class FeedHeaderCell: UITableViewCell {
             
             if let url = URL(string: user.profilePicUrl) {
                 
-                    DispatchQueue.global(qos: .background).async {
-                        do {
-                            let data = try Data(contentsOf: url)
-                            
-                            DispatchQueue.main.async {
-                                self?.profilePicImageView.image = UIImage(data: data)
-                            }
-                        }
-                        catch {
-                            
-                        }
-                    }
-               
+                self?.profilePicImageView.sd_setImage(with: url, completed: nil)
+//                DispatchQueue.global(qos: .background).async {
+//                    do {
+//                        let data = try Data(contentsOf: url)
+//
+//                        DispatchQueue.main.async {
+//                            self?.profilePicImageView.image = UIImage(data: data)
+//                        }
+//                    }
+//                    catch {
+//
+//                    }
+//                }
             }
         })
 

@@ -100,7 +100,7 @@ class ContactInformationViewController: UIViewController {
         models.append(model)
         model = ContactInfoModel(label: "Username", value: "\(user.username)")
         models.append(model)
-        model = ContactInfoModel(label: "Phone", value: "N/A")
+        model = ContactInfoModel(label: "Phone", value: user.phone)
         models.append(model)
         model = ContactInfoModel(label: "High School", value: "\(user.highShcool!)")
         models.append(model)

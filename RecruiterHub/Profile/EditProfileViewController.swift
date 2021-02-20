@@ -260,7 +260,6 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         
         data = selectedImage.pngData()
         
-        let fileName = user.emailAddress.safeDatabaseKey()
         
     }
 }

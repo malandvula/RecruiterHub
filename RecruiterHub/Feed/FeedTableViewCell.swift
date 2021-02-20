@@ -58,10 +58,16 @@ class FeedTableViewCell: UITableViewCell {
             
             self?.playerLayer.player = self?.player
         }
-       
-
         //4. Add playerLayer to view's layer
-        
+    }
+    
+    public func configure(url: AVPlayer) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            // Do any additional setup after loading the view.
+            self?.player = url
+            self?.playerLayer.player = self?.player
+        }
+        //4. Add playerLayer to view's layer
     }
     
     public func play() {
