@@ -85,7 +85,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: false)
         
         if indexPath.row % 4 == 0 {
-            let model = posts[posts.count - (indexPath.row/3) - 1]
+            let model = posts[posts.count - (indexPath.row/4) - 1]
             
             guard let email = model["email"] else {
                 return

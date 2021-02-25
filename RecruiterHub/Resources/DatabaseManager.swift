@@ -123,6 +123,7 @@ public class DatabaseManager {
         database.child("users").observeSingleEvent(of: .value, with: { snapshot in
             print(snapshot)
             guard let value = snapshot.value as? [[String: String]] else {
+                print("Failure")
                 completion(.failure(DatabaseError.failedToFetch))
                 return
             }

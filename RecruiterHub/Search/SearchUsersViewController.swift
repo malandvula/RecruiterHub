@@ -105,6 +105,7 @@ extension SearchUserViewController: UISearchBarDelegate {
                     self?.hasFetched = true
                     self?.users = userCollection
                     self?.filterUsers(with: query)
+                    break
                 case .failure(let error):
                     print("Failed to get users: \(error)")
                 }
@@ -123,6 +124,7 @@ extension SearchUserViewController: UISearchBarDelegate {
     
     func filterUsers(with term: String) {
         guard let currentUserEmail = UserDefaults.standard.value(forKey: "email") as? String, hasFetched else {
+            print("Failed to Filter")
             return
         }
         

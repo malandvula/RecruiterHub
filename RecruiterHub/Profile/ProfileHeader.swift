@@ -165,19 +165,22 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
             
         }
         positionLabel.text = positions
-        DispatchQueue.global(qos: .background).async {
-            do {
-                if let url = URL(string: user.profilePicUrl) {
-                    let data = try Data(contentsOf: url)
-                    DispatchQueue.main.async {
-                        self.profilePhotoImageView.image = UIImage(data: data)
-                    }
-                }
-            }
-            catch {
-                
-            }
+        if let url = URL(string: user.profilePicUrl) {
+            profilePhotoImageView.sd_setImage(with: url, completed: nil)
         }
+//        DispatchQueue.global(qos: .background).async {
+//            do {
+//                if let url = URL(string: user.profilePicUrl) {
+//                    let data = try Data(contentsOf: url)
+//                    DispatchQueue.main.async {
+//                        self.profilePhotoImageView.image = UIImage(data: data)
+//                    }
+//                }
+//            }
+//            catch {
+//
+//            }
+//        }
         
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
             return

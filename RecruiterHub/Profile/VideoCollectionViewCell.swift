@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import SDWebImage
 
 class VideoCollectionViewCell: UICollectionViewCell {
     
@@ -22,6 +23,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 5
         imageView.layer.borderColor = UIColor.secondarySystemBackground.cgColor
+        imageView.transform = CGAffineTransform(rotationAngle: .pi / 2)
         return imageView
     }()
     
@@ -41,21 +43,21 @@ class VideoCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with url: URL) {
-        
-        DispatchQueue.global(qos: .background).async {
-            do {
-                let data = try Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    self.postImageView.image = UIImage(data: data)
-                }
-            }
-            catch {
-                DispatchQueue.main.async {
-                    self.postImageView.image = UIImage(named: "gradient")
-                }
-            }
-            
-        }
+        postImageView.sd_setImage(with: url, completed: nil)
+//        DispatchQueue.global(qos: .background).async {
+//            do {
+//                let data = try Data(contentsOf: url)
+//                DispatchQueue.main.async {
+//                    self.postImageView.image = UIImage(data: data)
+//                }
+//            }
+//            catch {
+//                DispatchQueue.main.async {
+//                    self.postImageView.image = UIImage(named: "gradient")
+//                }
+//            }
+//
+//        }
     }
 
     override func layoutSubviews() {
