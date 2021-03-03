@@ -485,4 +485,37 @@ public class DatabaseManager {
         })
         completion(nil)
     }
+    
+    public func getLikes(with email: String, index: Int, completion: @escaping (([[String:String]]?) -> Void)) {
+        database.child("\(email)/Posts/\(index)/likes").observeSingleEvent(of: .value, with: { snapshot in
+            
+            guard let likes = snapshot.value as? [[String:String]] else {
+                print("Failed to get likes")
+                completion(nil)
+                return
+            }
+
+            completion(likes)
+        })
+        completion(nil)
+    }
+    
+    public func newComment( email: String, commenterEmail: String, comment: String, index: Int) {
+        database.child("\(email)/Posts/\(index)/comments").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            
+            guard var comments = snapshot.value as? [[String:String]] else {
+                print("Failed to get comments")
+                return
+            }
+            
+            let newElement = [
+                "email": commenterEmail,
+                "comment": comment
+            ]
+            
+            comments.append(newElement)
+            
+            self?.database.child("\(email)/Posts/\(index)/comments").setValue(comments)
+        })
+    }
 }

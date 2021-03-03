@@ -15,5 +15,6 @@ pod 'Firebase/Storage'
 pod 'Firebase/Analytics'
 pod 'Firebase/Crashlytics'
 pod 'SDWebImage'
+pod 'MessageKit'
 
 end

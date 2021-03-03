@@ -40,6 +40,10 @@ class FeedViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
@@ -54,22 +58,18 @@ class FeedViewController: UIViewController {
             }
             
             self?.posts = feedPosts
-        
-            
         })
         
         DatabaseManager.shared.newGetFeedPosts( completion: { [weak self] feedPosts in
             guard let feedPosts = feedPosts else {
                 return
             }
-            print(feedPosts)
+            
             self?.ultimatePosts = feedPosts
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         })
-        
-        
     }
 }
 
@@ -83,14 +83,18 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: false)
+        let model = posts[posts.count - (indexPath.row/4) - 1]
+        
+        guard let email = model["email"] else {
+            return
+        }
+        
+        guard let urlString = model["url"] else {
+            print("Failed to get url")
+            return
+        }
         
         if indexPath.row % 4 == 0 {
-            let model = posts[posts.count - (indexPath.row/4) - 1]
-            
-            guard let email = model["email"] else {
-                return
-            }
-            
             DatabaseManager.shared.getDataForUser(user: email, completion: {
                 [weak self] user in
                 guard let user = user else {
@@ -109,7 +113,13 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             cell.play()
         }
         
-        
+        else if indexPath.row % 4 == 3 {
+            tableView.deselectRow(at: indexPath, animated: false)
+            let vc = CommentsViewController(email: email, url: urlString)
+            vc.configure(email: email, url: urlString)
+            vc.title = "Comments"
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -118,6 +128,11 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     }
     
+    /// Create cells based off the following:
+    /// Header: Profile picture and username
+    /// Post: Video content
+    /// Actions: Set of buttons to interact with the post
+    /// Comments
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = posts[posts.count - (indexPath.row / 4) - 1]
         guard let urlString = model["url"] else {
@@ -125,15 +140,12 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-//        guard let url = URL(string: urlString) as URL? else {
-//            return UITableViewCell()
-//        }
-        
         guard let email = model["email"] else {
             return UITableViewCell()
         }
         if indexPath.row % 4 == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedActionsCell.identifier, for: indexPath) as! FeedActionsCell
+            cell.configure(with: urlString, email: email)
             cell.delegate = self
             return cell
         }
@@ -198,13 +210,17 @@ extension FeedViewController: FeedHeaderCellDelegate {
 }
 
 extension FeedViewController: FeedActionsCellDelegate {
-    func didTapLikeButton() {
-        print("Tapped Like")
+    func didTapCommentButton(email: String, url: String) {
+        
+        print("Tapped comment")
+        
+        let newCommentVC = NewCommentViewController(email: email, url: url)
+        newCommentVC.title = "Add Comment"
+        navigationController?.pushViewController(newCommentVC, animated: true)
     }
     
-    func didTapCommentButton() {
-        
-            print("Tapped comment")
+    func didTapLikeButton() {
+        print("Tapped Like")
     }
     
     func didTapSendButton() {

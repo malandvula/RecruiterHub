@@ -164,7 +164,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         guard let posts = posts else {
             return UICollectionViewCell()
         }
-        let urlString = posts[indexPath.row]["thumbnail"]!
+        let urlString = posts[posts.count - indexPath.row - 1]["thumbnail"]!
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoCollectionViewCell.identifier, for: indexPath) as! VideoCollectionViewCell
         cell.configure(with: URL(string: urlString as! String)!)
         return cell

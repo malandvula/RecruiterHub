@@ -259,26 +259,15 @@ class RegisterViewController: UIViewController {
         usernameField.delegate = self
         emailField.delegate = self
         passwordField.delegate = self
-//        picker.delegate = self
-//        picker.dataSource = self
         
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
         scrollView.addSubview(usernameField)
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
-//        scrollView.addSubview(highSchoolField)
         scrollView.addSubview(registerButton)
-//        scrollView.addSubview(picker)
-//        scrollView.addSubview(stateField)
         scrollView.addSubview(lastNameField)
-//        scrollView.addSubview(weightField)
-//        scrollView.addSubview(heightfeetField)
-//        scrollView.addSubview(heightInchesField)
         scrollView.addSubview(firstNameField)
-//        scrollView.addSubview(gradYearField)
-//        scrollView.addSubview(armField)
-//        scrollView.addSubview(batsField)
         view.backgroundColor = .systemBackground
         
         imageView.isUserInteractionEnabled = true
@@ -302,39 +291,6 @@ class RegisterViewController: UIViewController {
                                      y: firstNameField.bottom + 10,
                                      width: view.width - 40,
                                      height: 52)
-//        stateField.frame = CGRect(x: 20,
-//                                     y: lastNameField.bottom + 10,
-//                                     width: view.width - 40,
-//                                     height: 52)
-//        highSchoolField.frame = CGRect(x: 20,
-//                                  y: stateField.bottom + 10,
-//                                  width: view.width - 40,
-//                                  height: 52)
-//        weightField.frame = CGRect(x: 20,
-//                                  y: highSchoolField.bottom + 10,
-//                                  width: view.width - 40,
-//                                  height: 52)
-//        heightfeetField.frame = CGRect(x: 20,
-//                                  y: weightField.bottom + 10,
-//                                  width: view.width - 40,
-//                                  height: 52)
-//        heightInchesField.frame = CGRect(x: 20,
-//                                  y: heightfeetField.bottom + 10,
-//                                  width: view.width - 40,
-//                                  height: 52)
-//        armField.frame = CGRect(x: 20,
-//                                  y: heightInchesField.bottom + 10,
-//                                  width: view.width - 40,
-//                                  height: 52)
-//        batsField.frame = CGRect(x: 20,
-//                                  y: armField.bottom + 10,
-//                                  width: view.width - 40,
-//                                  height: 52)
-//        gradYearField.frame = CGRect(x: 20,
-//                                  y: batsField.bottom + 10,
-//                                  width: view.width - 40,
-//                                  height: 52)
-//
         usernameField.frame = CGRect(x: 20,
                                      y: lastNameField.bottom + 10,
                                      width: view.width - 40,
@@ -347,10 +303,7 @@ class RegisterViewController: UIViewController {
                                      y: emailField.bottom + 10,
                                      width: view.width - 40,
                                      height: 52)
-//        picker.frame = CGRect(x: 20,
-//                              y: passwordField.bottom + 10,
-//                              width: view.width - 40,
-//                              height: 100)
+
         registerButton.frame = CGRect(x: 20,
                                       y: passwordField.bottom + 10,
                                       width: view.width - 40,
