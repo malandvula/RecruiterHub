@@ -10,7 +10,6 @@ import UIKit
 
 protocol ProfileHeaderDelegate: AnyObject {
     func didTapFollowButton(_ header: ProfileHeader)
-    func didTapReload(_ header: ProfileHeader)
 }
 
 final class ProfileHeader: UICollectionReusableView, UINavigationControllerDelegate {
@@ -66,14 +65,6 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         return label
     }()
 
-    private let reloadButton:UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemGray
-        button.setTitleColor(.label, for: .normal)
-        button.setTitle("Reload", for: .normal)
-        return button
-    }()
-
     private let followButton:UIButton = {
         let button = UIButton()
         button.backgroundColor = .link
@@ -88,22 +79,13 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
-        configureGradLabel()
-        configureNameLabel()
-        configurePositionLabel()
-        configureBodyLabels()
         clipsToBounds = true
         backgroundColor = .systemBackground
-        reloadButton.addTarget(self, action: #selector(didTapReloadButton), for: .touchUpInside)
         followButton.addTarget(self, action: #selector(didTapFollowButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func didTapReloadButton() {
-        delegate?.didTapReload(self)
     }
     
     @objc private func didTapFollowButton() {
@@ -125,7 +107,6 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         addSubview(gradLabel)
         addSubview(bodyLabel)
         addSubview(handLabel)
-        addSubview(reloadButton)
         addSubview(followButton)
     }
     
@@ -168,19 +149,6 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         if let url = URL(string: user.profilePicUrl) {
             profilePhotoImageView.sd_setImage(with: url, completed: nil)
         }
-//        DispatchQueue.global(qos: .background).async {
-//            do {
-//                if let url = URL(string: user.profilePicUrl) {
-//                    let data = try Data(contentsOf: url)
-//                    DispatchQueue.main.async {
-//                        self.profilePhotoImageView.image = UIImage(data: data)
-//                    }
-//                }
-//            }
-//            catch {
-//
-//            }
-//        }
         
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
             return
@@ -200,50 +168,6 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
                 self?.followButton.backgroundColor = .lightGray
             }
         })
-    }
-    
-    private func configureNameLabel() {
-//        nameLabel.text = user.firstName + " " + user.lastName
-//        nameLabel.font = .systemFont(ofSize: 24, weight: .semibold)
-    }
-    
-    private func configureGradLabel() {
-//        guard let gradYear = user.gradYear else {
-//            gradLabel.text = "Year: N/A"
-//            return
-//        }
-//        gradLabel.text = "Year: " + String(gradYear)
-    }
-    
-    private func configureBodyLabels() {
-//        guard let heightFeet = user.heightFeet,
-//              let heightInches = user.heightInches,
-//              let weight = user.weight,
-//              let arm = user.arm,
-//              let bats = user.bats else {
-//            bodyLabel.text = ""
-//            handLabel.text = ""
-//            return
-//        }
-//        bodyLabel.text = String(heightFeet) + "'" + String(heightInches) + "  "  + String(weight) + " lbs"
-//        handLabel.text = "Throws: " + String(arm) + "   Bats: " + String(bats)
-    }
-    
-    private func configurePositionLabel() {
-//        var positions = ""
-//        var x = 0
-//        for position in user.positions {
-//            x += 1
-//            if user.positions.count == x {
-//                positions.append(position)
-//            }
-//            else {
-//                positions.append(position + ", ")
-//            }
-//            
-//        }
-//        positionLabel.text = positions
-//        print(positions)
     }
     
     override func layoutSubviews() {
@@ -283,17 +207,17 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
                                  height: 20)
         handLabel.textAlignment = .center
         
-        reloadButton.frame = CGRect(x: 20,
-                                             y: handLabel.bottom + 5,
-                                             width: width - 40,
-                                             height: 20)
-        reloadButton.layer.cornerRadius = 3.0
         followButton.frame = CGRect(x: 20,
-                                             y: reloadButton.bottom + 5,
+                                             y: gradLabel.bottom + 5,
                                              width: width - 40,
-                                             height: 20)
+                                             height: 50)
         followButton.layer.cornerRadius = 3.0
-        
     }
     
+    public static func getHeight(isYourProfile: Bool) -> CGFloat {
+        if isYourProfile {
+            return 300
+        }
+        return 340.0
+    }
 }

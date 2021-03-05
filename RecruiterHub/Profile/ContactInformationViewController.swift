@@ -21,65 +21,19 @@ class ContactInformationViewController: UIViewController {
     let tableView: UITableView = {
         let table = UITableView()
         table.layer.masksToBounds = true
-        table.backgroundColor = .clear
         table.register(ContactInfoCell.self, forCellReuseIdentifier: ContactInfoCell.identifier)
         return table
     }()
-//    let nameLabel: UILabel = {
-//        let label = UILabel()
-//        label.layer.borderWidth = 1
-//        label.layer.borderColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
-//        label.layer.cornerRadius = 10.0
-//        label.font = .systemFont(ofSize: 40, weight: .bold)
-//        label.numberOfLines = 1
-//        return label
-//    }()
-//
-//    let phoneLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "Phone:    612-558-0124"
-//        label.font = .systemFont(ofSize: 20, weight: .semibold)
-//        label.numberOfLines = 1
-//        return label
-//    }()
-//
-//    let emailLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "Email:    Ryanhelgeson14@gmail.com"
-//        label.font = .systemFont(ofSize: 20, weight: .semibold)
-//        label.numberOfLines = 1
-//        return label
-//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
         configureModels()
         view.addSubview(tableView)
-//        view.addSubview(nameLabel)
-//        view.addSubview(emailLabel)
-//        view.addSubview(phoneLabel)
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-//        nameLabel.frame = CGRect(x: 20,
-//                                 y: (navigationController?.navigationBar.bottom)! + 10,
-//                                 width: view.width - 40,
-//                                 height: 50)
-//        nameLabel.textAlignment = .center
-//        phoneLabel.frame = CGRect(x: 20,
-//                                  y: nameLabel.bottom + 20,
-//                                 width: view.width - 40,
-//                                 height: 20)
-//        phoneLabel.textAlignment = .left
-//        emailLabel.frame = CGRect(x: 20,
-//                                  y: phoneLabel.bottom + 20,
-//                                 width: view.width - 40,
-//                                 height: 20)
-//        emailLabel.textAlignment = .left
     }
     
     init(user: RHUser) {
@@ -95,7 +49,6 @@ class ContactInformationViewController: UIViewController {
     }
     
     private func configureModels() {
-        // name, username, website, bio
         var model = ContactInfoModel(label: "Name", value: "\(user.firstName) \(user.lastName)")
         models.append(model)
         model = ContactInfoModel(label: "Username", value: "\(user.username)")

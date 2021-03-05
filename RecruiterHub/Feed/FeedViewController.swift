@@ -75,11 +75,6 @@ class FeedViewController: UIViewController {
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = FeedHeaderView()
-        return view
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: false)
@@ -124,7 +119,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return posts.count * 4
+        return ultimatePosts.count * 4
 
     }
     
@@ -152,7 +147,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         else if indexPath.row % 4 == 0 {
         
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedHeaderCell.identifier, for: indexPath) as! FeedHeaderCell
-            let temp = ultimatePosts[posts.count - (indexPath.row / 4) - 1]
+            let temp = ultimatePosts[ultimatePosts.count - (indexPath.row / 4) - 1]
             
             cell.configure( email: temp.email)
             cell.delegate = self
@@ -168,7 +163,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell.identifier, for: indexPath) as! FeedTableViewCell
             
             
-            let temp = ultimatePosts[posts.count - (indexPath.row / 4) - 1]
+            let temp = ultimatePosts[ultimatePosts.count - (indexPath.row / 4) - 1]
             cell.configure(url: temp.url)
             cell.delegate = self
             return cell
@@ -211,9 +206,6 @@ extension FeedViewController: FeedHeaderCellDelegate {
 
 extension FeedViewController: FeedActionsCellDelegate {
     func didTapCommentButton(email: String, url: String) {
-        
-        print("Tapped comment")
-        
         let newCommentVC = NewCommentViewController(email: email, url: url)
         newCommentVC.title = "Add Comment"
         navigationController?.pushViewController(newCommentVC, animated: true)
@@ -224,8 +216,7 @@ extension FeedViewController: FeedActionsCellDelegate {
     }
     
     func didTapSendButton() {
-        
-            print("Tapped Send")
+        print("Tapped Send")
     }
 }
 

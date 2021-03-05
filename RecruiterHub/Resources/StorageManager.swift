@@ -111,7 +111,6 @@ final class StorageManager {
                     return
                 }
                 
-                
                 let urlString = url.absoluteString
                 print("Download url returned: \(urlString)")
                 
@@ -130,16 +129,10 @@ final class StorageManager {
                         completion(.success(uploadResults))
                     })
                 })
-                
-                
             })
         })
-//        storage.child("videos/\(filename)").putFile(from: fileUrl, metadata: nil, completion: { _, _ in
-//
-//        })
-
     }
-//
+
     public enum StorageErrors: Error {
         case failedToUpload
         case failedToGetDownloadUrl
@@ -182,5 +175,4 @@ final class StorageManager {
             })
         })
     }
-    
 }

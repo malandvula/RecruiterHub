@@ -12,16 +12,17 @@ class CommentsCell: UITableViewCell {
     
     private let commentLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.preferredMaxLayoutWidth = 150
         label.adjustsFontSizeToFitWidth = false
-        label.lineBreakMode = .byTruncatingTail
+        label.lineBreakMode = .byWordWrapping
         label.textAlignment = .natural
         return label
     }()
     
     override init(style:UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         contentView.addSubview(commentLabel)
     }
     
@@ -55,19 +56,27 @@ class CommentsCell: UITableViewCell {
             
             attributedString.append(normalString)
             self?.commentLabel.attributedText = attributedString
+            self?.commentLabel.sizeToFit()
         })
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 //        usernameLabel.frame = CGRect(x: 10, y: 10, width: 100, height: 25)
-        commentLabel.frame = CGRect(x: 10 , y: 0, width: contentView.width - 20 , height: 50)
 
+        commentLabel.frame = CGRect(x: 10 , y: 10, width: contentView.width - 20 , height: 20)
+        
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         commentLabel.text = ""
+    }
+    
+    public func getHeight() -> CGFloat {
+//        commentLabel.sizeToFit()
+//        return commentLabel.frame.height
+        return 50
     }
 }
 

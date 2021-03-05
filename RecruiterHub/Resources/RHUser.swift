@@ -14,9 +14,6 @@ public struct RHUser {
     var emailAddress:String
     var phone: String
     var gpa: Double
-//    var fastball: Pitch
-//    var breakingBall: Pitch
-//    var change: Pitch
     var positions: [String]
     var highShcool: String?
     var state: String?
@@ -50,9 +47,6 @@ public struct RHUser {
         emailAddress = ""
         phone = ""
         gpa = 0.0
-//          ar fastball: Pitch
-        //  ar breakingBall: Pitch
-        //  ar change: Pitch
         positions = []
         highShcool = ""
         state = ""

@@ -13,7 +13,7 @@ class ListsViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(SearchUsersTableViewCell.self, forCellReuseIdentifier: SearchUsersTableViewCell.identifier)
         return tableView
     }()
     
@@ -54,19 +54,22 @@ extension ListsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchUsersTableViewCell.identifier, for: indexPath) as! SearchUsersTableViewCell
+        
         guard let email = data[indexPath.row]["email"] else {
             return cell
         }
+        
         DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
             user in
             guard let user = user else {
                 return
             }
             
-            cell.textLabel?.text = user.name
+            cell.nameLabel.text = user.name
+            cell.usernameLabel.text = user.username
         })
-        
         return cell
     }
     
@@ -84,9 +87,6 @@ extension ListsViewController: UITableViewDelegate, UITableViewDataSource {
             vc.title = user.name
             self?.navigationController?.pushViewController(vc, animated: true)
         })
-        
-        // Go to profile of the selected row
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

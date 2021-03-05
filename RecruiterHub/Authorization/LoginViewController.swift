@@ -11,12 +11,6 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.clipsToBounds = true
-        return scrollView
-    }()
-    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Image")
@@ -76,6 +70,12 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    private let imageBackgroundView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "LaunchScreen")
+        return imageView
+    }()
+    
     private var loginObserver: NSObjectProtocol?
     
     override func viewDidLoad() {
@@ -83,9 +83,8 @@ class LoginViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         title = "Log In"
-        view.backgroundColor = .systemBackground
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
@@ -95,12 +94,11 @@ class LoginViewController: UIViewController {
         passwordField.delegate = self
         
         // Add subviews
-        view.addSubview(scrollView)
-        scrollView.addSubview(imageView)
-        scrollView.addSubview(emailField)
-        scrollView.addSubview(passwordField)
-        scrollView.addSubview(loginButton)
-        scrollView.addSubview(registerButton)
+        view.addSubview(imageBackgroundView)
+        view.addSubview(emailField)
+        view.addSubview(passwordField)
+        view.addSubview(loginButton)
+        view.addSubview(registerButton)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,16 +112,22 @@ class LoginViewController: UIViewController {
             NotificationCenter.default.removeObserver(observer)
         }
     }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        Keyboard.keyboardWillShow(vc: self, notification: notification)
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        Keyboard.keyboardWillHide(vc: self)
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView.frame = view.bounds
-        let size = scrollView.width/3
-        imageView.frame = CGRect(x: (scrollView.width - size)/2, y: 20, width: size, height: size)
-        emailField.frame = CGRect(x:30 , y: imageView.bottom + 10, width: scrollView.width-60, height: 52)
-        passwordField.frame = CGRect(x:30 , y: emailField.bottom + 10, width: scrollView.width-60, height: 52)
-        loginButton.frame = CGRect(x:30 , y: passwordField.bottom + 10, width: scrollView.width-60, height: 52)
-        registerButton.frame = CGRect(x:30 , y: loginButton.bottom + 10, width: scrollView.width-60, height: 52)
+        imageBackgroundView.frame = view.bounds
+        emailField.frame = CGRect(x:30 , y: view.height / 2, width: view.width-60, height: 52)
+        passwordField.frame = CGRect(x:30 , y: emailField.bottom + 10, width: view.width-60, height: 52)
+        loginButton.frame = CGRect(x:30 , y: passwordField.bottom + 10, width: view.width-60, height: 52)
+        registerButton.frame = CGRect(x:30 , y: loginButton.bottom + 10, width: view.width-60, height: 52)
         
     }
     
@@ -170,10 +174,6 @@ class LoginViewController: UIViewController {
             
             print("Logged In \(user)")
             
-//            let vc = ProfileViewController()
-//            let tabVC = UITabBarController()
-//            tabVC.viewControllers = [ProfileViewController(), NewPostViewController(), SearchUserViewController()]
-//            strongSelf.present(tabVC, animated: true, completion: nil)
             strongSelf.dismiss(animated: true, completion: nil)
         })
     }

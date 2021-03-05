@@ -9,21 +9,9 @@ import UIKit
 
 class RegisterViewController: UIViewController {
 
-    
-    
     struct Constants {
         static let cornerRadius:CGFloat = 8.0
     }
-    
-    let positionData: [String] = ["RHP", "LHP", "OF", "3B", "1B", "2B", "SS", "C", "UTIL" ]
-    
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.clipsToBounds = true
-        scrollView.alwaysBounceVertical = true
-        scrollView.isScrollEnabled = true
-        return scrollView
-    }()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -96,126 +84,6 @@ class RegisterViewController: UIViewController {
         return textField
     }()
     
-//    private let highSchoolField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "High School..."
-//        textField.returnKeyType = .next
-//        textField.leftViewMode = .always
-//        textField.autocapitalizationType = .none
-//        textField.autocorrectionType = .no
-//        textField.layer.masksToBounds = true
-//        textField.layer.cornerRadius = Constants.cornerRadius
-//        textField.backgroundColor = .secondarySystemBackground
-//        textField.layer.borderWidth = 1.0
-//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-//        return textField
-//    }()
-    
-//    private let stateField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "State..."
-//        textField.returnKeyType = .next
-//        textField.leftViewMode = .always
-//        textField.autocapitalizationType = .none
-//        textField.autocorrectionType = .no
-//        textField.layer.masksToBounds = true
-//        textField.layer.cornerRadius = Constants.cornerRadius
-//        textField.backgroundColor = .secondarySystemBackground
-//        textField.layer.borderWidth = 1.0
-//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-//        return textField
-//    }()
-    
-//    private let weightField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Weight..."
-//        textField.returnKeyType = .next
-//        textField.leftViewMode = .always
-//        textField.autocapitalizationType = .none
-//        textField.autocorrectionType = .no
-//        textField.layer.masksToBounds = true
-//        textField.layer.cornerRadius = Constants.cornerRadius
-//        textField.backgroundColor = .secondarySystemBackground
-//        textField.layer.borderWidth = 1.0
-//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-//        return textField
-//    }()
-//
-//    private let heightInchesField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Height in inches..."
-//        textField.returnKeyType = .next
-//        textField.leftViewMode = .always
-//        textField.autocapitalizationType = .none
-//        textField.autocorrectionType = .no
-//        textField.layer.masksToBounds = true
-//        textField.layer.cornerRadius = Constants.cornerRadius
-//        textField.backgroundColor = .secondarySystemBackground
-//        textField.layer.borderWidth = 1.0
-//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-//        return textField
-//    }()
-//
-//    private let heightfeetField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Height in feet..."
-//        textField.returnKeyType = .next
-//        textField.leftViewMode = .always
-//        textField.autocapitalizationType = .none
-//        textField.autocorrectionType = .no
-//        textField.layer.masksToBounds = true
-//        textField.layer.cornerRadius = Constants.cornerRadius
-//        textField.backgroundColor = .secondarySystemBackground
-//        textField.layer.borderWidth = 1.0
-//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-//        return textField
-//    }()
-//
-//    private let gradYearField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Grad Year..."
-//        textField.returnKeyType = .next
-//        textField.leftViewMode = .always
-//        textField.autocapitalizationType = .none
-//        textField.autocorrectionType = .no
-//        textField.layer.masksToBounds = true
-//        textField.layer.cornerRadius = Constants.cornerRadius
-//        textField.backgroundColor = .secondarySystemBackground
-//        textField.layer.borderWidth = 1.0
-//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-//        return textField
-//    }()
-//
-//    private let armField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Arm..."
-//        textField.returnKeyType = .next
-//        textField.leftViewMode = .always
-//        textField.autocapitalizationType = .none
-//        textField.autocorrectionType = .no
-//        textField.layer.masksToBounds = true
-//        textField.layer.cornerRadius = Constants.cornerRadius
-//        textField.backgroundColor = .secondarySystemBackground
-//        textField.layer.borderWidth = 1.0
-//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-//        return textField
-//    }()
-//
-//    private let batsField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Bats..."
-//        textField.returnKeyType = .next
-//        textField.leftViewMode = .always
-//        textField.autocapitalizationType = .none
-//        textField.autocorrectionType = .no
-//        textField.layer.masksToBounds = true
-//        textField.layer.cornerRadius = Constants.cornerRadius
-//        textField.backgroundColor = .secondarySystemBackground
-//        textField.layer.borderWidth = 1.0
-//        textField.layer.borderColor = UIColor.secondaryLabel.cgColor
-//        return textField
-//    }()
-    
     private let passwordField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Password..."
@@ -241,10 +109,10 @@ class RegisterViewController: UIViewController {
         return button
     }()
     
-    private let picker: UIPickerView = {
-        let picker = UIPickerView()
-        
-        return picker
+    private let imageBackgroundView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "LaunchScreen")
+        return imageView
     }()
     
     override func viewDidLoad() {
@@ -252,6 +120,8 @@ class RegisterViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .done, target: self, action: #selector(didTapBack))
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
@@ -260,15 +130,14 @@ class RegisterViewController: UIViewController {
         emailField.delegate = self
         passwordField.delegate = self
         
-        view.addSubview(scrollView)
-        scrollView.addSubview(imageView)
-        scrollView.addSubview(usernameField)
-        scrollView.addSubview(emailField)
-        scrollView.addSubview(passwordField)
-        scrollView.addSubview(registerButton)
-        scrollView.addSubview(lastNameField)
-        scrollView.addSubview(firstNameField)
-        view.backgroundColor = .systemBackground
+        view.addSubview(imageBackgroundView)
+        view.addSubview(imageView)
+        view.addSubview(usernameField)
+        view.addSubview(emailField)
+        view.addSubview(passwordField)
+        view.addSubview(registerButton)
+        view.addSubview(lastNameField)
+        view.addSubview(firstNameField)
         
         imageView.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapChangeProfilePic))
@@ -278,9 +147,8 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView.frame = view.bounds
-        scrollView.contentSize = CGSize(width: view.width, height: view.height * 1.75)
-        imageView.frame = CGRect(x: view.width/3, y: scrollView.top + 50, width: view.width/3, height: view.width/3)
+        imageBackgroundView.frame = view.bounds
+        imageView.frame = CGRect(x: view.width/3, y: view.top + 130, width: view.width/3, height: view.width/3)
         imageView.layer.cornerRadius = imageView.width/2
         
         firstNameField.frame = CGRect(x: 20,
@@ -318,6 +186,14 @@ class RegisterViewController: UIViewController {
     /// Handles a profile image button
     @objc private func didTapChangeProfilePic() {
         presentPhotoActionSheet()
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        Keyboard.keyboardWillShow(vc: self, notification: notification)
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        Keyboard.keyboardWillHide(vc: self)
     }
     
     
@@ -363,14 +239,6 @@ class RegisterViewController: UIViewController {
         guard let email = emailField.text, !email.isEmpty,
               let firstname = firstNameField.text, !firstname.isEmpty,
               let lastname = lastNameField.text, !lastname.isEmpty,
-//              let state = stateField.text, !state.isEmpty,
-//              let highschool = highSchoolField.text, !highschool.isEmpty,
-//              let arm = armField.text, !arm.isEmpty,
-//              let bats = batsField.text, !bats.isEmpty,
-//              let gradYear = gradYearField.text, !gradYear.isEmpty,
-//              let weight = weightField.text, !weight.isEmpty,
-//              let heightInches = heightInchesField.text, !heightInches.isEmpty,
-//              let heightFeet = heightfeetField.text, !heightFeet.isEmpty,
               let password = passwordField.text, !password.isEmpty, password.count >= 8,
               let username = usernameField.text, !username.isEmpty else {
             return
@@ -448,23 +316,5 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         }
         
         imageView.image = selectedImage
-    }
-}
-
-extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        positionData.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return positionData[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(positionData[row])
     }
 }

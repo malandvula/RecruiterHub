@@ -11,7 +11,11 @@ import FirebaseAuth
 
 class OtherUserViewController: UIViewController {
 
-    private var collectionView: UICollectionView?
+    private var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collection
+    }()
     
     private var user: RHUser
     
@@ -48,17 +52,18 @@ class OtherUserViewController: UIViewController {
         let size = (view.width - 4)/3
         layout.itemSize = CGSize(width: size, height: size)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-        collectionView?.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: VideoCollectionViewCell.identifier)
-        
-        collectionView?.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.identifier)
-        
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
-        guard let collectionView = collectionView else {
-            return
-        }
+        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: VideoCollectionViewCell.identifier)
+        collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeader.identifier)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .systemBackground
         view.addSubview(collectionView)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.counterclockwise"), style: .plain, target: self, action: #selector(didTapReloadButton))
+    }
+    
+    @objc private func didTapReloadButton(_ header: ProfileHeader) {
+        fetchPosts()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -68,7 +73,7 @@ class OtherUserViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView?.frame = view.bounds
+        collectionView.frame = view.bounds
         fetchPosts()
     }
     
@@ -77,7 +82,7 @@ class OtherUserViewController: UIViewController {
             self?.posts = fetchedPosts
             
             DispatchQueue.main.async {
-                self?.collectionView!.reloadData()
+                self?.collectionView.reloadData()
             }
         })
     }
@@ -152,10 +157,8 @@ extension OtherUserViewController: UICollectionViewDataSource {
 
 extension OtherUserViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.width, height: view.height/2)
+        return CGSize(width: view.width, height: ProfileHeader.getHeight(isYourProfile: false))
     }
-    
-    
 }
 
 extension OtherUserViewController: ProfileHeaderDelegate {

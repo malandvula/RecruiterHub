@@ -44,20 +44,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
     
     public func configure(with url: URL) {
         postImageView.sd_setImage(with: url, completed: nil)
-//        DispatchQueue.global(qos: .background).async {
-//            do {
-//                let data = try Data(contentsOf: url)
-//                DispatchQueue.main.async {
-//                    self.postImageView.image = UIImage(data: data)
-//                }
-//            }
-//            catch {
-//                DispatchQueue.main.async {
-//                    self.postImageView.image = UIImage(named: "gradient")
-//                }
-//            }
-//
-//        }
     }
 
     override func layoutSubviews() {

@@ -14,6 +14,9 @@ class CommentsViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 600
         tableView.register(CommentsCell.self, forCellReuseIdentifier: CommentsCell.identifier)
         return tableView
     }()
@@ -102,6 +105,7 @@ extension CommentsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let email = comments[indexPath.row]["email"] else {
             return UITableViewCell()
         }
+        
         cell.configure(email: email, comment: comments[indexPath.row]["comment"]!)
         return cell
     }
@@ -112,7 +116,13 @@ extension CommentsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        let label = UILabel(frame: CGRect(x: 10, y: 10, width: view.width - 20 , height: 10))
+        label.text = comments![indexPath.row]["comment"]!
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = false
+        label.lineBreakMode = .byWordWrapping
+        label.sizeToFit()
+        return label.height + 10
     }
 }
 

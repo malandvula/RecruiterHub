@@ -10,6 +10,7 @@
 		8478858931F3AF385F451E63 /* Pods_RecruiterHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */; };
 		E612737825EC1579008F24AB /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612737725EC1579008F24AB /* CommentsCell.swift */; };
 		E612737B25EC3A57008F24AB /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612737A25EC3A57008F24AB /* NewCommentViewController.swift */; };
+		E61273BE25F17707008F24AB /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61273BD25F17707008F24AB /* Keyboard.swift */; };
 		E62C957A25CB8EFA0050A6DA /* FeedActionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C957925CB8EFA0050A6DA /* FeedActionsCell.swift */; };
 		E62C957D25CB97670050A6DA /* FeedPostInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C957C25CB97670050A6DA /* FeedPostInfoCell.swift */; };
 		E63660DA25C619A9007A4EFD /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660D925C619A9007A4EFD /* FeedViewController.swift */; };
@@ -31,7 +32,6 @@
 		E68B73FD25B11D2A00D15230 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73FC25B11D2A00D15230 /* ProfileViewController.swift */; };
 		E68B740025B120C100D15230 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73FF25B120C100D15230 /* ViewExtension.swift */; };
 		E68B740525B124A700D15230 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B740425B124A700D15230 /* ProfileHeader.swift */; };
-		E68B740A25B12AD500D15230 /* DemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B740925B12AD500D15230 /* DemoData.swift */; };
 		E68B740D25B1372700D15230 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B740C25B1372700D15230 /* PhotoCollectionViewCell.swift */; };
 		E68B741025B170C400D15230 /* ContactInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B740F25B170C400D15230 /* ContactInformationViewController.swift */; };
 		E68B741325B24CD500D15230 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E68B741225B24CD500D15230 /* GoogleService-Info.plist */; };
@@ -56,6 +56,7 @@
 		CF7A5D147E3D111AF11D2A94 /* Pods-RecruiterHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.debug.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.debug.xcconfig"; sourceTree = "<group>"; };
 		E612737725EC1579008F24AB /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		E612737A25EC3A57008F24AB /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
+		E61273BD25F17707008F24AB /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		E62C957925CB8EFA0050A6DA /* FeedActionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActionsCell.swift; sourceTree = "<group>"; };
 		E62C957C25CB97670050A6DA /* FeedPostInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostInfoCell.swift; sourceTree = "<group>"; };
 		E63660D925C619A9007A4EFD /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 		E68B73FC25B11D2A00D15230 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E68B73FF25B120C100D15230 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		E68B740425B124A700D15230 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
-		E68B740925B12AD500D15230 /* DemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoData.swift; sourceTree = "<group>"; };
 		E68B740C25B1372700D15230 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E68B740F25B170C400D15230 /* ContactInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInformationViewController.swift; sourceTree = "<group>"; };
 		E68B741225B24CD500D15230 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -188,6 +188,7 @@
 				E63660FE25C7C259007A4EFD /* ListsViewController.swift */,
 				E66568A925EACFA800F04EFA /* CommentsViewController.swift */,
 				E612737725EC1579008F24AB /* CommentsCell.swift */,
+				E61273BD25F17707008F24AB /* Keyboard.swift */,
 			);
 			path = RecruiterHub;
 			sourceTree = "<group>";
@@ -217,7 +218,6 @@
 				E68B73FF25B120C100D15230 /* ViewExtension.swift */,
 				E68B73E525B11CB600D15230 /* SceneDelegate.swift */,
 				E68B73E325B11CB600D15230 /* AppDelegate.swift */,
-				E68B740925B12AD500D15230 /* DemoData.swift */,
 				E68B742925B24FE900D15230 /* AuthManager.swift */,
 				E68B742C25B2502500D15230 /* DatabaseManager.swift */,
 				E68B743225B25F7700D15230 /* StorageManager.swift */,
@@ -367,9 +367,9 @@
 				E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */,
 				E665688125DB537300F04EFA /* ContactInfoCell.swift in Sources */,
 				E63660DD25C61CD9007A4EFD /* FeedTableViewCell.swift in Sources */,
-				E68B740A25B12AD500D15230 /* DemoData.swift in Sources */,
 				E68B746825C0D72E00D15230 /* ProfileTopBar.swift in Sources */,
 				E68B743D25BA4D3400D15230 /* VideoCollectionViewCell.swift in Sources */,
+				E61273BE25F17707008F24AB /* Keyboard.swift in Sources */,
 				E68B743625B2615B00D15230 /* RHUser.swift in Sources */,
 				E68B73FD25B11D2A00D15230 /* ProfileViewController.swift in Sources */,
 				E68B740525B124A700D15230 /* ProfileHeader.swift in Sources */,

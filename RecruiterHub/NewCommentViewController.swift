@@ -25,19 +25,21 @@ class NewCommentViewController: UIViewController {
         textView.layer.borderColor = UIColor.label.cgColor
         textView.layer.cornerRadius = 10
         textView.font = UIFont.systemFont(ofSize: 16)
-        textView.textContainer.lineBreakMode = .byWordWrapping
-        
-        textView.textContainer.heightTracksTextView = true
-        textView.returnKeyType = .send
+        textView.textContainer.lineBreakMode = .byCharWrapping
+        textView.returnKeyType = .default
         return textView
     }()
     
     private let tableView: UITableView = {
         let table = UITableView()
+        table.separatorStyle = .none
         table.register(CommentsCell.self, forCellReuseIdentifier: CommentsCell.identifier)
         return table
     }()
     
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /// Init
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     init(email: String, url: String) {
         self.email = email
         self.url = url
@@ -50,8 +52,19 @@ class NewCommentViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /// View did load
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let uiToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.width, height: 50))
+
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
+        uiToolBar.items = [flexibleSpace, doneButton]
+        uiToolBar.sizeToFit()
+        textView.inputAccessoryView = uiToolBar
         
         fetchComments()
         
@@ -68,34 +81,44 @@ class NewCommentViewController: UIViewController {
         textView.delegate = self
     }
     
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /// Handle Generic tap on the screen
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     @objc private func didTap() {
         textView.resignFirstResponder()
     }
     
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /// Layout the subviews on the view controller
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = CGRect(x: 0, y:  view.safeAreaInsets.top , width: view.width , height: view.height - 100)
         textView.frame = CGRect( x: 10, y: view.bottom - 100, width: view.width - 20 , height: 100)
     }
-
+    
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /// Function that occurs when the keyboard will show
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     @objc private func keyboardWillShow(notification: NSNotification) {
-
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if  notification.name == UIResponder.keyboardWillShowNotification {
-                if view.frame.origin.y == 0 {
-                    
-                    self.view.frame.origin.y -= keyboardSize.height
-                }
-            }
-        }
-    }
-
-    @objc private func keyboardWillHide(notification: NSNotification) {
-        if view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
-        }
+        Keyboard.keyboardWillShow(vc: self, notification: notification)
     }
     
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /// Function that occurs when the keyboard will show
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        Keyboard.keyboardWillHide(vc: self)
+    }
+    
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /// Fetch the Comments for a post
+    /// Steps
+    /// - Get all user posts
+    /// - Find index of the post url
+    /// - Get Comments
+    /// - Reload table data
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     private func fetchComments() {
         
         guard let email = email as String? else {
@@ -108,19 +131,13 @@ class NewCommentViewController: UIViewController {
                 return
             }
             
-            var index = 0
-            for post in posts {
-                guard let postUrl = post["url"] as? String else {
-                    return
-                }
-                
-                if postUrl == self?.url {
-                    print("Found url")
-                    break
-                }
-                else {
-                    index += 1
-                }
+            guard let postUrl = self?.url as String? else {
+                return
+            }
+            
+            let index = DatabaseManager.findPost(posts: posts, url: postUrl)
+            if index >= posts.count {
+                return
             }
             
             DatabaseManager.shared.getComments(with: email, index: index, completion: { [weak self] comments in
@@ -135,11 +152,74 @@ class NewCommentViewController: UIViewController {
             })
         })
     }
+    
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /// Occurs when view will disappear
+    /// Unhide the tabbar
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /// Handle for when the keyboard done button is tapped.
+    ///
+    /// Steps:
+    /// - Grab comment from text view
+    /// - Create new comment to be uploaded to Firebase
+    /// - Update the comments
+    /// - Reload the table data
+    /// - Get all user posts
+    /// - Find post index
+    /// - Upload the new comments array
+    ///
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    @objc private func didTapDone() {
+        textView.resignFirstResponder()
+        
+        guard let newComment = textView.text else {
+            return
+        }
+        
+        guard let email = email as String?,
+              let url = url as String? else {
+            return
+        }
+        
+        guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        
+        let newElement = [
+            "email": currentEmail,
+            "comment": newComment
+        ]
+        
+        comments?.append(newElement)
+        
+        tableView.reloadData()
+        
+        textView.text = "New Comment..."
+        textView.textColor = .lightGray
+        
+        DatabaseManager.shared.getAllUserPosts(with: email, completion: { posts in
+            guard let posts = posts else {
+                return
+            }
+            
+            let index = DatabaseManager.findPost(posts: posts, url: url)
+            if index >= posts.count {
+                return
+            }
+            
+            DatabaseManager.shared.newComment(email: email, commenterEmail: currentEmail, comment: newComment, index: index )
+        })
+    }
 }
 
 extension NewCommentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         guard let comments = comments else {
             return 0
         }
@@ -166,24 +246,19 @@ extension NewCommentViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(email: email, comment: comment)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let label = UILabel(frame: CGRect(x: 10, y: 10, width: view.width - 20 , height: 10))
+        label.text = comments![indexPath.row]["comment"]!
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = false
+        label.lineBreakMode = .byWordWrapping
+        label.sizeToFit()
+        return label.height + 10
+    }
 }
 
-extension NewCommentViewController: UITextViewDelegate, UITextInputDelegate {
-    func selectionWillChange(_ textInput: UITextInput?) {
-        
-    }
-    
-    func selectionDidChange(_ textInput: UITextInput?) {
-        
-    }
-    
-    func textWillChange(_ textInput: UITextInput?) {
-        
-    }
-    
-    func textDidChange(_ textInput: UITextInput?) {
-        
-    }
+extension NewCommentViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -199,62 +274,6 @@ extension NewCommentViewController: UITextViewDelegate, UITextInputDelegate {
         }
         textView.resignFirstResponder()
     }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            if(text == "\n") {
-                textView.resignFirstResponder()
-
-                guard let newComment = textView.text else {
-                    return false
-                }
-
-                guard let email = email as String? else {
-                    return false
-                }
-                
-                guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String else {
-                    return false
-                }
-
-                let newElement = [
-                    "email": currentEmail,
-                    "comment": newComment
-                ]
-
-                comments?.append(newElement)
-
-                tableView.reloadData()
-
-                textView.text = "New Comment..."
-                textView.textColor = .lightGray
-
-                DatabaseManager.shared.getAllUserPosts(with: email, completion: { [weak self]
-                    posts in
-                    guard let posts = posts else {
-                        return
-                    }
-                    
-                    var index = 0
-                    for post in posts {
-                        guard let postUrl = post["url"] as? String else {
-                            return
-                        }
-                        
-                        if postUrl == self?.url {
-                            print("Found url")
-                            break
-                        }
-                        else {
-                            index += 1
-                        }
-                    }
-                    
-                    DatabaseManager.shared.newComment(email: email, commenterEmail: currentEmail, comment: newComment, index: index )
-                })
-                return false
-            }
-            return true
-        }
 }
 
 

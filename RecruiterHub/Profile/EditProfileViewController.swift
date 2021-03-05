@@ -129,11 +129,6 @@ final class EditProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-//    @objc private func didTapCancel() {
-//        dismiss(animated: true, completion: nil)
-//    }
-    
-    
     @objc private func didTapChangeProfilePicture() {
         let actionSheet = UIAlertController(title: "Profile Picture",
                                             message: "Change Profile Picture",

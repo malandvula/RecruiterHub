@@ -31,7 +31,26 @@ public class DatabaseManager {
         catch {
             return UIImage(systemName: "person.circle")!
         }
+    }
+    
+    static func findPost( posts: [[String: Any]], url: String) -> Int {
         
+        var index = 0
+        for post in posts {
+            guard let postUrl = post["url"] as? String else {
+                return posts.count
+            }
+            
+            if postUrl == url {
+                print("Found url")
+                break
+            }
+            else {
+                index += 1
+            }
+        }
+        
+        return index
     }
     
     public func userExists(with email: String, completion: @escaping ((Bool) -> Void)) {

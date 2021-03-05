@@ -11,7 +11,10 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
 
-    private var collectionView: UICollectionView?
+    private var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        return collectionView
+    }()
     
     private var user: RHUser = RHUser()
     
@@ -19,6 +22,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Your Profile"
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 1
@@ -28,11 +32,7 @@ class ProfileViewController: UIViewController {
         layout.itemSize = CGSize(width: size, height: size)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
-    
-        guard let collectionView = collectionView else {
-            return
-        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
         
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: VideoCollectionViewCell.identifier)
         
@@ -48,11 +48,16 @@ class ProfileViewController: UIViewController {
         
         view.addSubview(collectionView)
         print("Fetching posts..")
-        navigationController?.navigationBar.barTintColor = .systemBackground
-        tabBarController?.tabBar.barTintColor = .systemBackground
+        
+        fetchPosts()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.counterclockwise"), style: .plain, target: self, action: #selector(didTapReloadButton))
+    }
+    
+    @objc private func didTapReloadButton(_ header: ProfileHeader) {
         fetchPosts()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         handleNotAuthenticated()
@@ -70,7 +75,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView?.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.width, height: view.height - view.safeAreaInsets.top)
+        collectionView.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.width, height: view.height - view.safeAreaInsets.top)
     }
     
     @objc private func didTapEditButton() {
@@ -86,7 +91,7 @@ class ProfileViewController: UIViewController {
             print("Is not logged in")
             return
         }
-        print("Is logged in")
+        
         guard var email = UserDefaults.standard.value(forKey: "email") as? String else {
             print("failed")
             return
@@ -103,9 +108,7 @@ class ProfileViewController: UIViewController {
                 }
                 self?.user = user
                 
-                
-                self?.collectionView!.reloadData()
-                
+                self?.collectionView.reloadData()
             })
         })
     }
@@ -122,11 +125,11 @@ extension ProfileViewController: UICollectionViewDelegate {
         guard let posts = posts else {
             return
         }
-        guard let url = URL(string: posts[indexPath.row]["url"]! as! String) as URL? else {
+        guard let url = URL(string: posts[posts.count - indexPath.row - 1]["url"]! as! String) as URL? else {
             return
         }
         var postLikes :[PostLike] = []
-        if let likes = posts[indexPath.row]["likes"] as? [[String:String]] {
+        if let likes = posts[posts.count - indexPath.row - 1]["likes"] as? [[String:String]] {
             for like in likes {
                 let postLike = PostLike(username: like["username"]!, email: like["email"]!, name: like["name"]!)
                 postLikes.append(postLike)
@@ -195,19 +198,17 @@ extension ProfileViewController: UICollectionViewDataSource {
         
         if let email = UserDefaults.standard.value(forKey: "email") as? String {
            
-                DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
-                    result in
-                    guard let result = result else {
-                        return
-                    }
-                    
-                    profileHeader.configure(user: result, hideFollowButton: true)
-                })
-        
+            DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
+                result in
+                guard let result = result else {
+                    return
+                }
+                
+                profileHeader.configure(user: result, hideFollowButton: true)
+            })
         }
         return profileHeader
     }
-    
 }
 
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
@@ -221,9 +222,8 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: view.width, height: 70)
         }
         
-        return CGSize(width: view.width, height: view.height/2)
+        return CGSize(width: view.width, height: ProfileHeader.getHeight(isYourProfile: true))
     }
-    
 }
 
 extension ProfileViewController: ProfileHeaderDelegate {
@@ -285,6 +285,4 @@ extension ProfileViewController: ProfileConnectionsDelegate {
     func didTapConnectionsButton(_ profileConnections: ProfileConnections) {
         
     }
-    
-    
 }

@@ -54,7 +54,6 @@ public class AuthManager {
                 completion(false)
             }
         }
-        
     }
     
     public func login( username: String?, email: String?, password: String, completion: @escaping (Bool) -> Void) {
@@ -92,5 +91,4 @@ public class AuthManager {
             return
         }
     }
-
 }

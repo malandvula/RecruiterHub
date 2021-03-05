@@ -44,12 +44,14 @@ class ContactInfoCell: UITableViewCell {
         attributeLabel.text = model.value
     }
     
+    /// Prepare the cell to be reused in the tableview
     override func prepareForReuse() {
         super.prepareForReuse()
         label.text = nil
         attributeLabel.text = nil
     }
     
+    /// Layout the subviews of the tableview cell
     override func layoutSubviews() {
         super.layoutSubviews()
         

@@ -5,7 +5,6 @@
 //  Created by Ryan Helgeson on 2/1/21.
 //
 
-
 import UIKit
 
 protocol FormTableViewCellDelegate: AnyObject {
