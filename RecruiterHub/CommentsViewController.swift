@@ -50,19 +50,10 @@ class CommentsViewController: UIViewController {
                 return
             }
             
-            var index = 0
-            for post in posts {
-                guard let postUrl = post["url"] as? String else {
-                    return
-                }
-                
-                if postUrl == url {
-                    print("Found url")
-                    break
-                }
-                else {
-                    index += 1
-                }
+            let index = DatabaseManager.findPost(posts: posts, url: url)
+
+            if index >= posts.count {
+                return
             }
             
             DatabaseManager.shared.getComments(with: email, index: index, completion: {

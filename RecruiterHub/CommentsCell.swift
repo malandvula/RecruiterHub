@@ -62,8 +62,6 @@ class CommentsCell: UITableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-//        usernameLabel.frame = CGRect(x: 10, y: 10, width: 100, height: 25)
-
         commentLabel.frame = CGRect(x: 10 , y: 10, width: contentView.width - 20 , height: 20)
         
     }
@@ -74,8 +72,6 @@ class CommentsCell: UITableViewCell {
     }
     
     public func getHeight() -> CGFloat {
-//        commentLabel.sizeToFit()
-//        return commentLabel.frame.height
         return 50
     }
 }

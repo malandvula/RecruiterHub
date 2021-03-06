@@ -32,7 +32,6 @@
 		E68B73FD25B11D2A00D15230 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73FC25B11D2A00D15230 /* ProfileViewController.swift */; };
 		E68B740025B120C100D15230 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73FF25B120C100D15230 /* ViewExtension.swift */; };
 		E68B740525B124A700D15230 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B740425B124A700D15230 /* ProfileHeader.swift */; };
-		E68B740D25B1372700D15230 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B740C25B1372700D15230 /* PhotoCollectionViewCell.swift */; };
 		E68B741025B170C400D15230 /* ContactInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B740F25B170C400D15230 /* ContactInformationViewController.swift */; };
 		E68B741325B24CD500D15230 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E68B741225B24CD500D15230 /* GoogleService-Info.plist */; };
 		E68B742A25B24FE900D15230 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B742925B24FE900D15230 /* AuthManager.swift */; };
@@ -47,8 +46,8 @@
 		E68B745E25BF8D2200D15230 /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B745D25BF8D2200D15230 /* SearchUsersViewController.swift */; };
 		E68B746125BFAC3900D15230 /* SearchUsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */; };
 		E68B746425C0801C00D15230 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746325C0801C00D15230 /* OtherUserViewController.swift */; };
-		E68B746825C0D72E00D15230 /* ProfileTopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746725C0D72E00D15230 /* ProfileTopBar.swift */; };
 		E68B746B25C0E6F500D15230 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746A25C0E6F500D15230 /* SettingsViewController.swift */; };
+		E6BED0D625F1F85E00A03720 /* ScoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,7 +79,6 @@
 		E68B73FC25B11D2A00D15230 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E68B73FF25B120C100D15230 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		E68B740425B124A700D15230 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
-		E68B740C25B1372700D15230 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E68B740F25B170C400D15230 /* ContactInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInformationViewController.swift; sourceTree = "<group>"; };
 		E68B741225B24CD500D15230 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E68B742925B24FE900D15230 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -95,8 +93,8 @@
 		E68B745D25BF8D2200D15230 /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
 		E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewCell.swift; sourceTree = "<group>"; };
 		E68B746325C0801C00D15230 /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
-		E68B746725C0D72E00D15230 /* ProfileTopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTopBar.swift; sourceTree = "<group>"; };
 		E68B746A25C0E6F500D15230 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutViewController.swift; sourceTree = "<group>"; };
 		EDDA3292CDA13AA52A8736EA /* Pods-RecruiterHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.release.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +187,7 @@
 				E66568A925EACFA800F04EFA /* CommentsViewController.swift */,
 				E612737725EC1579008F24AB /* CommentsCell.swift */,
 				E61273BD25F17707008F24AB /* Keyboard.swift */,
+				E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */,
 			);
 			path = RecruiterHub;
 			sourceTree = "<group>";
@@ -202,10 +201,8 @@
 				E68B746A25C0E6F500D15230 /* SettingsViewController.swift */,
 				E68B73FC25B11D2A00D15230 /* ProfileViewController.swift */,
 				E68B740425B124A700D15230 /* ProfileHeader.swift */,
-				E68B740C25B1372700D15230 /* PhotoCollectionViewCell.swift */,
 				E68B740F25B170C400D15230 /* ContactInformationViewController.swift */,
 				E68B743C25BA4D3400D15230 /* VideoCollectionViewCell.swift */,
-				E68B746725C0D72E00D15230 /* ProfileTopBar.swift */,
 				E63660E425C73C61007A4EFD /* ProfileTabs.swift */,
 				E63660FB25C7906C007A4EFD /* ProfileConnections.swift */,
 			);
@@ -362,12 +359,11 @@
 				E636611425CA4983007A4EFD /* FeedHeaderCell.swift in Sources */,
 				E68B746125BFAC3900D15230 /* SearchUsersTableViewCell.swift in Sources */,
 				E68B742D25B2502500D15230 /* DatabaseManager.swift in Sources */,
-				E68B740D25B1372700D15230 /* PhotoCollectionViewCell.swift in Sources */,
 				E68B743025B2527C00D15230 /* RegisterViewController.swift in Sources */,
 				E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */,
+				E6BED0D625F1F85E00A03720 /* ScoutViewController.swift in Sources */,
 				E665688125DB537300F04EFA /* ContactInfoCell.swift in Sources */,
 				E63660DD25C61CD9007A4EFD /* FeedTableViewCell.swift in Sources */,
-				E68B746825C0D72E00D15230 /* ProfileTopBar.swift in Sources */,
 				E68B743D25BA4D3400D15230 /* VideoCollectionViewCell.swift in Sources */,
 				E61273BE25F17707008F24AB /* Keyboard.swift in Sources */,
 				E68B743625B2615B00D15230 /* RHUser.swift in Sources */,

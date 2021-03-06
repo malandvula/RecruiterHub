@@ -84,6 +84,4 @@ extension ContactInformationViewController: UITableViewDelegate, UITableViewData
         cell.configure(with: models[indexPath.row])
         return cell
     }
-    
-    
 }

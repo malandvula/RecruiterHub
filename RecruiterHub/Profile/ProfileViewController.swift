@@ -58,8 +58,8 @@ class ProfileViewController: UIViewController {
         fetchPosts()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         handleNotAuthenticated()
     }
     
@@ -249,8 +249,11 @@ extension ProfileViewController: ProfileTabsDelegate {
         navigationController?.pushViewController(vc, animated: false)
     }
     
-    func didTapTaggedButtonTab() {
-        
+    func didTapScoutButtonTab() {
+        print("Tapped scout")
+        let vc = ScoutViewController()
+        vc.title = "Scout Info"
+        navigationController?.pushViewController(vc, animated: false)
     }
 }
 

@@ -9,7 +9,7 @@ import UIKit
 
 protocol ProfileTabsDelegate: AnyObject {
     func didTapGridButtonTab()
-    func didTapTaggedButtonTab()
+    func didTapScoutButtonTab()
 }
 
 class ProfileTabs: UICollectionReusableView {
@@ -30,11 +30,11 @@ class ProfileTabs: UICollectionReusableView {
         return button
     }()
     
-    private let taggedButton: UIButton = {
+    private let scoutButton: UIButton = {
         let button = UIButton()
         button.clipsToBounds = true
         button.tintColor = .systemBlue
-        button.setBackgroundImage(UIImage(systemName: "tag"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "note.text"), for: .normal)
         return button
     }()
     
@@ -42,13 +42,13 @@ class ProfileTabs: UICollectionReusableView {
         super.init(frame: frame)
         backgroundColor = .systemBackground
         addSubview(gridButton)
-        addSubview(taggedButton)
+        addSubview(scoutButton)
         
         gridButton.addTarget(self,
                              action: #selector(didTapGridButton),
                              for: .touchUpInside)
 
-        taggedButton.addTarget(self,
+        scoutButton.addTarget(self,
                              action: #selector(didTapTaggedButton),
                              for: .touchUpInside)
     }
@@ -66,7 +66,7 @@ class ProfileTabs: UICollectionReusableView {
                                   y: Constants.padding,
                                     width: size,
                                     height: size)
-        taggedButton.frame = CGRect(x: gridButtonX + (width/2),
+        scoutButton.frame = CGRect(x: gridButtonX + (width/2),
                                     y: Constants.padding,
                                     width: size,
                                     height: size)
@@ -77,7 +77,7 @@ class ProfileTabs: UICollectionReusableView {
     }
 
     @objc private func didTapTaggedButton() {
-        delegate?.didTapTaggedButtonTab()
+        delegate?.didTapScoutButtonTab()
     }
 }
 
