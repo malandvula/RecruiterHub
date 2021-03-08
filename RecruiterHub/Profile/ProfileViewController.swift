@@ -47,24 +47,32 @@ class ProfileViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         
         view.addSubview(collectionView)
-        print("Fetching posts..")
-        
-        fetchPosts()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.counterclockwise"), style: .plain, target: self, action: #selector(didTapReloadButton))
-    }
-    
-    @objc private func didTapReloadButton(_ header: ProfileHeader) {
-        fetchPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handleNotAuthenticated()
+        
+        guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        
+        if currentEmail != user.safeEmail {
+            fetchPosts()
+        }
+    
+        DatabaseManager.shared.getAllUserPosts(with: user.safeEmail, completion: { [weak self] posts in
+            guard let posts = posts else {
+                return
+            }
+            
+            if posts.count != self?.posts?.count {
+                self?.fetchPosts()
+            }
+        })
     }
     
     func handleNotAuthenticated() {
-        print("HandleAuthenticated")
         if Auth.auth().currentUser == nil {
             // Show Log In
             let loginVC = LoginViewController()
@@ -81,17 +89,12 @@ class ProfileViewController: UIViewController {
     @objc private func didTapEditButton() {
         let vc = SettingsViewController(user: user)
         vc.title = "Settings"
-        navigationController?.pushViewController(vc, animated: false)
+        vc.modalTransitionStyle = .flipHorizontal
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func fetchPosts() {
-        
-        guard let isLoggedIn = UserDefaults.standard.value(forKey: "isLoggedIn") as? String,
-              isLoggedIn == "Yes" else {
-            print("Is not logged in")
-            return
-        }
-        
+      
         guard var email = UserDefaults.standard.value(forKey: "email") as? String else {
             print("failed")
             return
@@ -115,6 +118,7 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: UICollectionViewDelegate {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
@@ -150,7 +154,6 @@ extension ProfileViewController: UICollectionViewDelegate {
 }
 
 extension ProfileViewController: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let posts = posts else {
             return 0
@@ -189,6 +192,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         if indexPath.section == 2 {
             let profileConnections = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileConnections.identifier, for: indexPath) as! ProfileConnections
             profileConnections.delegate = self
+            profileConnections.configure(email: user.safeEmail)
             return profileConnections
         }
         
@@ -196,7 +200,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProfileHeader.identifier, for: indexPath) as! ProfileHeader
         profileHeader.delegate = self
         
-        if let email = UserDefaults.standard.value(forKey: "email") as? String {
+        if let email = UserDefaults.standard.value(forKey: "email") as? String, email != "" {
            
             DatabaseManager.shared.getDataForUser(user: email.safeDatabaseKey(), completion: {
                 result in
@@ -246,14 +250,16 @@ extension ProfileViewController: ProfileTabsDelegate {
         print("Tapped the grid")
         let vc = ContactInformationViewController(user: user)
         vc.title = "Contact Information"
-        navigationController?.pushViewController(vc, animated: false)
+        vc.modalTransitionStyle = .flipHorizontal
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func didTapScoutButtonTab() {
         print("Tapped scout")
-        let vc = ScoutViewController()
+        let vc = ScoutViewController(user: user)
         vc.title = "Scout Info"
-        navigationController?.pushViewController(vc, animated: false)
+        vc.modalTransitionStyle = .flipHorizontal
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

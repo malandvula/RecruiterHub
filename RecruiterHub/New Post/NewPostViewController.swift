@@ -94,25 +94,25 @@ extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationCo
                 return
             }
             
-            guard var email = UserDefaults.standard.value(forKey: "email") as! String? else {
+            guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
                 return
             }
-            email = email.replacingOccurrences(of: "@", with: "-").replacingOccurrences(of: ".", with: "-")
             
-            StorageManager.shared.uploadVideo(with: video, email: email, filename: fileName, completion: { result in
-
-                switch result {
-                case .success(let urlString):
-                    guard var email = UserDefaults.standard.value(forKey: "email") as! String? else {
-                        return
-                    }
-                    email = email.replacingOccurrences(of: "@", with: "-").replacingOccurrences(of: ".", with: "-")
-                    DatabaseManager.shared.insertNewPost(with: email, url: urlString)
-                case .failure(let error):
-                    print(error)
-                }
-
-            })
+            let vc = AddCaptionViewController(email: email, data: video, filename: fileName)
+            navigationController?.pushViewController(vc, animated: false)
+//            StorageManager.shared.uploadVideo(with: video, email: email, filename: fileName, completion: { result in
+//
+//                switch result {
+//                case .success(let urlString):
+//                    guard var email = UserDefaults.standard.value(forKey: "email") as! String? else {
+//                        return
+//                    }
+//                    email = email.replacingOccurrences(of: "@", with: "-").replacingOccurrences(of: ".", with: "-")
+//                    DatabaseManager.shared.insertNewPost(with: email, url: urlString)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            })
         }
     }
     

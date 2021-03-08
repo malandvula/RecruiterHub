@@ -54,23 +54,21 @@ final class EditProfileViewController: UIViewController {
         models.append(model)
         model = EditProfileFormModel(label: "Phone", placeholder: "N/A", value: nil)
         models.append(model)
-        model = EditProfileFormModel(label: "High School", placeholder: "\(user.highShcool!)", value: nil)
+        model = EditProfileFormModel(label: "High School", placeholder: "\(user.highShcool)", value: nil)
         models.append(model)
-        model = EditProfileFormModel(label: "State", placeholder: "\(user.state!)", value: nil)
+        model = EditProfileFormModel(label: "State", placeholder: "\(user.state)", value: nil)
         models.append(model)
-        model = EditProfileFormModel(label: "Height Feet", placeholder: "\(user.heightFeet!)", value: nil)
+        model = EditProfileFormModel(label: "Height Feet", placeholder: "\(user.heightFeet)", value: nil)
         models.append(model)
-        model = EditProfileFormModel(label: "Height Inches", placeholder: "\(user.heightInches!)", value: nil)
+        model = EditProfileFormModel(label: "Height Inches", placeholder: "\(user.heightInches)", value: nil)
         models.append(model)
-        model = EditProfileFormModel(label: "Weight", placeholder: "\(user.weight!)", value: nil)
+        model = EditProfileFormModel(label: "Weight", placeholder: "\(user.weight)", value: nil)
         models.append(model)
-        model = EditProfileFormModel(label: "Arm", placeholder: "\(user.arm!)", value: nil)
+        model = EditProfileFormModel(label: "Arm", placeholder: "\(user.arm)", value: nil)
         models.append(model)
-        model = EditProfileFormModel(label: "Bats", placeholder: "\(user.bats!)", value: nil)
+        model = EditProfileFormModel(label: "Bats", placeholder: "\(user.bats)", value: nil)
         models.append(model)
-        model = EditProfileFormModel(label: "GPA", placeholder: "\(user.bats!)", value: nil)
-        models.append(model)
-        model = EditProfileFormModel(label: "", placeholder: "\(user.bats!)", value: nil)
+        model = EditProfileFormModel(label: "GPA", placeholder: "\(user.bats)", value: nil)
         models.append(model)
     }
     
@@ -222,13 +220,13 @@ extension EditProfileViewController: FormTableViewCellDelegate {
             user.state = value
             break
         case "Height Feet":
-            user.heightFeet = Int(value)
+            user.heightFeet = Int(value) ?? 0
             break
         case "Height Inches":
-            user.heightInches = Int(value)
+            user.heightInches = Int(value) ?? 0
             break
         case "Weight":
-            user.weight = Int(value)
+            user.weight = Int(value) ?? 0
             break
         case "Arm":
             user.arm = value

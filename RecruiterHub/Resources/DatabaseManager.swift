@@ -98,6 +98,7 @@ public class DatabaseManager {
         database.child(email.safeDatabaseKey()).child("arm").setValue(user.arm)
         database.child(email.safeDatabaseKey()).child("bats").setValue(user.bats)
         database.child(email.safeDatabaseKey()).child("gradYear").setValue(user.gradYear)
+        database.child(email.safeDatabaseKey()).child("phone").setValue(user.phone)
 
         database.child("users").observeSingleEvent(of: .value, with: { [weak self] snapshot in
             
@@ -162,13 +163,27 @@ public class DatabaseManager {
         }
     }
     
-    public func insertNewPost(with email: String, url: Upload) {
+    public func insertNewPost(with email: String, url: Upload, caption: String) {
         database.child("\(email)/Posts").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            var comment: String
+            if caption == "" {
+                comment = ""
+            }
+            else {
+                comment = caption
+            }
             
-            let newElement = [
+            var comments: [[String:String]] = []
+            comments.append([
+                "email": email,
+                "comment": comment
+            ])
+            
+            let newElement: [String : Any] = [
                 "url": url.videoUrl,
                 "thumbnail": url.thumbnailUrl,
-                "likes": ""
+                "likes": "",
+                "comments": comments
             ]
             
             if var usersCollection = snapshot.value as? [[String: Any]] {
@@ -183,7 +198,7 @@ public class DatabaseManager {
             }
             else {
                 print("New Collection")
-                let newCollection: [[String: String]] = [newElement]
+                let newCollection: [[String: Any]] = [newElement]
                 
                 self?.database.child("\(email)/Posts").setValue(newCollection, withCompletionBlock:  { error, _ in
                     guard error == nil else {
@@ -535,6 +550,75 @@ public class DatabaseManager {
             comments.append(newElement)
             
             self?.database.child("\(email)/Posts/\(index)/comments").setValue(comments)
+        })
+    }
+    
+    public func getScoutInfoForUser(user: String, completion: @escaping ((ScoutInfo?) -> Void)) {
+        database.child("\(user)/scoutInfo").observeSingleEvent(of: .value, with:  { snapshot in
+            
+            guard let info = snapshot.value as? [String: Any] else {
+                completion(nil)
+                return
+            }
+            
+            guard let fastball = info["fastball"] as? Double,
+                  let curveball =  info["curveball"] as? Double,
+                  let slider = info["slider"] as? Double,
+                  let changeup =  info["changeup"] as? Double,
+                  let sixty =  info["sixty"] as? Double,
+                  let infield = info["infield"] as? Double,
+                  let outfield = info["outfield"] as? Double,
+                  let exitVelo = info["exitVelo"] as? Double else {
+               print("Failed to get user data")
+                completion(nil)
+                return
+            }
+            var scoutInfo = ScoutInfo()
+            scoutInfo.fastball = fastball
+            scoutInfo.curveball = curveball
+            scoutInfo.slider = slider
+            scoutInfo.changeup = changeup
+            scoutInfo.sixty = sixty
+            scoutInfo.infield = infield
+            scoutInfo.outfield = outfield
+            scoutInfo.exitVelo = exitVelo
+    
+            completion(scoutInfo)
+        })
+    }
+    
+    public func updateScoutInfoForUser(email: String, scoutInfo: ScoutInfo) {
+        database.child("\(email)/scoutInfo").child("fastball").setValue(scoutInfo.fastball)
+        database.child("\(email)/scoutInfo").child("curveball").setValue(scoutInfo.curveball)
+        database.child("\(email)/scoutInfo").child("slider").setValue(scoutInfo.slider)
+        database.child("\(email)/scoutInfo").child("changeup").setValue(scoutInfo.changeup)
+        database.child("\(email)/scoutInfo").child("sixty").setValue(scoutInfo.sixty)
+        database.child("\(email)/scoutInfo").child("infield").setValue(scoutInfo.infield)
+        database.child("\(email)/scoutInfo").child("outfield").setValue(scoutInfo.outfield)
+        database.child("\(email)/scoutInfo").child("exitVelo").setValue(scoutInfo.exitVelo)
+    }
+    
+    public func getNumberOf( email: String, connection: Connections, completion: @escaping (Int) -> Void) {
+        var attribute = ""
+        switch connection {
+        case .follower:
+            attribute = "followers"
+            break
+        case .following:
+            attribute = "following"
+            break
+        case .endorsers:
+            attribute = "endorsers"
+            break
+        }
+        database.child("\(email)/\(attribute)").observeSingleEvent(of: .value, with: {
+            snapshot in
+            
+            guard let list = snapshot.value as? [[String: String]] else {
+                completion(0)
+                return
+            }
+            completion(list.count)
         })
     }
 }

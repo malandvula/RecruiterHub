@@ -34,6 +34,8 @@ class RegisterViewController: UIViewController {
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = Constants.cornerRadius
         textField.backgroundColor = .secondarySystemBackground
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0) )
+        textField.leftViewMode = .always
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor.secondaryLabel.cgColor
         return textField
@@ -49,6 +51,8 @@ class RegisterViewController: UIViewController {
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = Constants.cornerRadius
         textField.backgroundColor = .secondarySystemBackground
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0) )
+        textField.leftViewMode = .always
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor.secondaryLabel.cgColor
         return textField
@@ -64,6 +68,8 @@ class RegisterViewController: UIViewController {
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = Constants.cornerRadius
         textField.backgroundColor = .secondarySystemBackground
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0) )
+        textField.leftViewMode = .always
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor.secondaryLabel.cgColor
         return textField
@@ -79,6 +85,8 @@ class RegisterViewController: UIViewController {
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = Constants.cornerRadius
         textField.backgroundColor = .secondarySystemBackground
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0) )
+        textField.leftViewMode = .always
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor.secondaryLabel.cgColor
         return textField
@@ -95,6 +103,8 @@ class RegisterViewController: UIViewController {
         textField.layer.cornerRadius = Constants.cornerRadius
         textField.isSecureTextEntry = true
         textField.backgroundColor = .secondarySystemBackground
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0) )
+        textField.leftViewMode = .always
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIColor.secondaryLabel.cgColor
         return textField
@@ -189,6 +199,9 @@ class RegisterViewController: UIViewController {
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
+        if firstNameField.isFirstResponder || lastNameField.isFirstResponder || usernameField.isFirstResponder  {
+            return
+        }
         Keyboard.keyboardWillShow(vc: self, notification: notification)
     }
 

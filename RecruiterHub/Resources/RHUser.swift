@@ -15,14 +15,14 @@ public struct RHUser {
     var phone: String
     var gpa: Double
     var positions: [String]
-    var highShcool: String?
-    var state: String?
-    var gradYear: Int?
-    var heightFeet: Int?
-    var heightInches: Int?
-    var weight: Int?
-    var arm: String?
-    var bats: String?
+    var highShcool: String
+    var state: String
+    var gradYear: Int
+    var heightFeet: Int
+    var heightInches: Int
+    var weight: Int
+    var arm: String
+    var bats: String
     var profilePicUrl: String
     
     var safeEmail: String {
@@ -60,10 +60,8 @@ public struct RHUser {
     }
 }
 
-
-
-struct Pitch {
-    let topVelocity: Double
-    let vertBreak: Double
-    let horizBreak: Double
+public enum Connections {
+    case follower
+    case following
+    case endorsers
 }

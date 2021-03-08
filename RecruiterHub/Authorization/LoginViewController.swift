@@ -144,7 +144,8 @@ class LoginViewController: UIViewController {
             alertUserLoginError()
             return
         }
-        
+    
+        UserDefaults.standard.set(emailField.text?.safeDatabaseKey(), forKey: "email")
         //Firebase log in
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
             
@@ -212,6 +213,11 @@ extension LoginViewController: UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = nil
+        textField.textColor = .label
     }
 }
 

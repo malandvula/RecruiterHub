@@ -140,7 +140,7 @@ class SettingsViewController: UIViewController {
                             self.navigationController?.popToRootViewController(animated: false)
                             self.tabBarController?.selectedIndex = 0
                         }
-                        UserDefaults.standard.setValue("No", forKey: "isLoggedIn")
+                        UserDefaults.standard.setValue("", forKey: "email")
                     }
                     else {
                         // Error Occurred

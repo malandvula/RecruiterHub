@@ -24,6 +24,7 @@
 		E636611425CA4983007A4EFD /* FeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636611325CA4982007A4EFD /* FeedHeaderCell.swift */; };
 		E665688125DB537300F04EFA /* ContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E665688025DB537300F04EFA /* ContactInfoCell.swift */; };
 		E66568AA25EACFA800F04EFA /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66568A925EACFA800F04EFA /* CommentsViewController.swift */; };
+		E67AED5425F5615100BE5114 /* EditScoutInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67AED5325F5615100BE5114 /* EditScoutInfoViewController.swift */; };
 		E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E325B11CB600D15230 /* AppDelegate.swift */; };
 		E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E525B11CB600D15230 /* SceneDelegate.swift */; };
 		E68B73EB25B11CB600D15230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E68B73E925B11CB600D15230 /* Main.storyboard */; };
@@ -47,7 +48,9 @@
 		E68B746125BFAC3900D15230 /* SearchUsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */; };
 		E68B746425C0801C00D15230 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746325C0801C00D15230 /* OtherUserViewController.swift */; };
 		E68B746B25C0E6F500D15230 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746A25C0E6F500D15230 /* SettingsViewController.swift */; };
+		E69AF4BA25F5DBD200D366A8 /* AddCaptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4B925F5DBD200D366A8 /* AddCaptionViewController.swift */; };
 		E6BED0D625F1F85E00A03720 /* ScoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */; };
+		E6BED10F25F433F300A03720 /* ScoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +72,7 @@
 		E636611325CA4982007A4EFD /* FeedHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderCell.swift; sourceTree = "<group>"; };
 		E665688025DB537300F04EFA /* ContactInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCell.swift; sourceTree = "<group>"; };
 		E66568A925EACFA800F04EFA /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		E67AED5325F5615100BE5114 /* EditScoutInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScoutInfoViewController.swift; sourceTree = "<group>"; };
 		E68B73E025B11CB600D15230 /* RecruiterHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecruiterHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E68B73E325B11CB600D15230 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E68B73E525B11CB600D15230 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +98,9 @@
 		E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewCell.swift; sourceTree = "<group>"; };
 		E68B746325C0801C00D15230 /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
 		E68B746A25C0E6F500D15230 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E69AF4B925F5DBD200D366A8 /* AddCaptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaptionViewController.swift; sourceTree = "<group>"; };
 		E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutViewController.swift; sourceTree = "<group>"; };
+		E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutCollectionViewCell.swift; sourceTree = "<group>"; };
 		EDDA3292CDA13AA52A8736EA /* Pods-RecruiterHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.release.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +177,7 @@
 		E68B73E225B11CB600D15230 /* RecruiterHub */ = {
 			isa = PBXGroup;
 			children = (
+				E69AF4B825F5DB9B00D366A8 /* New Post */,
 				E62C958225CB9FED0050A6DA /* Authorization */,
 				E62C958125CB9FC60050A6DA /* Storyboards */,
 				E62C958025CB9F7F0050A6DA /* Search */,
@@ -180,14 +187,12 @@
 				E68B73EC25B11CBA00D15230 /* Assets.xcassets */,
 				E68B741225B24CD500D15230 /* GoogleService-Info.plist */,
 				E68B73F125B11CBA00D15230 /* Info.plist */,
-				E68B743925B7E1D400D15230 /* NewPostViewController.swift */,
 				E68B746325C0801C00D15230 /* OtherUserViewController.swift */,
 				E612737A25EC3A57008F24AB /* NewCommentViewController.swift */,
 				E63660FE25C7C259007A4EFD /* ListsViewController.swift */,
 				E66568A925EACFA800F04EFA /* CommentsViewController.swift */,
 				E612737725EC1579008F24AB /* CommentsCell.swift */,
 				E61273BD25F17707008F24AB /* Keyboard.swift */,
-				E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */,
 			);
 			path = RecruiterHub;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 		E68B740225B123AE00D15230 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E6BED11125F4355300A03720 /* Scout */,
 				E636610C25C8EA27007A4EFD /* FormTableViewCell.swift */,
 				E665688025DB537300F04EFA /* ContactInfoCell.swift */,
 				E636610225C8DD74007A4EFD /* EditProfileViewController.swift */,
@@ -222,6 +228,25 @@
 				E68B744525BB425600D15230 /* ViewPostViewController.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E69AF4B825F5DB9B00D366A8 /* New Post */ = {
+			isa = PBXGroup;
+			children = (
+				E68B743925B7E1D400D15230 /* NewPostViewController.swift */,
+				E69AF4B925F5DBD200D366A8 /* AddCaptionViewController.swift */,
+			);
+			path = "New Post";
+			sourceTree = "<group>";
+		};
+		E6BED11125F4355300A03720 /* Scout */ = {
+			isa = PBXGroup;
+			children = (
+				E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */,
+				E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */,
+				E67AED5325F5615100BE5114 /* EditScoutInfoViewController.swift */,
+			);
+			path = Scout;
 			sourceTree = "<group>";
 		};
 		EEE773A03100638033476483 /* Pods */ = {
@@ -371,11 +396,13 @@
 				E68B740525B124A700D15230 /* ProfileHeader.swift in Sources */,
 				E68B744625BB425600D15230 /* ViewPostViewController.swift in Sources */,
 				E636611125CA45BF007A4EFD /* FeedHeaderView.swift in Sources */,
+				E6BED10F25F433F300A03720 /* ScoutCollectionViewCell.swift in Sources */,
 				E68B741025B170C400D15230 /* ContactInformationViewController.swift in Sources */,
 				E612737B25EC3A57008F24AB /* NewCommentViewController.swift in Sources */,
 				E63660FF25C7C259007A4EFD /* ListsViewController.swift in Sources */,
 				E68B746425C0801C00D15230 /* OtherUserViewController.swift in Sources */,
 				E612737825EC1579008F24AB /* CommentsCell.swift in Sources */,
+				E67AED5425F5615100BE5114 /* EditScoutInfoViewController.swift in Sources */,
 				E68B746B25C0E6F500D15230 /* SettingsViewController.swift in Sources */,
 				E68B745E25BF8D2200D15230 /* SearchUsersViewController.swift in Sources */,
 				E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */,
@@ -392,6 +419,7 @@
 				E63660DA25C619A9007A4EFD /* FeedViewController.swift in Sources */,
 				E68B743325B25F7700D15230 /* StorageManager.swift in Sources */,
 				E68B743A25B7E1D400D15230 /* NewPostViewController.swift in Sources */,
+				E69AF4BA25F5DBD200D366A8 /* AddCaptionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

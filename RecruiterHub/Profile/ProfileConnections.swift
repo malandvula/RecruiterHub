@@ -22,57 +22,61 @@ class ProfileConnections: UICollectionReusableView {
         static let padding: CGFloat = 8
     }
     
-    private let followersButton: UIButton = {
-        let button = UIButton()
-        button.clipsToBounds = true
-        button.tintColor = .systemBlue
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.setTitle("Followers", for: .normal)
-        button.layer.borderColor = UIColor.systemBlue.cgColor
-        button.layer.borderWidth = 2
-        return button
+    private let followersLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 12)
+        label.text = "Followers\nRyan"
+        label.textAlignment = .center
+        label.textColor = .systemBlue
+        label.layer.borderColor = UIColor.systemBlue.cgColor
+        label.layer.borderWidth = 2
+        return label
     }()
     
-    private let connectionsButton: UIButton = {
-        let button = UIButton()
-        button.clipsToBounds = true
-        button.tintColor = .systemBlue
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.setTitle("Connections", for: .normal)
-        button.layer.borderColor = UIColor.systemBlue.cgColor
-        button.layer.borderWidth = 2
-        return button
+    private let followingLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 12)
+        label.text = "Following\nRyan"
+        label.textAlignment = .center
+        label.textColor = .systemBlue
+        label.layer.borderColor = UIColor.systemBlue.cgColor
+        label.layer.borderWidth = 2
+        return label
     }()
     
-    private let followingButton: UIButton = {
-        let button = UIButton()
-        button.clipsToBounds = true
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.setTitle("Following", for: .normal)
-        button.layer.borderColor = UIColor.systemBlue.cgColor
-        button.layer.borderWidth = 2
-        return button
+    private let connectionsLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 12)
+        label.text = "Connections\nRyan"
+        label.textAlignment = .center
+        label.textColor = .systemBlue
+        label.layer.borderColor = UIColor.systemBlue.cgColor
+        label.layer.borderWidth = 2
+        return label
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
-        addSubview(followingButton)
-        addSubview(followersButton)
-        addSubview(connectionsButton)
+        addSubview(followingLabel)
+        addSubview(connectionsLabel)
+        addSubview(followersLabel)
         
-        followingButton.addTarget(self,
-                             action: #selector(didTapFollowing),
-                             for: .touchUpInside)
-
-        followersButton.addTarget(self,
-                             action: #selector(didTapFollowers),
-                             for: .touchUpInside)
+        followersLabel.isUserInteractionEnabled = true
+        var gesture = UITapGestureRecognizer(target: self, action: #selector(didTapFollowers))
+        followersLabel.addGestureRecognizer(gesture)
         
-        connectionsButton.addTarget(self,
-                             action: #selector(didTapConnections),
-                             for: .touchUpInside)
+        
+        followingLabel.isUserInteractionEnabled = true
+        gesture = UITapGestureRecognizer(target: self, action: #selector(didTapFollowing))
+        followingLabel.addGestureRecognizer(gesture)
+        
+        connectionsLabel.isUserInteractionEnabled = true
+        gesture = UITapGestureRecognizer(target: self, action: #selector(didTapConnections))
+        connectionsLabel.addGestureRecognizer(gesture)
     }
     
     required init?(coder: NSCoder) {
@@ -85,15 +89,15 @@ class ProfileConnections: UICollectionReusableView {
         let size = height - 30
         let thirdWidth = width / 3
         let buttonWidth = width / 3 - 20
-        followingButton.frame = CGRect(x: 10,
+        followingLabel.frame = CGRect(x: 10,
                                   y: Constants.padding,
                                   width: buttonWidth,
                                     height: size)
-        followersButton.frame = CGRect(x: thirdWidth + 10 ,
+        followersLabel.frame = CGRect(x: thirdWidth + 10 ,
                                     y: Constants.padding,
                                     width: buttonWidth,
                                     height: size)
-        connectionsButton.frame = CGRect(x: thirdWidth * 2 + 10,
+        connectionsLabel.frame = CGRect(x: thirdWidth * 2 + 10,
                                          y: Constants.padding,
                                          width: buttonWidth,
                                          height: size)
@@ -110,6 +114,18 @@ class ProfileConnections: UICollectionReusableView {
     
     @objc private func didTapConnections() {
         delegate?.didTapConnectionsButton(self)
+    }
+    
+    public func configure(email: String) {
+        DatabaseManager.shared.getNumberOf(email: email, connection: .follower, completion: { [weak self] count in
+            self?.followersLabel.text = "Followers\n\(count)"
+        })
+        DatabaseManager.shared.getNumberOf(email: email, connection: .following, completion: { [weak self] count in
+            self?.followingLabel.text = "Following\n\(count)"
+        })
+        DatabaseManager.shared.getNumberOf(email: email, connection: .endorsers, completion: { [weak self] count in
+            self?.connectionsLabel.text = "Endorsers\n\(count)"
+        })
     }
 }
 

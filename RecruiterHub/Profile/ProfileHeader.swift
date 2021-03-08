@@ -117,20 +117,14 @@ final class ProfileHeader: UICollectionReusableView, UINavigationControllerDeleg
         }
         
         nameLabel.text = user.firstName + " " + user.lastName
-        guard let gradYear = user.gradYear else {
-            gradLabel.text = "Year: N/A"
-            return
-        }
+        let gradYear = user.gradYear
         gradLabel.text = "Year: " + String(gradYear)
-        guard let heightFeet = user.heightFeet,
-              let heightInches = user.heightInches,
-              let weight = user.weight,
-              let arm = user.arm,
-              let bats = user.bats else {
-            bodyLabel.text = ""
-            handLabel.text = ""
-            return
-        }
+        
+        let heightFeet = user.heightFeet
+        let heightInches = user.heightInches
+        let weight = user.weight
+        let arm = user.arm
+        let bats = user.bats
         bodyLabel.text = String(heightFeet) + "'" + String(heightInches) + "  "  + String(weight) + " lbs"
         handLabel.text = "Throws: " + String(arm) + "   Bats: " + String(bats)
         var positions = ""
