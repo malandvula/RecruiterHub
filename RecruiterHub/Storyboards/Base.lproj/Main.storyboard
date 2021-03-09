@@ -57,6 +57,7 @@
                         <segue destination="bUu-og-6Ma" kind="relationship" relationship="viewControllers" id="uOe-ow-KNj"/>
                         <segue destination="rFB-5o-ccT" kind="relationship" relationship="viewControllers" id="pij-U0-sFd"/>
                         <segue destination="YxZ-gL-WJi" kind="relationship" relationship="viewControllers" id="L3n-Zh-iCG"/>
+                        <segue destination="jbF-1u-QMm" kind="relationship" relationship="viewControllers" id="b8A-A1-oEE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="03a-tv-zW5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -147,6 +148,22 @@
             </objects>
             <point key="canvasLocation" x="2038" y="848"/>
         </scene>
+        <!--Conversations View Controller-->
+        <scene sceneID="RZP-k5-ehj">
+            <objects>
+                <viewController id="als-V9-hV4" customClass="ConversationsViewController" customModule="RecruiterHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4KL-Rc-Tn1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="x8b-1O-ISB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mub-mi-8WN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2lT-ZC-Zlc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2952" y="1554"/>
+        </scene>
         <!--Search-->
         <scene sceneID="geY-e5-Wto">
             <objects>
@@ -166,10 +183,30 @@
             </objects>
             <point key="canvasLocation" x="1010" y="848"/>
         </scene>
+        <!--Chats-->
+        <scene sceneID="e6s-TJ-MlT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jbF-1u-QMm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chats" image="message" catalog="system" id="WNn-Wp-jhd"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aPm-wb-TWa">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="als-V9-hV4" kind="relationship" relationship="rootViewController" id="gfi-eC-P7h"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b7U-iC-gwE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2951" y="848"/>
+        </scene>
     </scenes>
     <resources>
         <image name="highlighter" catalog="system" width="128" height="119"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="message" catalog="system" width="128" height="113"/>
         <image name="newspaper" catalog="system" width="128" height="108"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">

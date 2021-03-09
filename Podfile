@@ -16,5 +16,6 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Crashlytics'
 pod 'SDWebImage'
 pod 'MessageKit'
+pod 'JGProgressHUD'
 
 end
