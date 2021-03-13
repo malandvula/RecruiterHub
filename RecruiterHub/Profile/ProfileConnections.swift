@@ -10,7 +10,7 @@ import UIKit
 protocol ProfileConnectionsDelegate: AnyObject {
     func didTapFollowingButton(_ profileConnections: ProfileConnections)
     func didTapFollowersButton(_ profileConnections: ProfileConnections)
-    func didTapConnectionsButton(_ profileConnections: ProfileConnections)
+    func didTapEndorsementsButton(_ profileConnections: ProfileConnections)
 }
 
 class ProfileConnections: UICollectionReusableView {
@@ -26,7 +26,7 @@ class ProfileConnections: UICollectionReusableView {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 12)
-        label.text = "Followers\nRyan"
+        label.text = "Followers\n"
         label.textAlignment = .center
         label.textColor = .systemBlue
         label.layer.borderColor = UIColor.systemBlue.cgColor
@@ -38,7 +38,7 @@ class ProfileConnections: UICollectionReusableView {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 12)
-        label.text = "Following\nRyan"
+        label.text = "Following\n"
         label.textAlignment = .center
         label.textColor = .systemBlue
         label.layer.borderColor = UIColor.systemBlue.cgColor
@@ -50,7 +50,7 @@ class ProfileConnections: UICollectionReusableView {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 12)
-        label.text = "Connections\nRyan"
+        label.text = "Connections\n"
         label.textAlignment = .center
         label.textColor = .systemBlue
         label.layer.borderColor = UIColor.systemBlue.cgColor
@@ -75,7 +75,7 @@ class ProfileConnections: UICollectionReusableView {
         followingLabel.addGestureRecognizer(gesture)
         
         connectionsLabel.isUserInteractionEnabled = true
-        gesture = UITapGestureRecognizer(target: self, action: #selector(didTapConnections))
+        gesture = UITapGestureRecognizer(target: self, action: #selector(didTapEndorsements))
         connectionsLabel.addGestureRecognizer(gesture)
     }
     
@@ -112,8 +112,8 @@ class ProfileConnections: UICollectionReusableView {
         delegate?.didTapFollowersButton(self)
     }
     
-    @objc private func didTapConnections() {
-        delegate?.didTapConnectionsButton(self)
+    @objc private func didTapEndorsements() {
+        delegate?.didTapEndorsementsButton(self)
     }
     
     public func configure(email: String) {

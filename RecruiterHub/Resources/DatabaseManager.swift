@@ -405,7 +405,6 @@ public class DatabaseManager {
     }
     
     public func getUserFollowers( email: String, completion: @escaping (([[String:String]]?) -> Void))  {
-        
         database.child("\(email)/followers").observeSingleEvent(of: .value, with: { snapshot in
             guard let feedPosts = snapshot.value as? [[String:String]] else {
                 completion(nil)
@@ -417,7 +416,6 @@ public class DatabaseManager {
     }
     
     public func getUserFollowing( email: String, completion: @escaping (([[String:String]]?) -> Void))  {
-        
         database.child("\(email)/following").observeSingleEvent(of: .value, with: { snapshot in
             guard let feedPosts = snapshot.value as? [[String:String]] else {
                 completion(nil)
@@ -425,6 +423,14 @@ public class DatabaseManager {
             }
         
             completion(feedPosts)
+        })
+    }
+    
+    // TODO: Do this function 
+    public func getUserEndorsements( email: String, completion: @escaping (([[String:String]]?) -> Void))  {
+        database.child("\(email)/endorsements").observeSingleEvent(of: .value, with: { snapshot in
+            let dictionary = ["email": "myemail@gmail.com"]
+            dictionary["email"] // "myemail@gmail.com"
         })
     }
     
@@ -1181,7 +1187,7 @@ public class DatabaseManager {
                     return nil
                 }
                 
-                let sender = Sender(photURL: "", senderId: senderEmail, displayName: name)
+                let sender = Sender(photoURL: "", senderId: senderEmail, displayName: name)
                 
                 return Message(sender: sender, messageId: messageId, sentDate: date, kind: finalKind)
             })

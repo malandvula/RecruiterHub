@@ -225,6 +225,10 @@ extension OtherUserViewController: ProfileTabsDelegate {
 }
 
 extension OtherUserViewController: ProfileConnectionsDelegate {
+    func didTapEndorsementsButton(_ profileConnections: ProfileConnections) {
+        //TODO
+    }
+    
     func didTapFollowingButton(_ profileConnections: ProfileConnections) {
         DatabaseManager.shared.getUserFollowing(email: user.emailAddress.safeDatabaseKey(), completion: { [weak self] followers in
             var data:[[String:String]] = []
@@ -249,9 +253,5 @@ extension OtherUserViewController: ProfileConnectionsDelegate {
             self?.navigationController?.pushViewController(vc, animated: false)
             return
         })
-    }
-    
-    func didTapConnectionsButton(_ profileConnections: ProfileConnections) {
-        
     }
 }

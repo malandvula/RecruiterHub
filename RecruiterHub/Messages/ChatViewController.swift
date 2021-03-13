@@ -38,7 +38,7 @@ class ChatViewController: MessagesViewController {
         }
         let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
         
-        return Sender(photURL: "", senderId: safeEmail, displayName: "Joe Smith")
+        return Sender(photoURL: "", senderId: safeEmail, displayName: "Joe Smith")
         
     }
     
@@ -439,13 +439,14 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
                 let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
                 
                 // Fetch url
-                DatabaseManager.shared.getDataForUser(user: safeEmail, completion: { user in
+                DatabaseManager.shared.getDataForUser(user: safeEmail, completion: { [weak self] user in
                     
                     guard let user = user else {
                         return
                     }
                     
                     let url = URL(string: user.profilePicUrl)
+                    self?.senderPhotoURL = url
                     avatarView.sd_setImage(with: url, completed: nil)
                 })
             }
@@ -461,13 +462,15 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
                 let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
 
                 // Fetch url
-                DatabaseManager.shared.getDataForUser(user: safeEmail, completion: { user in
+                DatabaseManager.shared.getDataForUser(user: safeEmail, completion: { [weak self] user in
                     
                     guard let user = user else {
                         return
                     }
                     
                     let url = URL(string: user.profilePicUrl)
+                    
+                    self?.otherUserPhotoURL = url
                     avatarView.sd_setImage(with: url, completed: nil)
                 })
             }
