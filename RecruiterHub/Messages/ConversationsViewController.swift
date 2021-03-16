@@ -43,14 +43,6 @@ class ConversationsViewController: UIViewController {
         view.addSubview(noConversationsLabel)
         setupTableView()
         startListeningForConversations()
-        
-//        loginObserver = NotificationCenter.default.addObserver(forName: .didLoginNotification, object: nil, queue: .main) { [weak self] _ in
-//            guard let strongSelf = self else {
-//                return
-//            }
-//
-//            strongSelf.startListeningForConversations()
-//        }
     }
     
     private func startListeningForConversations() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EA8CD43DA1FC3CCB5DD0485 /* Pods_RecruiterHubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5818E128F578169023D10D3 /* Pods_RecruiterHubTests.framework */; };
 		8478858931F3AF385F451E63 /* Pods_RecruiterHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */; };
 		E612737825EC1579008F24AB /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612737725EC1579008F24AB /* CommentsCell.swift */; };
 		E612737B25EC3A57008F24AB /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612737A25EC3A57008F24AB /* NewCommentViewController.swift */; };
@@ -57,10 +58,25 @@
 		E69AF4E525F6DCAE00D366A8 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4E425F6DCAE00D366A8 /* ChatModels.swift */; };
 		E6BED0D625F1F85E00A03720 /* ScoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */; };
 		E6BED10F25F433F300A03720 /* ScoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */; };
+		E6C2F99825FD3069006ACED2 /* RecruiterHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C2F99725FD3069006ACED2 /* RecruiterHubTests.swift */; };
+		E6C2F9A225FD38D4006ACED2 /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C2F9A125FD38D4006ACED2 /* DatabaseTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E6C2F99A25FD3069006ACED2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E68B73D825B11CB600D15230 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E68B73DF25B11CB600D15230;
+			remoteInfo = RecruiterHub;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		286E171FDDE85FA93287EA19 /* Pods-RecruiterHubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHubTests.release.xcconfig"; path = "Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests.release.xcconfig"; sourceTree = "<group>"; };
 		6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecruiterHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5818E128F578169023D10D3 /* Pods_RecruiterHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecruiterHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB80AD7D3CDE31250386C792 /* Pods-RecruiterHubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHubTests.debug.xcconfig"; path = "Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF7A5D147E3D111AF11D2A94 /* Pods-RecruiterHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.debug.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.debug.xcconfig"; sourceTree = "<group>"; };
 		E612737725EC1579008F24AB /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		E612737A25EC3A57008F24AB /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +129,10 @@
 		E69AF4E425F6DCAE00D366A8 /* ChatModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModels.swift; sourceTree = "<group>"; };
 		E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutViewController.swift; sourceTree = "<group>"; };
 		E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutCollectionViewCell.swift; sourceTree = "<group>"; };
+		E6C2F99525FD3069006ACED2 /* RecruiterHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecruiterHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6C2F99725FD3069006ACED2 /* RecruiterHubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterHubTests.swift; sourceTree = "<group>"; };
+		E6C2F99925FD3069006ACED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6C2F9A125FD38D4006ACED2 /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
 		EDDA3292CDA13AA52A8736EA /* Pods-RecruiterHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.release.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +142,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8478858931F3AF385F451E63 /* Pods_RecruiterHub.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C2F99225FD3069006ACED2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EA8CD43DA1FC3CCB5DD0485 /* Pods_RecruiterHubTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				E68B73E225B11CB600D15230 /* RecruiterHub */,
+				E6C2F99625FD3069006ACED2 /* RecruiterHubTests */,
 				E68B73E125B11CB600D15230 /* Products */,
 				EEE773A03100638033476483 /* Pods */,
 				F3AEAF63AAF3B96300277F7D /* Frameworks */,
@@ -182,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				E68B73E025B11CB600D15230 /* RecruiterHub.app */,
+				E6C2F99525FD3069006ACED2 /* RecruiterHubTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -275,11 +305,23 @@
 			path = Scout;
 			sourceTree = "<group>";
 		};
+		E6C2F99625FD3069006ACED2 /* RecruiterHubTests */ = {
+			isa = PBXGroup;
+			children = (
+				E6C2F99725FD3069006ACED2 /* RecruiterHubTests.swift */,
+				E6C2F99925FD3069006ACED2 /* Info.plist */,
+				E6C2F9A125FD38D4006ACED2 /* DatabaseTests.swift */,
+			);
+			path = RecruiterHubTests;
+			sourceTree = "<group>";
+		};
 		EEE773A03100638033476483 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				CF7A5D147E3D111AF11D2A94 /* Pods-RecruiterHub.debug.xcconfig */,
 				EDDA3292CDA13AA52A8736EA /* Pods-RecruiterHub.release.xcconfig */,
+				CB80AD7D3CDE31250386C792 /* Pods-RecruiterHubTests.debug.xcconfig */,
+				286E171FDDE85FA93287EA19 /* Pods-RecruiterHubTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -288,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */,
+				A5818E128F578169023D10D3 /* Pods_RecruiterHubTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -314,17 +357,41 @@
 			productReference = E68B73E025B11CB600D15230 /* RecruiterHub.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E6C2F99425FD3069006ACED2 /* RecruiterHubTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6C2F99C25FD3069006ACED2 /* Build configuration list for PBXNativeTarget "RecruiterHubTests" */;
+			buildPhases = (
+				5CFDB4D9C398E56E7F3ACFC6 /* [CP] Check Pods Manifest.lock */,
+				E6C2F99125FD3069006ACED2 /* Sources */,
+				E6C2F99225FD3069006ACED2 /* Frameworks */,
+				E6C2F99325FD3069006ACED2 /* Resources */,
+				F9A5FC1F9CB7AA7C3436B443 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E6C2F99B25FD3069006ACED2 /* PBXTargetDependency */,
+			);
+			name = RecruiterHubTests;
+			productName = RecruiterHubTests;
+			productReference = E6C2F99525FD3069006ACED2 /* RecruiterHubTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E68B73D825B11CB600D15230 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					E68B73DF25B11CB600D15230 = {
 						CreatedOnToolsVersion = 12.3;
+					};
+					E6C2F99425FD3069006ACED2 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = E68B73DF25B11CB600D15230;
 					};
 				};
 			};
@@ -342,6 +409,7 @@
 			projectRoot = "";
 			targets = (
 				E68B73DF25B11CB600D15230 /* RecruiterHub */,
+				E6C2F99425FD3069006ACED2 /* RecruiterHubTests */,
 			);
 		};
 /* End PBXProject section */
@@ -358,9 +426,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E6C2F99325FD3069006ACED2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5CFDB4D9C398E56E7F3ACFC6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecruiterHubTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A97AA46C2737A4EEC17769B0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -398,6 +495,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9A5FC1F9CB7AA7C3436B443 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -455,7 +569,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E6C2F99125FD3069006ACED2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6C2F9A225FD38D4006ACED2 /* DatabaseTests.swift in Sources */,
+				E6C2F99825FD3069006ACED2 /* RecruiterHubTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E6C2F99B25FD3069006ACED2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E68B73DF25B11CB600D15230 /* RecruiterHub */;
+			targetProxy = E6C2F99A25FD3069006ACED2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E68B73E925B11CB600D15230 /* Main.storyboard */ = {
@@ -635,6 +766,50 @@
 			};
 			name = Release;
 		};
+		E6C2F99D25FD3069006ACED2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB80AD7D3CDE31250386C792 /* Pods-RecruiterHubTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VY9FRH555S;
+				INFOPLIST_FILE = RecruiterHubTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ryan.RecruiterHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecruiterHub.app/RecruiterHub";
+			};
+			name = Debug;
+		};
+		E6C2F99E25FD3069006ACED2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 286E171FDDE85FA93287EA19 /* Pods-RecruiterHubTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VY9FRH555S;
+				INFOPLIST_FILE = RecruiterHubTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ryan.RecruiterHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecruiterHub.app/RecruiterHub";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -652,6 +827,15 @@
 			buildConfigurations = (
 				E68B73F525B11CBA00D15230 /* Debug */,
 				E68B73F625B11CBA00D15230 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6C2F99C25FD3069006ACED2 /* Build configuration list for PBXNativeTarget "RecruiterHubTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6C2F99D25FD3069006ACED2 /* Debug */,
+				E6C2F99E25FD3069006ACED2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

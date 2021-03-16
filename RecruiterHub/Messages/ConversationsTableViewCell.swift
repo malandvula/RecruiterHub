@@ -68,17 +68,6 @@ class ConversationTableViewCell: UITableViewCell {
             let url = URL(string: user.profilePicUrl)
             self?.userImageView.sd_setImage(with: url, completed: nil)
         })
-        
-//        StorageManager.shared.downloadURL(for: path) { [weak self] result in
-//            switch result {
-//            case .success(let url):
-//                DispatchQueue.main.async {
-//                    self?.userImageView.sd_setImage(with: url, completed: nil)
-//                }
-//            case .failure(let error):
-//                print("Failed to get image url: \(error)")
-//            }
-//        }
     }
 }
 
