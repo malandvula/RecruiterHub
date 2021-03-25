@@ -1195,6 +1195,5 @@ public class DatabaseManager {
             completion(.success(messages))
         })
     }
-
 }
 

@@ -58,7 +58,6 @@
 		E69AF4E525F6DCAE00D366A8 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4E425F6DCAE00D366A8 /* ChatModels.swift */; };
 		E6BED0D625F1F85E00A03720 /* ScoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */; };
 		E6BED10F25F433F300A03720 /* ScoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */; };
-		E6C2F99825FD3069006ACED2 /* RecruiterHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C2F99725FD3069006ACED2 /* RecruiterHubTests.swift */; };
 		E6C2F9A225FD38D4006ACED2 /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C2F9A125FD38D4006ACED2 /* DatabaseTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -130,7 +129,6 @@
 		E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutViewController.swift; sourceTree = "<group>"; };
 		E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutCollectionViewCell.swift; sourceTree = "<group>"; };
 		E6C2F99525FD3069006ACED2 /* RecruiterHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecruiterHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6C2F99725FD3069006ACED2 /* RecruiterHubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterHubTests.swift; sourceTree = "<group>"; };
 		E6C2F99925FD3069006ACED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6C2F9A125FD38D4006ACED2 /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
 		EDDA3292CDA13AA52A8736EA /* Pods-RecruiterHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.release.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.release.xcconfig"; sourceTree = "<group>"; };
@@ -308,7 +306,6 @@
 		E6C2F99625FD3069006ACED2 /* RecruiterHubTests */ = {
 			isa = PBXGroup;
 			children = (
-				E6C2F99725FD3069006ACED2 /* RecruiterHubTests.swift */,
 				E6C2F99925FD3069006ACED2 /* Info.plist */,
 				E6C2F9A125FD38D4006ACED2 /* DatabaseTests.swift */,
 			);
@@ -574,7 +571,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6C2F9A225FD38D4006ACED2 /* DatabaseTests.swift in Sources */,
-				E6C2F99825FD3069006ACED2 /* RecruiterHubTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

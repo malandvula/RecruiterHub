@@ -129,4 +129,54 @@ class DatabaseTests: XCTestCase {
         })
         waitForExpectations(timeout: 2, handler: nil)
     }
+    
+    func test_downloadURLValid() {
+        let expect = expectation(description: "Data")
+        
+        guard let expectedURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/recruiterhub-cb0ef.appspot.com/o/images%2Fryanhelgeson14-gmail-com?alt=media&token=1c38561c-72ae-4aac-83fb-e59a936e7db3") else {
+            XCTAssert(false)
+            return
+        }
+        
+        let path = "images/ryanhelgeson14-gmail-com"
+        StorageManager.shared.downloadURL(for: path, completion: { result in
+        
+            switch result {
+            case .success(let resultURL):
+                XCTAssertEqual(expectedURL, resultURL)
+                break
+            case .failure(_):
+                XCTAssert(false)
+                break
+            }
+            expect.fulfill()
+        })
+        waitForExpectations(timeout: 2, handler: nil)
+    }
+    
+    func test_downloadURLInvalid() {
+        let expect = expectation(description: "Data")
+
+        let path = "images/Not_An_Image_Location_com"
+        StorageManager.shared.downloadURL(for: path, completion: { result in
+        
+            switch result {
+            case .success(_):
+                XCTAssert(false)
+                break
+            case .failure(let error):
+                guard let error = error as? StorageManager.StorageErrors else {
+                    XCTAssert(false)
+                    return
+                }
+                
+                XCTAssertEqual(StorageManager.StorageErrors.failedToGetDownloadUrl, error)
+                break
+            }
+            expect.fulfill()
+        })
+        waitForExpectations(timeout: 2, handler: nil)
+    }
+    
+
 }

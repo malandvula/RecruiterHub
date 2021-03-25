@@ -66,7 +66,6 @@ final class StorageManager {
             
             guard error == nil else {
                 //Failed
-                print(error!)
                 print("Failed to upload data to firebase for picture")
                 completion(.failure(StorageErrors.failedToUpload))
                 return
