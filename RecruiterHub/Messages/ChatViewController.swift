@@ -481,59 +481,11 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
 extension ChatViewController: MessageCellDelegate {
     func didTapMessage(in cell: MessageCollectionViewCell) {
         print("Tapped Message")
-        guard let indexPath = messagesCollectionView.indexPath(for: cell) else {
-            return
-        }
-        
-//        let message = messages[indexPath.section]
-//        print("Selecting message type")
-//        print(message.kind)
-//        switch message.kind {
-//        case .location(let locationData):
-////            let coordinates = locationData.location.coordinate
-////            let vc = LocationPickerViewController(coordinates: coordinates)
-////            vc.title = "Location"
-////            navigationController?.pushViewController(vc, animated: true)
-//        break
-//        case .text(let item):
-//            print("Custom message")
-////            if let url = URL(string: item) {
-////                let vc = FileViewerViewController(with: url)
-////                vc.title = "File"
-////                navigationController?.pushViewController(vc, animated: true)
-////            }
-//            break
-//        default:
-//            break
-//        }
     }
     
     func didTapImage(in cell: MessageCollectionViewCell) {
-        guard let indexPath = messagesCollectionView.indexPath(for: cell) else {
-            return
-        }
-        
-        let message = messages[indexPath.section]
-        
-//        switch message.kind {
-//        case .photo(let media):
-////            guard let imageUrl = media.url else {
-////                return
-////            }
-////            let vc = PhotoViewerViewController(with: imageUrl)
-////            navigationController?.pushViewController(vc, animated: true)
-//        break
-//        case .video(let media):
-//            guard let videoUrl = media.url else {
-//                return
-//            }
-//            let vc = AVPlayerViewController()
-//            vc.player = AVPlayer(url:  videoUrl)
-//            present(vc, animated: true)
-//
-//        default:
-//            break
-//        }
+        print("Tapped Image")
+    
     }
 }
 

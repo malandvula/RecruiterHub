@@ -38,6 +38,8 @@ class ScoutViewController: UIViewController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemBackground
         
+        collectionView.register(ScoutInfoCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ScoutInfoCollectionReusableView.identifier)
+        
         collectionView.register(ScoutCollectionViewCell.self, forCellWithReuseIdentifier: ScoutCollectionViewCell.identifier)
         
         collectionView.delegate = self
@@ -70,13 +72,37 @@ class ScoutViewController: UIViewController {
             let vc = EditScoutInfoViewController(scoutInfo: scoutInfo)
             
             self?.navigationController?.pushViewController(vc, animated: false)
-            
         })
-        
+    }
+}
+
+extension ScoutViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.width, height: ScoutInfoCollectionReusableView.getHeight())
     }
 }
 
 extension ScoutViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ScoutInfoCollectionReusableView.identifier, for: indexPath) as! ScoutInfoCollectionReusableView
+        header.delegate = self
+        
+        DatabaseManager.shared.getDataForUser(user: user.safeEmail, completion: {
+            result in
+            guard let result = result else {
+                return
+            }
+            
+            header.configure(user: result, hideFollowButton: true)
+        })
+
+        return header
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 8
     }
@@ -114,5 +140,12 @@ extension ScoutViewController: UICollectionViewDelegate, UICollectionViewDataSou
             print("Default")
         }
         return cell
+    }
+}
+
+extension ScoutViewController: ScoutInfoDelegate {
+    func didTapGameLog(_ header: ScoutInfoCollectionReusableView) {
+        let vc = GameLogViewController(user: user)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

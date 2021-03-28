@@ -74,14 +74,15 @@ class FormTableViewCell: UITableViewCell {
 
 // MARK: - Field
 extension FormTableViewCell: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("Returned")
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("Ended Editing")
+        
         model?.value = textField.text
-        guard let model = model else {
-            return true
+        guard let model = model, model.value != "" else {
+            return
         }
         delegate?.formTableViewCell(self, didUpdateField: model)
         textField.resignFirstResponder()
-        return true
+        return
     }
 }

@@ -1,0 +1,167 @@
+//
+//  AddGameLogViewController.swift
+//  RecruiterHub
+//
+//  Created by Ryan Helgeson on 3/27/21.
+//
+
+import UIKit
+
+class AddGameLogViewController: UIViewController {
+
+    private var models = [EditProfileFormModel]()
+    
+    private var gameLog: PitcherGameLog = PitcherGameLog(opponent: "", date: "", inningsPitched: 0, hits: 0, runs: 0, earnedRuns: 0, strikeouts: 0, walks: 0)
+    
+    private var data: Data?
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(FormTableViewCell.self, forCellReuseIdentifier: FormTableViewCell.identifier)
+        return tableView
+    }()
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureModels()
+        tableView.dataSource = self
+        view.addSubview(tableView)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSave))
+    }
+    
+    private func configureModels() {
+        // name, username, website, bio
+        var model = EditProfileFormModel(label: "Date", placeholder: "DD-MM-YYYY", value: nil)
+        models.append(model)
+        model = EditProfileFormModel(label: "Opponent", placeholder: "Opponent", value: nil)
+        models.append(model)
+        model = EditProfileFormModel(label: "IP", placeholder: "0", value: nil)
+        models.append(model)
+        model = EditProfileFormModel(label: "Hits", placeholder: "0", value: nil)
+        models.append(model)
+        model = EditProfileFormModel(label: "Runs", placeholder: "0", value: nil)
+        models.append(model)
+        model = EditProfileFormModel(label: "ER", placeholder: "0", value: nil)
+        models.append(model)
+        model = EditProfileFormModel(label: "K", placeholder: "0", value: nil)
+        models.append(model)
+        model = EditProfileFormModel(label: "BB", placeholder: "0", value: nil)
+        models.append(model)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard section == 1 else {
+            return nil
+        }
+        return "Scout Info"
+    }
+    
+    // MARK: -Action
+    
+    @objc private func didTapSave() {
+        
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        
+        DatabaseManager.shared.addGameLogForUser(email: email, gameLog: gameLog)
+        
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - TableView
+
+extension AddGameLogViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = models[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: FormTableViewCell.identifier, for: indexPath) as! FormTableViewCell
+        cell.configure(with: model)
+        cell.delegate = self
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return models.count
+    }
+}
+
+extension AddGameLogViewController: FormTableViewCellDelegate {
+    func formTableViewCell(_ cell: FormTableViewCell, didUpdateField updatedModel: EditProfileFormModel) {
+        
+        guard let value = updatedModel.value else {
+            return
+        }
+        
+        switch updatedModel.label {
+        case "Date":
+            gameLog.date = value
+            break
+        case "Opponent":
+            gameLog.opponent = value
+            break
+        case "IP":
+            guard let value = Int(value) else {
+                return
+            }
+            gameLog.inningsPitched = Int(value)
+            break
+        case "Hits":
+            guard let value = Int(value) else {
+                return
+            }
+            gameLog.hits = Int(value)
+            break
+        case "R":
+            guard let value = Int(value) else {
+                return
+            }
+            gameLog.runs = Int(value)
+            break
+        case "ER":
+            guard let value = Int(value) else {
+                return
+            }
+            gameLog.earnedRuns = Int(value)
+            break
+        case "K":
+            guard let value = Int(value) else {
+                return
+            }
+            gameLog.strikeouts = Int(value)
+            break
+        case "BB":
+            guard let value = Int(value) else {
+                return
+            }
+            gameLog.walks = Int(value)
+            break
+        default:
+            print("Field doesn't exist")
+            break
+        }
+        
+        //Update the mdoel
+        print(updatedModel.value ?? "nil")
+    }
+}
+

@@ -1195,5 +1195,72 @@ public class DatabaseManager {
             completion(.success(messages))
         })
     }
+    
+    public func getPitcherGameLogsForUser(user: String, completion: @escaping (([PitcherGameLog]?) -> Void)) {
+        database.child("\(user)/PitcherGameLogs").observeSingleEvent(of: .value, with:  { snapshot in
+            
+            guard let pitcherGameLogsDictionary = snapshot.value as? [[String: Any]] else {
+                completion(nil)
+                return
+            }
+            var pitcherGameLogs: [PitcherGameLog] = []
+            
+            for log in pitcherGameLogsDictionary {
+                guard let date = log["date"] as? String,
+                      let opponent =  log["opponent"] as? String,
+                      let inningsPitched = log["inningsPitched"] as? Int,
+                      let hits =  log["hits"] as? Int,
+                      let runs =  log["runs"] as? Int,
+                      let earnedRuns = log["earnedRuns"] as? Int,
+                      let strikeouts = log["strikeouts"] as? Int,
+                      let walks = log["walks"] as? Int else {
+                   print("Failed to get user data")
+                    completion(nil)
+                    return
+                }
+                let pitcherGameLog = PitcherGameLog(opponent: opponent, date: date, inningsPitched: inningsPitched, hits: hits, runs: runs, earnedRuns: earnedRuns, strikeouts: strikeouts, walks: walks)
+                pitcherGameLogs.append(pitcherGameLog)
+            }
+            
+            completion(pitcherGameLogs)
+        })
+    }
+    
+    public func addGameLogForUser( email: String, gameLog: PitcherGameLog) {
+        database.child("\(email)/PitcherGameLogs").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            
+            let newElement: [String:Any] = [
+                "date": gameLog.date,
+                "opponent": gameLog.opponent,
+                "inningsPitched": gameLog.inningsPitched,
+                "hits": gameLog.hits,
+                "runs": gameLog.runs,
+                "earnedRuns": gameLog.earnedRuns,
+                "strikeouts": gameLog.strikeouts,
+                "walks": gameLog.walks
+            ]
+            
+            if var gameLogs = snapshot.value as? [[String: Any]] {
+                print("Collection Exists")
+                gameLogs.append(newElement)
+                
+                self?.database.child("\(email)/PitcherGameLogs").setValue(gameLogs, withCompletionBlock:  { error, _ in
+                    guard error == nil else {
+                        return
+                    }
+                })
+            }
+            else {
+                print("New Collection")
+                let newCollection: [[String: Any]] = [newElement]
+                
+                self?.database.child("\(email)/PitcherGameLogs").setValue(newCollection, withCompletionBlock:  { error, _ in
+                    guard error == nil else {
+                        return
+                    }
+                })
+            }
+       })
+    }
 }
 

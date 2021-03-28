@@ -95,12 +95,12 @@ extension OtherUserViewController: UICollectionViewDelegate {
             print("Failed to get posts")
             return
         }
-        guard let url = URL(string: posts[indexPath.row]["url"]! as! String) as URL? else {
+        guard let url = URL(string: posts[posts.count - indexPath.row - 1]["url"]! as! String) as URL? else {
             return
         }
         
         var postLikes: [PostLike] = []
-        if let likes = posts[indexPath.row]["likes"] as? [[String:String]] {
+        if let likes = posts[posts.count - indexPath.row - 1]["likes"] as? [[String:String]] {
             for like in likes {
                 let postLike = PostLike(username: like["username"]!, email: like["email"]!, name: like["name"]!)
                 postLikes.append(postLike)
@@ -112,7 +112,6 @@ extension OtherUserViewController: UICollectionViewDelegate {
         
         let post = Post(likes: postLikes, title: "Post", url: url, number: indexPath.row )
         
-        print("Selected Item at \(indexPath.row)")
         let vc = ViewPostViewController(post: post, user: user)
         vc.title = "Post"
         navigationController?.pushViewController(vc, animated: false)
