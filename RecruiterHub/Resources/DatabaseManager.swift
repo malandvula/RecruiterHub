@@ -1208,7 +1208,7 @@ public class DatabaseManager {
             for log in pitcherGameLogsDictionary {
                 guard let date = log["date"] as? String,
                       let opponent =  log["opponent"] as? String,
-                      let inningsPitched = log["inningsPitched"] as? Int,
+                      let inningsPitched = log["inningsPitched"] as? Double,
                       let hits =  log["hits"] as? Int,
                       let runs =  log["runs"] as? Int,
                       let earnedRuns = log["earnedRuns"] as? Int,
@@ -1218,7 +1218,15 @@ public class DatabaseManager {
                     completion(nil)
                     return
                 }
-                let pitcherGameLog = PitcherGameLog(opponent: opponent, date: date, inningsPitched: inningsPitched, hits: hits, runs: runs, earnedRuns: earnedRuns, strikeouts: strikeouts, walks: walks)
+                var pitcherGameLog = PitcherGameLog()
+                pitcherGameLog.date = date
+                pitcherGameLog.opponent = opponent
+                pitcherGameLog.inningsPitched = inningsPitched
+                pitcherGameLog.hits = hits
+                pitcherGameLog.runs = runs
+                pitcherGameLog.earnedRuns = earnedRuns
+                pitcherGameLog.strikeouts = strikeouts
+                pitcherGameLog.walks = walks
                 pitcherGameLogs.append(pitcherGameLog)
             }
             
@@ -1252,7 +1260,20 @@ public class DatabaseManager {
                     completion(nil)
                     return
                 }
-                let batterGameLog = BatterGameLog(opponent: opponent, date: date, atBats: atBats, hits: hits, runs: runs, rbis: rbis, doubles: doubles, triples: triples, homeRuns: homeruns, strikeouts: strikeouts, walks: walks, stolenBases: stolenBases )
+                var batterGameLog = BatterGameLog()
+                batterGameLog.date = date
+                batterGameLog.opponent = opponent
+                batterGameLog.atBats = atBats
+                batterGameLog.hits = hits
+                batterGameLog.runs = runs
+                batterGameLog.rbis = rbis
+                batterGameLog.doubles = doubles
+                batterGameLog.triples = triples
+                batterGameLog.homeRuns = homeruns
+                batterGameLog.strikeouts = strikeouts
+                batterGameLog.walks = walks
+                batterGameLog.stolenBases = stolenBases
+                
                 batterGameLogs.append(batterGameLog)
             }
             

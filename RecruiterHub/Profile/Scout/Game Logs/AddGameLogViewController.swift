@@ -13,9 +13,9 @@ class AddGameLogViewController: UIViewController {
     
     private let type: GameLog
     
-    private var gameLog: PitcherGameLog = PitcherGameLog(opponent: "", date: "", inningsPitched: 0, hits: 0, runs: 0, earnedRuns: 0, strikeouts: 0, walks: 0)
+    private var gameLog: PitcherGameLog = PitcherGameLog()
     
-    private var batterGameLog = BatterGameLog(opponent: "", date: "", atBats: 0, hits: 0, runs: 0, rbis: 0, doubles: 0, triples: 0, homeRuns: 0, strikeouts: 0, walks: 0, stolenBases: 0)
+    private var batterGameLog = BatterGameLog()
     
     private var data: Data?
     
@@ -161,7 +161,7 @@ extension AddGameLogViewController: FormTableViewCellDelegate {
                 guard let value = Int(value) else {
                     return
                 }
-                gameLog.inningsPitched = Int(value)
+                gameLog.inningsPitched = Double(value)
                 break
             case "Hits":
                 guard let value = Int(value) else {

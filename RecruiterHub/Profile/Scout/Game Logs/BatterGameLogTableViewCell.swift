@@ -11,13 +11,13 @@ class BatterGameLogTableViewCell: UITableViewCell {
 
     static let identifier = "BatterGameLogTableViewCell"
     
-    private let opponentLabel: UILabel = {
+    public let opponentLabel: UILabel = {
         let label = UILabel()
         label.text = "Opponent"
         return label
     }()
     
-    private let dateLabel: UILabel = {
+    public let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "Date"
         return label
@@ -83,6 +83,12 @@ class BatterGameLogTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let averageLabel: UILabel = {
+        let label = UILabel()
+        label.text = "AVG"
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         clipsToBounds = true
@@ -98,6 +104,7 @@ class BatterGameLogTableViewCell: UITableViewCell {
         contentView.addSubview(strikeoutsLabel)
         contentView.addSubview(walksLabel)
         contentView.addSubview(stolenBasesLabel)
+        contentView.addSubview(averageLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -122,6 +129,7 @@ class BatterGameLogTableViewCell: UITableViewCell {
         strikeoutsLabel.frame = CGRect(x: homeRunsLabel.right, y: 0, width: 40, height: contentView.height - 1)
         walksLabel.frame = CGRect(x: strikeoutsLabel.right, y: 0, width: 40, height: contentView.height - 1)
         stolenBasesLabel.frame = CGRect(x: walksLabel.right, y: 0, width: 40, height: contentView.height - 1)
+        averageLabel.frame = CGRect(x: stolenBasesLabel.right, y: 0, width: 60, height: contentView.height - 1)
     }
     
     public func configure(game: BatterGameLog) {
@@ -137,6 +145,7 @@ class BatterGameLogTableViewCell: UITableViewCell {
         strikeoutsLabel.text = String(game.strikeouts)
         walksLabel.text = String(game.walks)
         stolenBasesLabel.text = String(game.stolenBases)
+        averageLabel.text = String(format: "%.3f", game.average)
     }
     
 }

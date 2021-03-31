@@ -11,13 +11,13 @@ class PitcherGameLogTableViewCell: UITableViewCell {
 
     static let identifier = "PitcherGameLogTableViewCell"
     
-    private let opponentLabel: UILabel = {
+    public let opponentLabel: UILabel = {
         let label = UILabel()
         label.text = "Opponent"
         return label
     }()
     
-    private let dateLabel: UILabel = {
+    public let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "Date"
         return label
@@ -58,6 +58,12 @@ class PitcherGameLogTableViewCell: UITableViewCell {
         label.text = "BB"
         return label
     }()
+    
+    private let eraLabel: UILabel = {
+        let label = UILabel()
+        label.text = "ERA"
+        return label
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -70,6 +76,7 @@ class PitcherGameLogTableViewCell: UITableViewCell {
         contentView.addSubview(earnedRuns)
         contentView.addSubview(strikeoutLabel)
         contentView.addSubview(walkLabel)
+        contentView.addSubview(eraLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -90,6 +97,7 @@ class PitcherGameLogTableViewCell: UITableViewCell {
         earnedRuns.frame = CGRect(x: runsLabel.right, y: 0, width: 40, height: contentView.height - 1)
         strikeoutLabel.frame = CGRect(x: earnedRuns.right, y: 0, width: 40, height: contentView.height - 1)
         walkLabel.frame = CGRect(x: strikeoutLabel.right, y: 0, width: 40, height: contentView.height - 1)
+        eraLabel.frame = CGRect(x: walkLabel.right, y: 0, width: 50, height: contentView.height - 1)
     }
     
     public func configure(game: PitcherGameLog) {
@@ -101,5 +109,6 @@ class PitcherGameLogTableViewCell: UITableViewCell {
         earnedRuns.text = String(game.earnedRuns)
         strikeoutLabel.text = String(game.strikeouts)
         walkLabel.text = String(game.walks)
+        eraLabel.text = String(format: "%.2f", game.era)
     }
 }

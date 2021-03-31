@@ -86,7 +86,7 @@ class GameLogViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         scrollView.frame = view.bounds
         
-        scrollView.contentSize = CGSize(width: view.width + 80, height: view.safeAreaInsets.bottom - view.safeAreaInsets.top)
+        scrollView.contentSize = CGSize(width: view.width + 160, height: view.safeAreaInsets.bottom - view.safeAreaInsets.top)
         pitcherTableView.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.height)
     }
     
@@ -137,29 +137,26 @@ extension GameLogViewController: UITableViewDelegate, UITableViewDataSource {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: 50))
         headerView.backgroundColor = .secondarySystemBackground
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: headerView.width / 2, height: headerView.height))
-        button.setTitle("Batting", for: .normal)
+        button.setTitle("Switch View", for: .normal)
         button.addTarget(self, action: #selector(didTapBatting), for: .touchUpInside)
-        let pitchingButton = UIButton(frame: CGRect(x: headerView.width / 2, y: 0, width: headerView.width / 2, height: headerView.height))
-        pitchingButton.setTitle("Pitching", for: .normal)
-        pitchingButton.addTarget(self, action: #selector(didTapPitching), for: .touchUpInside)
         headerView.addSubview(button)
-        headerView.addSubview(pitchingButton)
         return headerView
     }
     
-    @objc private func didTapBatting() {
-        pitcherTableView.isHidden = true
-        batterTableView.isHidden = false
-        showPitcherLog = false
-        scrollView.contentSize = CGSize(width: view.width + 240, height: view.safeAreaInsets.bottom - view.safeAreaInsets.top)
-        batterTableView.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.height)
-    }
-    
-    @objc private func didTapPitching() {
-        pitcherTableView.isHidden = false
-        batterTableView.isHidden = true
-        showPitcherLog = true
-        scrollView.contentSize = CGSize(width: view.width + 80, height: view.safeAreaInsets.bottom - view.safeAreaInsets.top)
+    @objc private func didTapBatting(button: UIButton) {
+        if pitcherTableView.isHidden == true {
+            pitcherTableView.isHidden = false
+            batterTableView.isHidden = true
+            showPitcherLog = true
+            scrollView.contentSize = CGSize(width: view.width + 160, height: view.safeAreaInsets.bottom - view.safeAreaInsets.top)
+        }
+        else {
+            pitcherTableView.isHidden = true
+            batterTableView.isHidden = false
+            showPitcherLog = false
+            scrollView.contentSize = CGSize(width: view.width + 300, height: view.safeAreaInsets.bottom - view.safeAreaInsets.top)
+            batterTableView.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.height)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -172,9 +169,9 @@ extension GameLogViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == pitcherTableView {
-            return pitcherGameLogs.count + 1
+            return pitcherGameLogs.count + 2
         }
-        return batterGameLogs.count + 1
+        return batterGameLogs.count + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -182,6 +179,24 @@ extension GameLogViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = pitcherTableView.dequeueReusableCell(withIdentifier: PitcherGameLogTableViewCell.identifier, for: indexPath) as! PitcherGameLogTableViewCell
             
             if indexPath.row == 0 {
+                return cell
+            }
+        
+            if indexPath.row == (pitcherGameLogs.count + 1) {
+                
+                var pitchingTotals = PitcherGameLog()
+                for log in pitcherGameLogs {
+                    pitchingTotals.inningsPitched = pitchingTotals.inningsPitched + log.inningsPitched
+                    pitchingTotals.hits = pitchingTotals.hits + log.hits
+                    pitchingTotals.runs = pitchingTotals.runs + log.runs
+                    pitchingTotals.earnedRuns = pitchingTotals.earnedRuns + log.earnedRuns
+                    pitchingTotals.strikeouts = pitchingTotals.strikeouts + log.strikeouts
+                    pitchingTotals.walks = pitchingTotals.walks + log.walks
+                }
+                cell.configure(game: pitchingTotals)
+                cell.dateLabel.text = "Total"
+                cell.opponentLabel.text = ""
+                
                 return cell
             }
             
@@ -194,6 +209,28 @@ extension GameLogViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = batterTableView.dequeueReusableCell(withIdentifier: BatterGameLogTableViewCell.identifier, for: indexPath) as! BatterGameLogTableViewCell
             
             if indexPath.row == 0 {
+                return cell
+            }
+            
+            if indexPath.row == (batterGameLogs.count + 1) {
+                
+                var battingTotals = BatterGameLog()
+                for log in batterGameLogs {
+                    battingTotals.atBats = battingTotals.atBats + log.atBats
+                    battingTotals.hits = battingTotals.hits + log.hits
+                    battingTotals.runs = battingTotals.runs + log.runs
+                    battingTotals.rbis = battingTotals.rbis + log.rbis
+                    battingTotals.doubles = battingTotals.doubles + log.doubles
+                    battingTotals.triples = battingTotals.triples + log.triples
+                    battingTotals.homeRuns = battingTotals.homeRuns + log.homeRuns
+                    battingTotals.strikeouts = battingTotals.strikeouts + log.strikeouts
+                    battingTotals.walks = battingTotals.walks + log.walks
+                    battingTotals.stolenBases = battingTotals.stolenBases + log.stolenBases
+                }
+                cell.configure(game: battingTotals)
+                cell.dateLabel.text = "Total"
+                cell.opponentLabel.text = ""
+                
                 return cell
             }
             
