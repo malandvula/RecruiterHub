@@ -7,9 +7,9 @@
 
 import UIKit
 
-class GameLogTableViewCell: UITableViewCell {
+class PitcherGameLogTableViewCell: UITableViewCell {
 
-    static let identifier = "GameLogTableViewCell"
+    static let identifier = "PitcherGameLogTableViewCell"
     
     private let opponentLabel: UILabel = {
         let label = UILabel()
@@ -102,5 +102,4 @@ class GameLogTableViewCell: UITableViewCell {
         strikeoutLabel.text = String(game.strikeouts)
         walkLabel.text = String(game.walks)
     }
-    
 }

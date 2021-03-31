@@ -1226,6 +1226,40 @@ public class DatabaseManager {
         })
     }
     
+    public func getBatterGameLogsForUser(user: String, completion: @escaping (([BatterGameLog]?) -> Void)) {
+        database.child("\(user)/BatterGameLogs").observeSingleEvent(of: .value, with:  { snapshot in
+            
+            guard let batterGameLogsDictionary = snapshot.value as? [[String: Any]] else {
+                completion(nil)
+                return
+            }
+            var batterGameLogs: [BatterGameLog] = []
+            
+            for log in batterGameLogsDictionary {
+                guard let date = log["date"] as? String,
+                      let opponent =  log["opponent"] as? String,
+                      let atBats = log["atBats"] as? Int,
+                      let hits =  log["hits"] as? Int,
+                      let runs =  log["runs"] as? Int,
+                      let rbis =  log["rbis"] as? Int,
+                      let doubles = log["doubles"] as? Int,
+                      let triples = log["triples"] as? Int,
+                      let homeruns = log["homeruns"] as? Int,
+                      let strikeouts = log["strikeouts"] as? Int,
+                      let walks = log["walks"] as? Int,
+                      let stolenBases = log["stolenBases"] as? Int else {
+                   print("Failed to get user data")
+                    completion(nil)
+                    return
+                }
+                let batterGameLog = BatterGameLog(opponent: opponent, date: date, atBats: atBats, hits: hits, runs: runs, rbis: rbis, doubles: doubles, triples: triples, homeRuns: homeruns, strikeouts: strikeouts, walks: walks, stolenBases: stolenBases )
+                batterGameLogs.append(batterGameLog)
+            }
+            
+            completion(batterGameLogs)
+        })
+    }
+    
     public func addGameLogForUser( email: String, gameLog: PitcherGameLog) {
         database.child("\(email)/PitcherGameLogs").observeSingleEvent(of: .value, with: { [weak self] snapshot in
             
@@ -1255,6 +1289,47 @@ public class DatabaseManager {
                 let newCollection: [[String: Any]] = [newElement]
                 
                 self?.database.child("\(email)/PitcherGameLogs").setValue(newCollection, withCompletionBlock:  { error, _ in
+                    guard error == nil else {
+                        return
+                    }
+                })
+            }
+       })
+    }
+    
+    public func addBatterGameLogForUser( email: String, gameLog: BatterGameLog) {
+        database.child("\(email)/BatterGameLogs").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            
+            let newElement: [String:Any] = [
+                "date": gameLog.date,
+                "opponent": gameLog.opponent,
+                "atBats": gameLog.atBats,
+                "hits": gameLog.hits,
+                "runs": gameLog.runs,
+                "rbis": gameLog.rbis,
+                "doubles": gameLog.doubles,
+                "triples": gameLog.triples,
+                "homeruns": gameLog.homeRuns,
+                "strikeouts": gameLog.strikeouts,
+                "walks": gameLog.walks,
+                "stolenBases": gameLog.stolenBases
+            ]
+            
+            if var gameLogs = snapshot.value as? [[String: Any]] {
+                print("Collection Exists")
+                gameLogs.append(newElement)
+                
+                self?.database.child("\(email)/BatterGameLogs").setValue(gameLogs, withCompletionBlock:  { error, _ in
+                    guard error == nil else {
+                        return
+                    }
+                })
+            }
+            else {
+                print("New Collection")
+                let newCollection: [[String: Any]] = [newElement]
+                
+                self?.database.child("\(email)/BatterGameLogs").setValue(newCollection, withCompletionBlock:  { error, _ in
                     guard error == nil else {
                         return
                     }

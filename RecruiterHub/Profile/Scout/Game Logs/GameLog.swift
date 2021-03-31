@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct GameLog {
-    var opponent: String
-    var date: String
+public enum GameLog {
+    case batting
+    case pitching
 }
 
 public struct PitcherGameLog {

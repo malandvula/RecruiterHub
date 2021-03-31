@@ -11,7 +11,11 @@ class AddGameLogViewController: UIViewController {
 
     private var models = [EditProfileFormModel]()
     
+    private let type: GameLog
+    
     private var gameLog: PitcherGameLog = PitcherGameLog(opponent: "", date: "", inningsPitched: 0, hits: 0, runs: 0, earnedRuns: 0, strikeouts: 0, walks: 0)
+    
+    private var batterGameLog = BatterGameLog(opponent: "", date: "", atBats: 0, hits: 0, runs: 0, rbis: 0, doubles: 0, triples: 0, homeRuns: 0, strikeouts: 0, walks: 0, stolenBases: 0)
     
     private var data: Data?
     
@@ -21,7 +25,8 @@ class AddGameLogViewController: UIViewController {
         return tableView
     }()
     
-    init() {
+    init(type: GameLog) {
+        self.type = type
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,23 +44,52 @@ class AddGameLogViewController: UIViewController {
     }
     
     private func configureModels() {
-        // name, username, website, bio
-        var model = EditProfileFormModel(label: "Date", placeholder: "DD-MM-YYYY", value: nil)
-        models.append(model)
-        model = EditProfileFormModel(label: "Opponent", placeholder: "Opponent", value: nil)
-        models.append(model)
-        model = EditProfileFormModel(label: "IP", placeholder: "0", value: nil)
-        models.append(model)
-        model = EditProfileFormModel(label: "Hits", placeholder: "0", value: nil)
-        models.append(model)
-        model = EditProfileFormModel(label: "Runs", placeholder: "0", value: nil)
-        models.append(model)
-        model = EditProfileFormModel(label: "ER", placeholder: "0", value: nil)
-        models.append(model)
-        model = EditProfileFormModel(label: "K", placeholder: "0", value: nil)
-        models.append(model)
-        model = EditProfileFormModel(label: "BB", placeholder: "0", value: nil)
-        models.append(model)
+        
+        if type == .pitching {
+            var model = EditProfileFormModel(label: "Date", placeholder: "DD-MM-YYYY", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "Opponent", placeholder: "Opponent", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "IP", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "Hits", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "Runs", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "ER", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "K", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "BB", placeholder: "0", value: nil)
+            models.append(model)
+        }
+        else {
+            var model = EditProfileFormModel(label: "Date", placeholder: "DD-MM-YYYY", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "Opponent", placeholder: "Opponent", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "AB", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "Hits", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "Runs", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "RBI", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "2B", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "3B", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "HR", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "K", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "BB", placeholder: "0", value: nil)
+            models.append(model)
+            model = EditProfileFormModel(label: "SB", placeholder: "0", value: nil)
+            models.append(model)
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -77,8 +111,12 @@ class AddGameLogViewController: UIViewController {
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
             return
         }
-        
-        DatabaseManager.shared.addGameLogForUser(email: email, gameLog: gameLog)
+        if type == .pitching {
+            DatabaseManager.shared.addGameLogForUser(email: email, gameLog: gameLog)
+        }
+        else {
+            DatabaseManager.shared.addBatterGameLogForUser(email: email, gameLog: batterGameLog)
+        }
         
         dismiss(animated: true, completion: nil)
     }
@@ -111,55 +149,128 @@ extension AddGameLogViewController: FormTableViewCellDelegate {
         guard let value = updatedModel.value else {
             return
         }
-        
-        switch updatedModel.label {
-        case "Date":
-            gameLog.date = value
-            break
-        case "Opponent":
-            gameLog.opponent = value
-            break
-        case "IP":
-            guard let value = Int(value) else {
-                return
+        if type == .pitching {
+            switch updatedModel.label {
+            case "Date":
+                gameLog.date = value
+                break
+            case "Opponent":
+                gameLog.opponent = value
+                break
+            case "IP":
+                guard let value = Int(value) else {
+                    return
+                }
+                gameLog.inningsPitched = Int(value)
+                break
+            case "Hits":
+                guard let value = Int(value) else {
+                    return
+                }
+                gameLog.hits = Int(value)
+                break
+            case "R":
+                guard let value = Int(value) else {
+                    return
+                }
+                gameLog.runs = Int(value)
+                break
+            case "ER":
+                guard let value = Int(value) else {
+                    return
+                }
+                gameLog.earnedRuns = Int(value)
+                break
+            case "K":
+                guard let value = Int(value) else {
+                    return
+                }
+                gameLog.strikeouts = Int(value)
+                break
+            case "BB":
+                guard let value = Int(value) else {
+                    return
+                }
+                gameLog.walks = Int(value)
+                break
+            default:
+                print("Field doesn't exist")
+                break
             }
-            gameLog.inningsPitched = Int(value)
-            break
-        case "Hits":
-            guard let value = Int(value) else {
-                return
-            }
-            gameLog.hits = Int(value)
-            break
-        case "R":
-            guard let value = Int(value) else {
-                return
-            }
-            gameLog.runs = Int(value)
-            break
-        case "ER":
-            guard let value = Int(value) else {
-                return
-            }
-            gameLog.earnedRuns = Int(value)
-            break
-        case "K":
-            guard let value = Int(value) else {
-                return
-            }
-            gameLog.strikeouts = Int(value)
-            break
-        case "BB":
-            guard let value = Int(value) else {
-                return
-            }
-            gameLog.walks = Int(value)
-            break
-        default:
-            print("Field doesn't exist")
-            break
         }
-        
+        else {
+            switch updatedModel.label {
+            case "Date":
+                batterGameLog.date = value
+                break
+            case "Opponent":
+                batterGameLog.opponent = value
+                break
+            case "AB":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.atBats = Int(value)
+                break
+            case "Hits":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.hits = Int(value)
+                break
+            case "R":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.runs = Int(value)
+                break
+            case "RBI":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.rbis = Int(value)
+                break
+            case "2B":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.doubles = Int(value)
+                break
+            case "3B":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.triples = Int(value)
+                break
+            case "HR":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.homeRuns = Int(value)
+                break
+            case "K":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.strikeouts = Int(value)
+                break
+            case "BB":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.walks = Int(value)
+                break
+            case "SB":
+                guard let value = Int(value) else {
+                    return
+                }
+                batterGameLog.stolenBases = Int(value)
+                break
+            default:
+                print("Field doesn't exist")
+                break
+            }
+        }
         //Update the mdoel
         print(updatedModel.value ?? "nil")
     }

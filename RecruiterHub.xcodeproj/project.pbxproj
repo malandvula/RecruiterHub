@@ -27,9 +27,10 @@
 		E66568AA25EACFA800F04EFA /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66568A925EACFA800F04EFA /* CommentsViewController.swift */; };
 		E66C79CD260C398F007420D9 /* ScoutInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C79CC260C398F007420D9 /* ScoutInfoCollectionReusableView.swift */; };
 		E66C7AB4260E9A77007420D9 /* GameLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7AB3260E9A77007420D9 /* GameLogViewController.swift */; };
-		E66C7ABA260F9182007420D9 /* GameLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7AB9260F9182007420D9 /* GameLogTableViewCell.swift */; };
+		E66C7ABA260F9182007420D9 /* PitcherGameLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7AB9260F9182007420D9 /* PitcherGameLogTableViewCell.swift */; };
 		E66C7ABE260FD5DC007420D9 /* GameLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7ABD260FD5DC007420D9 /* GameLog.swift */; };
 		E66C7AC4260FDB77007420D9 /* AddGameLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7AC3260FDB77007420D9 /* AddGameLogViewController.swift */; };
+		E66C7B9A26113592007420D9 /* BatterGameLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7B9926113592007420D9 /* BatterGameLogTableViewCell.swift */; };
 		E67AED5425F5615100BE5114 /* EditScoutInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67AED5325F5615100BE5114 /* EditScoutInfoViewController.swift */; };
 		E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E325B11CB600D15230 /* AppDelegate.swift */; };
 		E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E525B11CB600D15230 /* SceneDelegate.swift */; };
@@ -100,9 +101,10 @@
 		E66568A925EACFA800F04EFA /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		E66C79CC260C398F007420D9 /* ScoutInfoCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutInfoCollectionReusableView.swift; sourceTree = "<group>"; };
 		E66C7AB3260E9A77007420D9 /* GameLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogViewController.swift; sourceTree = "<group>"; };
-		E66C7AB9260F9182007420D9 /* GameLogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogTableViewCell.swift; sourceTree = "<group>"; };
+		E66C7AB9260F9182007420D9 /* PitcherGameLogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitcherGameLogTableViewCell.swift; sourceTree = "<group>"; };
 		E66C7ABD260FD5DC007420D9 /* GameLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLog.swift; sourceTree = "<group>"; };
 		E66C7AC3260FDB77007420D9 /* AddGameLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameLogViewController.swift; sourceTree = "<group>"; };
+		E66C7B9926113592007420D9 /* BatterGameLogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterGameLogTableViewCell.swift; sourceTree = "<group>"; };
 		E67AED5325F5615100BE5114 /* EditScoutInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScoutInfoViewController.swift; sourceTree = "<group>"; };
 		E68B73E025B11CB600D15230 /* RecruiterHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecruiterHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E68B73E325B11CB600D15230 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -208,9 +210,10 @@
 			isa = PBXGroup;
 			children = (
 				E66C7AB3260E9A77007420D9 /* GameLogViewController.swift */,
-				E66C7AB9260F9182007420D9 /* GameLogTableViewCell.swift */,
+				E66C7AB9260F9182007420D9 /* PitcherGameLogTableViewCell.swift */,
 				E66C7ABD260FD5DC007420D9 /* GameLog.swift */,
 				E66C7AC3260FDB77007420D9 /* AddGameLogViewController.swift */,
+				E66C7B9926113592007420D9 /* BatterGameLogTableViewCell.swift */,
 			);
 			path = "Game Logs";
 			sourceTree = "<group>";
@@ -561,7 +564,7 @@
 				E6BED10F25F433F300A03720 /* ScoutCollectionViewCell.swift in Sources */,
 				E68B741025B170C400D15230 /* ContactInformationViewController.swift in Sources */,
 				E612737B25EC3A57008F24AB /* NewCommentViewController.swift in Sources */,
-				E66C7ABA260F9182007420D9 /* GameLogTableViewCell.swift in Sources */,
+				E66C7ABA260F9182007420D9 /* PitcherGameLogTableViewCell.swift in Sources */,
 				E66C79CD260C398F007420D9 /* ScoutInfoCollectionReusableView.swift in Sources */,
 				E63660FF25C7C259007A4EFD /* ListsViewController.swift in Sources */,
 				E69AF4E525F6DCAE00D366A8 /* ChatModels.swift in Sources */,
@@ -585,6 +588,7 @@
 				E68B742A25B24FE900D15230 /* AuthManager.swift in Sources */,
 				E62C957D25CB97670050A6DA /* FeedPostInfoCell.swift in Sources */,
 				E69AF4DC25F6DA8B00D366A8 /* NewConversationViewController.swift in Sources */,
+				E66C7B9A26113592007420D9 /* BatterGameLogTableViewCell.swift in Sources */,
 				E63660DA25C619A9007A4EFD /* FeedViewController.swift in Sources */,
 				E68B743325B25F7700D15230 /* StorageManager.swift in Sources */,
 				E68B743A25B7E1D400D15230 /* NewPostViewController.swift in Sources */,
