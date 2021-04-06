@@ -54,6 +54,11 @@ class GameLogViewController: UIViewController {
         return scrollView
     }()
     
+    private let headerView: GameLogHeaderView = {
+        let view = GameLogHeaderView()
+        return view
+    }()
+    
     init(user: RHUser) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
@@ -68,6 +73,8 @@ class GameLogViewController: UIViewController {
         title = "Game Logs"
         view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
+        scrollView.addSubview(headerView)
+        headerView.delegate = self
         scrollView.addSubview(pitcherTableView)
         pitcherTableView.delegate = self
         pitcherTableView.dataSource = self
@@ -86,8 +93,9 @@ class GameLogViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         scrollView.frame = view.bounds
         
-        scrollView.contentSize = CGSize(width: view.width + 160, height: view.safeAreaInsets.bottom - view.safeAreaInsets.top)
-        pitcherTableView.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.height)
+        scrollView.contentSize = CGSize(width: view.width + 130, height: view.safeAreaInsets.bottom - view.safeAreaInsets.top)
+        headerView.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: 50)
+        pitcherTableView.frame = CGRect(x: 0, y: headerView.bottom, width: scrollView.contentSize.width, height: scrollView.height - headerView.height)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,16 +139,25 @@ class GameLogViewController: UIViewController {
     }
 }
 
-extension GameLogViewController: UITableViewDelegate, UITableViewDataSource {
+extension GameLogViewController: UITableViewDelegate, UITableViewDataSource, GameLogHeaderViewDelegate {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: 50))
-        headerView.backgroundColor = .secondarySystemBackground
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: headerView.width / 2, height: headerView.height))
-        button.setTitle("Switch View", for: .normal)
-        button.addTarget(self, action: #selector(didTapBatting), for: .touchUpInside)
-        headerView.addSubview(button)
-        return headerView
+    func didTapSwitch(_ view: GameLogHeaderView) {
+        if pitcherTableView.isHidden == true {
+            pitcherTableView.isHidden = false
+            batterTableView.isHidden = true
+            showPitcherLog = true
+            scrollView.contentSize = CGSize(width: self.view.width + 130, height: self.view.safeAreaInsets.bottom - self.view.safeAreaInsets.top)
+            headerView.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: 50)
+            pitcherTableView.frame = CGRect(x: 0, y: headerView.bottom, width: scrollView.contentSize.width, height: scrollView.height - headerView.height)
+        }
+        else {
+            pitcherTableView.isHidden = true
+            batterTableView.isHidden = false
+            showPitcherLog = false
+            scrollView.contentSize = CGSize(width: self.view.width + 290, height: self.view.safeAreaInsets.bottom - self.view.safeAreaInsets.top)
+            headerView.frame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: 50)
+            batterTableView.frame = CGRect(x: 0, y: headerView.bottom, width: scrollView.contentSize.width, height: scrollView.height - headerView.bottom)
+        }
     }
     
     @objc private func didTapBatting(button: UIButton) {

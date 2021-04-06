@@ -23,6 +23,7 @@
 		E636610D25C8EA27007A4EFD /* FormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636610C25C8EA27007A4EFD /* FormTableViewCell.swift */; };
 		E636611125CA45BF007A4EFD /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636611025CA45BF007A4EFD /* FeedHeaderView.swift */; };
 		E636611425CA4983007A4EFD /* FeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636611325CA4982007A4EFD /* FeedHeaderCell.swift */; };
+		E65802E8261BF47100903F4B /* GameLogHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65802E7261BF47100903F4B /* GameLogHeaderView.swift */; };
 		E665688125DB537300F04EFA /* ContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E665688025DB537300F04EFA /* ContactInfoCell.swift */; };
 		E66568AA25EACFA800F04EFA /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66568A925EACFA800F04EFA /* CommentsViewController.swift */; };
 		E66C79CD260C398F007420D9 /* ScoutInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C79CC260C398F007420D9 /* ScoutInfoCollectionReusableView.swift */; };
@@ -97,6 +98,7 @@
 		E636610C25C8EA27007A4EFD /* FormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewCell.swift; sourceTree = "<group>"; };
 		E636611025CA45BF007A4EFD /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		E636611325CA4982007A4EFD /* FeedHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderCell.swift; sourceTree = "<group>"; };
+		E65802E7261BF47100903F4B /* GameLogHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogHeaderView.swift; sourceTree = "<group>"; };
 		E665688025DB537300F04EFA /* ContactInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCell.swift; sourceTree = "<group>"; };
 		E66568A925EACFA800F04EFA /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		E66C79CC260C398F007420D9 /* ScoutInfoCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutInfoCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				E66C7ABD260FD5DC007420D9 /* GameLog.swift */,
 				E66C7AC3260FDB77007420D9 /* AddGameLogViewController.swift */,
 				E66C7B9926113592007420D9 /* BatterGameLogTableViewCell.swift */,
+				E65802E7261BF47100903F4B /* GameLogHeaderView.swift */,
 			);
 			path = "Game Logs";
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				E61273BE25F17707008F24AB /* Keyboard.swift in Sources */,
 				E68B743625B2615B00D15230 /* RHUser.swift in Sources */,
 				E68B73FD25B11D2A00D15230 /* ProfileViewController.swift in Sources */,
+				E65802E8261BF47100903F4B /* GameLogHeaderView.swift in Sources */,
 				E68B740525B124A700D15230 /* ProfileHeader.swift in Sources */,
 				E68B744625BB425600D15230 /* ViewPostViewController.swift in Sources */,
 				E636611125CA45BF007A4EFD /* FeedHeaderView.swift in Sources */,
