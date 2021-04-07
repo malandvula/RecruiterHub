@@ -318,12 +318,12 @@ public class DatabaseManager {
         })
     }
     
-    public func like(with email: String, likerInfo: PostLike, postNumber: Int) {
+    public func like(with email: String, likerInfo: PostLike, postNumber: Int, completion: @escaping () -> Void ) {
         print("Like")
         
         let ref = database.child("\(email.safeDatabaseKey())/Posts/\(postNumber)/likes")
         
-        ref.observeSingleEvent(of: .value, with: { snapshot in
+        ref.observeSingleEvent(of: .value, with: {snapshot in
         
             let element = [
                 "email": likerInfo.email,
@@ -334,6 +334,7 @@ public class DatabaseManager {
             guard var likes = snapshot.value as? [[String:String]] else {
                 print("Not type of postlike")
                 ref.setValue([element])
+                completion()
                 return
             }
             
@@ -344,6 +345,7 @@ public class DatabaseManager {
                     likes.remove(at: index)
                     ref.setValue(likes)
                 }
+                completion()
                 return
             }
             
@@ -351,6 +353,7 @@ public class DatabaseManager {
             let newElement = element
             likes.append(newElement)
             ref.setValue(likes)
+            completion()
         })
     }
     

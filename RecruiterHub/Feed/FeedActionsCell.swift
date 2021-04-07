@@ -102,7 +102,9 @@ class FeedActionsCell: UITableViewCell {
             // Create Post Like
             let postLike = PostLike(username: currentUsername, email: currentEmail.safeDatabaseKey(), name: currentName)
             
-            DatabaseManager.shared.like(with: email, likerInfo: postLike, postNumber: index)
+            DatabaseManager.shared.like(with: email, likerInfo: postLike, postNumber: index, completion: {
+                
+            })
             
             self?.toggleLike()
         })
@@ -165,13 +167,8 @@ class FeedActionsCell: UITableViewCell {
             guard let posts = posts else {
                 return
             }
-            var index = 0
-            for post in posts {
-                if post["url"] as? String == self?.url {
-                    break
-                }
-                index += 1
-            }
+            
+            let index = DatabaseManager.findPost(posts: posts, url: urlString)
             
             if posts.count <= index {
                 print("Post doesnt exist")

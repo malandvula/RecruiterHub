@@ -20,6 +20,7 @@ class ViewPostViewController: UIViewController {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .thin)
         let image = UIImage(systemName: "heart", withConfiguration: config)
+        button.tintColor = .label
         button.setImage(image, for: .normal)
         return button
     }()
@@ -29,6 +30,7 @@ class ViewPostViewController: UIViewController {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .thin)
         let image = UIImage(systemName: "message", withConfiguration: config)
+        button.tintColor = .label
         button.setImage(image, for: .normal)
         return button
     }()
@@ -69,7 +71,7 @@ class ViewPostViewController: UIViewController {
         
         // AVPlayer Layer Configuration
         playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = .resizeAspect
+        playerLayer.videoGravity = .resizeAspectFill
         
         // Add subviews and layers
         view.layer.addSublayer(playerLayer)
@@ -81,6 +83,9 @@ class ViewPostViewController: UIViewController {
         tableView.dataSource = self
         
         // Configure likes label
+        likesLabel.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapLikesLabel))
+        likesLabel.addGestureRecognizer(gesture)
         configureLikesLabel()
         
         // Fetch Comments
@@ -99,14 +104,14 @@ class ViewPostViewController: UIViewController {
         
         // Place like button
         likeButton.frame = CGRect(x: 10,
-                                  y: view.safeAreaInsets.top + playerLayer.frame.height,
-                                  width: 30,
-                                  height: 30)
+                                  y: view.safeAreaInsets.top + playerLayer.frame.height + 5,
+                                  width: 40,
+                                  height: 40)
         // Place comment button
         commentButton.frame = CGRect(x: likeButton.right + 10,
-                                  y: view.safeAreaInsets.top + playerLayer.frame.height,
-                                  width: 30,
-                                  height: 30)
+                                  y: view.safeAreaInsets.top + playerLayer.frame.height + 5,
+                                  width: 40,
+                                  height: 40)
         
         // Place likes label
         likesLabel.frame = CGRect(x: 10, y: likeButton.bottom + 10, width: view.width - 20, height: 20)
@@ -119,6 +124,7 @@ class ViewPostViewController: UIViewController {
         self.user = user
         super.init(nibName: nil, bundle: nil)
         self.title = title
+        
     }
     
     // Required init function
@@ -137,21 +143,12 @@ class ViewPostViewController: UIViewController {
             guard let posts = posts else {
                 return
             }
-            
-            var index = 0
-            for postq in posts {
-                guard let postUrl = postq["url"] as? String else {
-                    return
-                }
-                
-                if postUrl == self?.post.url.absoluteString {
-                    print("Found url")
-                    break
-                }
-                else {
-                    index += 1
-                }
+
+            guard let url = self?.post.url.absoluteString else {
+                return
             }
+            
+            let index = DatabaseManager.findPost(posts: posts, url: url)
             
             DatabaseManager.shared.getComments(with: email, index: index, completion: { [weak self] comments in
                 guard let comments = comments else {
@@ -183,9 +180,57 @@ class ViewPostViewController: UIViewController {
         let postLike = PostLike(username: currentUsername, email: currentEmail.safeDatabaseKey(), name: currentName)
         
         // Update the like status
-        DatabaseManager.shared.like(with: user.emailAddress.safeDatabaseKey(),
-                                    likerInfo: postLike,
-                                    postNumber: post.number)
+        DatabaseManager.shared.like(with: user.emailAddress.safeDatabaseKey(), likerInfo: postLike, postNumber: post.number, completion: { [weak self] in
+            
+            guard let postEmail = self?.user.safeEmail else {
+                print("Failed to get User Defaults")
+                return
+            }
+            
+            DatabaseManager.shared.getAllUserPosts(with: postEmail, completion: {
+                [weak self] posts in
+                guard let posts = posts else {
+                    return
+                }
+                
+                guard let url = self?.post.url.absoluteString else {
+                    return
+                }
+                
+                let index = DatabaseManager.findPost(posts: posts, url: url)
+                
+                if posts.count <= index {
+                    print("Post doesnt exist")
+                    return
+                }
+                
+                DatabaseManager.shared.getLikes(with: postEmail, index: index, completion: {
+                    [weak self] likes in
+                    if let likes = likes {
+                        DispatchQueue.main.async {
+                            self?.likesLabel.text = "\(likes.count) likes"
+                        }
+                    }
+                })
+            })
+        })
+        
+        toggleLike()
+    }
+    
+    private func toggleLike() {
+        if likeButton.tintColor.accessibilityName == UIColor.label.accessibilityName {
+            let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .thin)
+            let image = UIImage(systemName: "heart.fill", withConfiguration: config)
+            self.likeButton.setImage(image, for: .normal)
+            self.likeButton.tintColor = .red
+        }
+        else {
+            let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .thin)
+            let image = UIImage(systemName: "heart", withConfiguration: config)
+            self.likeButton.setImage(image, for: .normal)
+            self.likeButton.tintColor = .label
+        }
     }
     
     // Function that is called when the like button is tapped
@@ -200,10 +245,49 @@ class ViewPostViewController: UIViewController {
     private func configureLikesLabel() {
         let numberOfLikes = post.likes.count
         likesLabel.text = "\(numberOfLikes) likes"
+
         
-        likesLabel.isUserInteractionEnabled = true
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapLikesLabel))
-        likesLabel.addGestureRecognizer(gesture)
+        DatabaseManager.shared.getAllUserPosts(with: user.safeEmail, completion: {
+            [weak self] posts in
+            guard let posts = posts else {
+                return
+            }
+            
+            guard let url = self?.post.url.absoluteString else {
+                return
+            }
+            
+            let index = DatabaseManager.findPost(posts: posts, url: url)
+            
+            if posts.count <= index {
+                print("Post doesnt exist")
+                return
+            }
+            
+            guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String
+            else {
+                print("Failed to get User Defaults")
+                return
+            }
+            
+            guard let postEmail = self?.user.safeEmail else {
+                print("Failed to get User Defaults")
+                return
+            }
+            
+            DatabaseManager.shared.getLikes(with: postEmail, index: index, completion: {
+                [weak self] likes in
+                guard let likes = likes else {
+                    return
+                }
+                
+                for like in likes {
+                    if like["email"] == currentEmail {
+                        self?.toggleLike()
+                    }
+                }
+            })
+        })
     }
     
     // Callback for like label interaction
