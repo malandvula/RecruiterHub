@@ -215,8 +215,10 @@ extension FeedViewController: FeedActionsCellDelegate {
         print("Tapped Like")
     }
     
-    func didTapSendButton() {
+    func didTapSendButton(vc: UIViewController) {
         print("Tapped Send")
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

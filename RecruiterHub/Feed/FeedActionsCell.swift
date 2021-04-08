@@ -10,7 +10,7 @@ import UIKit
 protocol FeedActionsCellDelegate: AnyObject {
     func didTapLikeButton()
     func didTapCommentButton(email: String, url: String)
-    func didTapSendButton()
+    func didTapSendButton(vc: UIViewController)
 }
 
 class FeedActionsCell: UITableViewCell {
@@ -154,7 +154,64 @@ class FeedActionsCell: UITableViewCell {
     }
     
     @objc private func didTapSendButton() {
-        delegate?.didTapSendButton()
+        guard let safeEmail = email else {
+            return
+        }
+        
+        DatabaseManager.shared.getAllConversations(for: safeEmail, completion: { [weak self]
+            conversations in
+            switch conversations {
+            case .success(let conversations):
+                if let targetConversation = conversations.first(where: {
+                    $0.otherUserEmail == DatabaseManager.safeEmail(emailAddress: safeEmail)
+                }) {
+                    let vc = ChatViewController(with: targetConversation.otherUserEmail, id: targetConversation.id)
+                    vc.isNewConversation = false
+                    vc.title = targetConversation.name
+                    vc.navigationItem.largeTitleDisplayMode = .never
+                    self?.delegate?.didTapSendButton(vc: vc)
+                }
+                else {
+                    DatabaseManager.shared.getDataForUser(user: safeEmail, completion: { [weak self]
+                        user in
+                        guard let user = user else {
+                            return
+                        }
+                        let result = SearchResult(name: user.name, email: user.safeEmail)
+                        self?.createNewConversation(result: result)
+                    })
+                }
+                break
+            case .failure(let error):
+                break
+            }
+        })
+    }
+    
+    private func createNewConversation(result: SearchResult) {
+        let name = result.name
+        let email = result.email
+        
+        // Check in the database if the conversation with these two users exists
+        // if it does, reuse conversatiionid
+        // if not create new
+        DatabaseManager.shared.conversationExists(with: email, completion: { [weak self] result in
+            
+            switch result {
+            case .success(let conversationId):
+                let vc = ChatViewController(with: email, id: conversationId)
+                vc.isNewConversation = false
+                vc.title = name
+                vc.navigationItem.largeTitleDisplayMode = .never
+                self?.delegate?.didTapSendButton(vc: vc)
+            case .failure(_):
+                let vc = ChatViewController(with: email, id: nil)
+                vc.isNewConversation = true
+                vc.title = name
+                vc.navigationItem.largeTitleDisplayMode = .never
+                self?.delegate?.didTapSendButton(vc: vc)
+            }
+        })
     }
     
     public func configure( with urlString: String, email: String) {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 struct EditProfileFormModel {
     let label: String
@@ -20,6 +21,8 @@ final class EditProfileViewController: UIViewController {
     private var user: RHUser
     
     private var data: Data?
+    
+    private var image = UIImage()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -46,7 +49,13 @@ final class EditProfileViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSave))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.tableHeaderView = createTableHeaderView()
+    }
+    
     private func configureModels() {
+        
         // name, username, website, bio
         var model = EditProfileFormModel(label: "Name", placeholder: "\(user.firstName) \(user.lastName)", value: nil)
         models.append(model)
@@ -172,8 +181,12 @@ extension EditProfileViewController: UITableViewDataSource {
         profilePhotoButton.addTarget(self,
                                      action: #selector(didTapChangeProfilePicture),
                                      for: .touchUpInside)
-        profilePhotoButton.setBackgroundImage(UIImage(systemName: "person.circle"),
-                                              for: .normal)
+        
+        guard let url = URL(string: user.profilePicUrl) else {
+            return header
+        }
+        
+        profilePhotoButton.sd_setImage(with: url, for: .normal, completed: nil)
         profilePhotoButton.layer.borderWidth = 1
         profilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
         
@@ -252,6 +265,7 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         }
         
         data = selectedImage.pngData()
+        
         
         
     }

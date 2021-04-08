@@ -60,15 +60,15 @@ class ConversationsViewController: UIViewController {
         DatabaseManager.shared.getAllConversations(for: safeEmail, completion: { [weak self] result in
             print(result)
             switch result {
-            case .success(let conversation):
-                guard !conversation.isEmpty else {
+            case .success(let conversations):
+                guard !conversations.isEmpty else {
                     self?.tableView.isHidden = true
                     self?.noConversationsLabel.isHidden = false
                     return
                 }
                 self?.noConversationsLabel.isHidden = true
                 self?.tableView.isHidden = false
-                self?.conversations = conversation
+                self?.conversations = conversations
                 
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
@@ -108,7 +108,7 @@ class ConversationsViewController: UIViewController {
         present(navVC, animated: true)
     }
     
-    private func createNewConversation(result: SearchResult){
+    private func createNewConversation(result: SearchResult) {
         let name = result.name
         let email = result.email
         
