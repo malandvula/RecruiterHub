@@ -101,25 +101,31 @@ class SettingsViewController: UIViewController {
     }
     
     private func openURL(type: SettingsURLType) {
-        let urlString: String
+        let document: String
         switch type {
             case .terms:
-                urlString = "https://www.instagram.com/about/legal/terms/before-january-19-2013/"
+                document = "Terms and Conditions.pdf"
                 break
             case .privacy:
-                urlString = "https://help.instagram.com/519522125107875"
+                document = "Privacy Policy.pdf"
                 break
             case .help:
-                urlString = "https://help.instagram.com/"
+                print("Help")
+                document = "Privacy Policy.pdf"
                 break
         }
-        guard let url = URL(string: urlString) else {
-            return
-        }
         
-        let vc = SFSafariViewController(url: url)
-        present(vc, animated: true)
-
+        StorageManager.shared.downloadURL(for: document, completion: { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+                return
+            case .success(let url):
+                let vc = SFSafariViewController(url: url)
+                self?.present(vc, animated: true)
+                break
+            }
+        })
     }
     
     private func didTapLogOut() {
