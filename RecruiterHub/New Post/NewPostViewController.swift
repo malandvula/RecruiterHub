@@ -25,6 +25,9 @@ class NewPostViewController: UIViewController {
         testingButton.addTarget(self, action: #selector(didTapTest), for: .touchUpInside)
         
         view.addSubview(testingButton)
+        
+        // Adding Navigation title
+        title = "Post"
     }
     
 

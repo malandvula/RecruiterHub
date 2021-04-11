@@ -22,6 +22,10 @@ class FeedViewController: UIViewController {
         return table
     }()
     
+//    private let navigation: UIView = {
+//        self.navigationItem.titleView = UISegmentedControl
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +41,10 @@ class FeedViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = view.height - 50
+        
+        // Adding navigation title
+//        navigationItem.prompt = NSLocalizedString("My Feed", comment: "")
+        title = "My Feed"
         
     }
     

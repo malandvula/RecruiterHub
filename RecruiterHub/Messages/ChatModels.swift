@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import MessageKit
+import SwiftUI
 
 public struct Message: MessageType {
     public var sender: SenderType
@@ -62,3 +63,9 @@ struct Location: LocationItem {
     var size: CGSize
 }
 
+
+struct ChatModels_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}

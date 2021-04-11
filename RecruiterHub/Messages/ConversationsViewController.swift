@@ -43,6 +43,9 @@ class ConversationsViewController: UIViewController {
         view.addSubview(noConversationsLabel)
         setupTableView()
         startListeningForConversations()
+        
+        // Adding title
+        title = "Chat"
     }
     
     private func startListeningForConversations() {

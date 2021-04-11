@@ -12,6 +12,7 @@ import SDWebImage
 import AVFoundation
 import AVKit
 import CoreLocation
+import SwiftUI
 
 class ChatViewController: MessagesViewController {
     
@@ -547,5 +548,11 @@ extension ChatViewController: UIDocumentPickerDelegate {
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+struct ChatViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }
