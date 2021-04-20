@@ -1,0 +1,6 @@
+framework module Pods_RecruiterHub {
+  umbrella header "Pods-RecruiterHub-umbrella.h"
+
+  export *
+  module * { export * }
+}

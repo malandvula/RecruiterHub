@@ -1,0 +1,878 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4EA8CD43DA1FC3CCB5DD0485 /* Pods_RecruiterHubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5818E128F578169023D10D3 /* Pods_RecruiterHubTests.framework */; };
+		8478858931F3AF385F451E63 /* Pods_RecruiterHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */; };
+		E612737825EC1579008F24AB /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612737725EC1579008F24AB /* CommentsCell.swift */; };
+		E612737B25EC3A57008F24AB /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E612737A25EC3A57008F24AB /* NewCommentViewController.swift */; };
+		E61273BE25F17707008F24AB /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61273BD25F17707008F24AB /* Keyboard.swift */; };
+		E62C957A25CB8EFA0050A6DA /* FeedActionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C957925CB8EFA0050A6DA /* FeedActionsCell.swift */; };
+		E62C957D25CB97670050A6DA /* FeedPostInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62C957C25CB97670050A6DA /* FeedPostInfoCell.swift */; };
+		E63660DA25C619A9007A4EFD /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660D925C619A9007A4EFD /* FeedViewController.swift */; };
+		E63660DD25C61CD9007A4EFD /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660DC25C61CD9007A4EFD /* FeedTableViewCell.swift */; };
+		E63660E525C73C62007A4EFD /* ProfileTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660E425C73C61007A4EFD /* ProfileTabs.swift */; };
+		E63660FC25C7906C007A4EFD /* ProfileConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660FB25C7906C007A4EFD /* ProfileConnections.swift */; };
+		E63660FF25C7C259007A4EFD /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63660FE25C7C259007A4EFD /* ListsViewController.swift */; };
+		E636610325C8DD74007A4EFD /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636610225C8DD74007A4EFD /* EditProfileViewController.swift */; };
+		E636610D25C8EA27007A4EFD /* FormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636610C25C8EA27007A4EFD /* FormTableViewCell.swift */; };
+		E636611125CA45BF007A4EFD /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636611025CA45BF007A4EFD /* FeedHeaderView.swift */; };
+		E636611425CA4983007A4EFD /* FeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E636611325CA4982007A4EFD /* FeedHeaderCell.swift */; };
+		E65802E8261BF47100903F4B /* GameLogHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65802E7261BF47100903F4B /* GameLogHeaderView.swift */; };
+		E665688125DB537300F04EFA /* ContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E665688025DB537300F04EFA /* ContactInfoCell.swift */; };
+		E66568AA25EACFA800F04EFA /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66568A925EACFA800F04EFA /* CommentsViewController.swift */; };
+		E66C79CD260C398F007420D9 /* ScoutInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C79CC260C398F007420D9 /* ScoutInfoCollectionReusableView.swift */; };
+		E66C7AB4260E9A77007420D9 /* GameLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7AB3260E9A77007420D9 /* GameLogViewController.swift */; };
+		E66C7ABA260F9182007420D9 /* PitcherGameLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7AB9260F9182007420D9 /* PitcherGameLogTableViewCell.swift */; };
+		E66C7ABE260FD5DC007420D9 /* GameLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7ABD260FD5DC007420D9 /* GameLog.swift */; };
+		E66C7AC4260FDB77007420D9 /* AddGameLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7AC3260FDB77007420D9 /* AddGameLogViewController.swift */; };
+		E66C7B9A26113592007420D9 /* BatterGameLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66C7B9926113592007420D9 /* BatterGameLogTableViewCell.swift */; };
+		E67AED5425F5615100BE5114 /* EditScoutInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67AED5325F5615100BE5114 /* EditScoutInfoViewController.swift */; };
+		E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E325B11CB600D15230 /* AppDelegate.swift */; };
+		E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73E525B11CB600D15230 /* SceneDelegate.swift */; };
+		E68B73EB25B11CB600D15230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E68B73E925B11CB600D15230 /* Main.storyboard */; };
+		E68B73ED25B11CBA00D15230 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E68B73EC25B11CBA00D15230 /* Assets.xcassets */; };
+		E68B73F025B11CBA00D15230 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E68B73EE25B11CBA00D15230 /* LaunchScreen.storyboard */; };
+		E68B73FD25B11D2A00D15230 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73FC25B11D2A00D15230 /* ProfileViewController.swift */; };
+		E68B740025B120C100D15230 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B73FF25B120C100D15230 /* ViewExtension.swift */; };
+		E68B740525B124A700D15230 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B740425B124A700D15230 /* ProfileHeader.swift */; };
+		E68B741025B170C400D15230 /* ContactInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B740F25B170C400D15230 /* ContactInformationViewController.swift */; };
+		E68B741325B24CD500D15230 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E68B741225B24CD500D15230 /* GoogleService-Info.plist */; };
+		E68B742A25B24FE900D15230 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B742925B24FE900D15230 /* AuthManager.swift */; };
+		E68B742D25B2502500D15230 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B742C25B2502500D15230 /* DatabaseManager.swift */; };
+		E68B743025B2527C00D15230 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B742F25B2527C00D15230 /* RegisterViewController.swift */; };
+		E68B743325B25F7700D15230 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B743225B25F7700D15230 /* StorageManager.swift */; };
+		E68B743625B2615B00D15230 /* RHUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B743525B2615B00D15230 /* RHUser.swift */; };
+		E68B743A25B7E1D400D15230 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B743925B7E1D400D15230 /* NewPostViewController.swift */; };
+		E68B743D25BA4D3400D15230 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B743C25BA4D3400D15230 /* VideoCollectionViewCell.swift */; };
+		E68B744025BA90F100D15230 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B743F25BA90F100D15230 /* LoginViewController.swift */; };
+		E68B744625BB425600D15230 /* ViewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B744525BB425600D15230 /* ViewPostViewController.swift */; };
+		E68B745E25BF8D2200D15230 /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B745D25BF8D2200D15230 /* SearchUsersViewController.swift */; };
+		E68B746125BFAC3900D15230 /* SearchUsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */; };
+		E68B746425C0801C00D15230 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746325C0801C00D15230 /* OtherUserViewController.swift */; };
+		E68B746B25C0E6F500D15230 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68B746A25C0E6F500D15230 /* SettingsViewController.swift */; };
+		E69AF4BA25F5DBD200D366A8 /* AddCaptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4B925F5DBD200D366A8 /* AddCaptionViewController.swift */; };
+		E69AF4BE25F6D56000D366A8 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4BD25F6D56000D366A8 /* ConversationsViewController.swift */; };
+		E69AF4D925F6D8A400D366A8 /* ConversationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4D825F6D8A400D366A8 /* ConversationsTableViewCell.swift */; };
+		E69AF4DC25F6DA8B00D366A8 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4DB25F6DA8B00D366A8 /* NewConversationViewController.swift */; };
+		E69AF4DF25F6DBFF00D366A8 /* NewConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4DE25F6DBFF00D366A8 /* NewConversationTableViewCell.swift */; };
+		E69AF4E225F6DC7E00D366A8 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4E125F6DC7E00D366A8 /* ChatViewController.swift */; };
+		E69AF4E525F6DCAE00D366A8 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69AF4E425F6DCAE00D366A8 /* ChatModels.swift */; };
+		E6BED0D625F1F85E00A03720 /* ScoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */; };
+		E6BED10F25F433F300A03720 /* ScoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */; };
+		E6C2F9A225FD38D4006ACED2 /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C2F9A125FD38D4006ACED2 /* DatabaseTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E6C2F99A25FD3069006ACED2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E68B73D825B11CB600D15230 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E68B73DF25B11CB600D15230;
+			remoteInfo = RecruiterHub;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		286E171FDDE85FA93287EA19 /* Pods-RecruiterHubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHubTests.release.xcconfig"; path = "Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests.release.xcconfig"; sourceTree = "<group>"; };
+		6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecruiterHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5818E128F578169023D10D3 /* Pods_RecruiterHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecruiterHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB80AD7D3CDE31250386C792 /* Pods-RecruiterHubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHubTests.debug.xcconfig"; path = "Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CF7A5D147E3D111AF11D2A94 /* Pods-RecruiterHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.debug.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.debug.xcconfig"; sourceTree = "<group>"; };
+		E612737725EC1579008F24AB /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
+		E612737A25EC3A57008F24AB /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
+		E61273BD25F17707008F24AB /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		E62C957925CB8EFA0050A6DA /* FeedActionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedActionsCell.swift; sourceTree = "<group>"; };
+		E62C957C25CB97670050A6DA /* FeedPostInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostInfoCell.swift; sourceTree = "<group>"; };
+		E63660D925C619A9007A4EFD /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		E63660DC25C61CD9007A4EFD /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		E63660E425C73C61007A4EFD /* ProfileTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabs.swift; sourceTree = "<group>"; };
+		E63660FB25C7906C007A4EFD /* ProfileConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConnections.swift; sourceTree = "<group>"; };
+		E63660FE25C7C259007A4EFD /* ListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
+		E636610225C8DD74007A4EFD /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		E636610C25C8EA27007A4EFD /* FormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTableViewCell.swift; sourceTree = "<group>"; };
+		E636611025CA45BF007A4EFD /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
+		E636611325CA4982007A4EFD /* FeedHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderCell.swift; sourceTree = "<group>"; };
+		E65802E7261BF47100903F4B /* GameLogHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogHeaderView.swift; sourceTree = "<group>"; };
+		E665688025DB537300F04EFA /* ContactInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoCell.swift; sourceTree = "<group>"; };
+		E66568A925EACFA800F04EFA /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		E66C79CC260C398F007420D9 /* ScoutInfoCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutInfoCollectionReusableView.swift; sourceTree = "<group>"; };
+		E66C7AB3260E9A77007420D9 /* GameLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogViewController.swift; sourceTree = "<group>"; };
+		E66C7AB9260F9182007420D9 /* PitcherGameLogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitcherGameLogTableViewCell.swift; sourceTree = "<group>"; };
+		E66C7ABD260FD5DC007420D9 /* GameLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLog.swift; sourceTree = "<group>"; };
+		E66C7AC3260FDB77007420D9 /* AddGameLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameLogViewController.swift; sourceTree = "<group>"; };
+		E66C7B9926113592007420D9 /* BatterGameLogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterGameLogTableViewCell.swift; sourceTree = "<group>"; };
+		E67AED5325F5615100BE5114 /* EditScoutInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScoutInfoViewController.swift; sourceTree = "<group>"; };
+		E68B73E025B11CB600D15230 /* RecruiterHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecruiterHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E68B73E325B11CB600D15230 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E68B73E525B11CB600D15230 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E68B73EA25B11CB600D15230 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E68B73EC25B11CBA00D15230 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E68B73EF25B11CBA00D15230 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E68B73F125B11CBA00D15230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E68B73FC25B11D2A00D15230 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E68B73FF25B120C100D15230 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		E68B740425B124A700D15230 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		E68B740F25B170C400D15230 /* ContactInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInformationViewController.swift; sourceTree = "<group>"; };
+		E68B741225B24CD500D15230 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E68B742925B24FE900D15230 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		E68B742C25B2502500D15230 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		E68B742F25B2527C00D15230 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E68B743225B25F7700D15230 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		E68B743525B2615B00D15230 /* RHUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHUser.swift; sourceTree = "<group>"; };
+		E68B743925B7E1D400D15230 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		E68B743C25BA4D3400D15230 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		E68B743F25BA90F100D15230 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E68B744525BB425600D15230 /* ViewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostViewController.swift; sourceTree = "<group>"; };
+		E68B745D25BF8D2200D15230 /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
+		E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewCell.swift; sourceTree = "<group>"; };
+		E68B746325C0801C00D15230 /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
+		E68B746A25C0E6F500D15230 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E69AF4B925F5DBD200D366A8 /* AddCaptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaptionViewController.swift; sourceTree = "<group>"; };
+		E69AF4BD25F6D56000D366A8 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
+		E69AF4D825F6D8A400D366A8 /* ConversationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewCell.swift; sourceTree = "<group>"; };
+		E69AF4DB25F6DA8B00D366A8 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
+		E69AF4DE25F6DBFF00D366A8 /* NewConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationTableViewCell.swift; sourceTree = "<group>"; };
+		E69AF4E125F6DC7E00D366A8 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		E69AF4E425F6DCAE00D366A8 /* ChatModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModels.swift; sourceTree = "<group>"; };
+		E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutViewController.swift; sourceTree = "<group>"; };
+		E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutCollectionViewCell.swift; sourceTree = "<group>"; };
+		E6C2F99525FD3069006ACED2 /* RecruiterHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecruiterHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6C2F99925FD3069006ACED2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6C2F9A125FD38D4006ACED2 /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
+		EDDA3292CDA13AA52A8736EA /* Pods-RecruiterHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruiterHub.release.xcconfig"; path = "Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E68B73DD25B11CB600D15230 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8478858931F3AF385F451E63 /* Pods_RecruiterHub.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C2F99225FD3069006ACED2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EA8CD43DA1FC3CCB5DD0485 /* Pods_RecruiterHubTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E62C957F25CB9F150050A6DA /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				E62C957C25CB97670050A6DA /* FeedPostInfoCell.swift */,
+				E63660DC25C61CD9007A4EFD /* FeedTableViewCell.swift */,
+				E636611025CA45BF007A4EFD /* FeedHeaderView.swift */,
+				E636611325CA4982007A4EFD /* FeedHeaderCell.swift */,
+				E62C957925CB8EFA0050A6DA /* FeedActionsCell.swift */,
+				E63660D925C619A9007A4EFD /* FeedViewController.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		E62C958025CB9F7F0050A6DA /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E68B745D25BF8D2200D15230 /* SearchUsersViewController.swift */,
+				E68B746025BFAC3900D15230 /* SearchUsersTableViewCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		E62C958125CB9FC60050A6DA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E68B73EE25B11CBA00D15230 /* LaunchScreen.storyboard */,
+				E68B73E925B11CB600D15230 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		E62C958225CB9FED0050A6DA /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				E68B743F25BA90F100D15230 /* LoginViewController.swift */,
+				E68B742F25B2527C00D15230 /* RegisterViewController.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		E66C7AB2260E9A29007420D9 /* Game Logs */ = {
+			isa = PBXGroup;
+			children = (
+				E66C7AB3260E9A77007420D9 /* GameLogViewController.swift */,
+				E66C7AB9260F9182007420D9 /* PitcherGameLogTableViewCell.swift */,
+				E66C7ABD260FD5DC007420D9 /* GameLog.swift */,
+				E66C7AC3260FDB77007420D9 /* AddGameLogViewController.swift */,
+				E66C7B9926113592007420D9 /* BatterGameLogTableViewCell.swift */,
+				E65802E7261BF47100903F4B /* GameLogHeaderView.swift */,
+			);
+			path = "Game Logs";
+			sourceTree = "<group>";
+		};
+		E68B73D725B11CB600D15230 = {
+			isa = PBXGroup;
+			children = (
+				E68B73E225B11CB600D15230 /* RecruiterHub */,
+				E6C2F99625FD3069006ACED2 /* RecruiterHubTests */,
+				E68B73E125B11CB600D15230 /* Products */,
+				EEE773A03100638033476483 /* Pods */,
+				F3AEAF63AAF3B96300277F7D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E68B73E125B11CB600D15230 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E68B73E025B11CB600D15230 /* RecruiterHub.app */,
+				E6C2F99525FD3069006ACED2 /* RecruiterHubTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E68B73E225B11CB600D15230 /* RecruiterHub */ = {
+			isa = PBXGroup;
+			children = (
+				E68B73EC25B11CBA00D15230 /* Assets.xcassets */,
+				E68B741225B24CD500D15230 /* GoogleService-Info.plist */,
+				E68B73F125B11CBA00D15230 /* Info.plist */,
+				E68B746325C0801C00D15230 /* OtherUserViewController.swift */,
+				E612737A25EC3A57008F24AB /* NewCommentViewController.swift */,
+				E63660FE25C7C259007A4EFD /* ListsViewController.swift */,
+				E66568A925EACFA800F04EFA /* CommentsViewController.swift */,
+				E612737725EC1579008F24AB /* CommentsCell.swift */,
+				E61273BD25F17707008F24AB /* Keyboard.swift */,
+				E69AF4C025F6D6AE00D366A8 /* Messages */,
+				E69AF4B825F5DB9B00D366A8 /* New Post */,
+				E62C958225CB9FED0050A6DA /* Authorization */,
+				E62C958125CB9FC60050A6DA /* Storyboards */,
+				E62C958025CB9F7F0050A6DA /* Search */,
+				E62C957F25CB9F150050A6DA /* Feed */,
+				E68B740325B123C800D15230 /* Resources */,
+				E68B740225B123AE00D15230 /* Profile */,
+			);
+			path = RecruiterHub;
+			sourceTree = "<group>";
+		};
+		E68B740225B123AE00D15230 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E636610C25C8EA27007A4EFD /* FormTableViewCell.swift */,
+				E665688025DB537300F04EFA /* ContactInfoCell.swift */,
+				E636610225C8DD74007A4EFD /* EditProfileViewController.swift */,
+				E68B746A25C0E6F500D15230 /* SettingsViewController.swift */,
+				E68B73FC25B11D2A00D15230 /* ProfileViewController.swift */,
+				E68B740425B124A700D15230 /* ProfileHeader.swift */,
+				E68B740F25B170C400D15230 /* ContactInformationViewController.swift */,
+				E68B743C25BA4D3400D15230 /* VideoCollectionViewCell.swift */,
+				E63660E425C73C61007A4EFD /* ProfileTabs.swift */,
+				E63660FB25C7906C007A4EFD /* ProfileConnections.swift */,
+				E6BED11125F4355300A03720 /* Scout */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E68B740325B123C800D15230 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E68B73FF25B120C100D15230 /* ViewExtension.swift */,
+				E68B73E525B11CB600D15230 /* SceneDelegate.swift */,
+				E68B73E325B11CB600D15230 /* AppDelegate.swift */,
+				E68B742925B24FE900D15230 /* AuthManager.swift */,
+				E68B742C25B2502500D15230 /* DatabaseManager.swift */,
+				E68B743225B25F7700D15230 /* StorageManager.swift */,
+				E68B743525B2615B00D15230 /* RHUser.swift */,
+				E68B744525BB425600D15230 /* ViewPostViewController.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E69AF4B825F5DB9B00D366A8 /* New Post */ = {
+			isa = PBXGroup;
+			children = (
+				E68B743925B7E1D400D15230 /* NewPostViewController.swift */,
+				E69AF4B925F5DBD200D366A8 /* AddCaptionViewController.swift */,
+			);
+			path = "New Post";
+			sourceTree = "<group>";
+		};
+		E69AF4C025F6D6AE00D366A8 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				E69AF4BD25F6D56000D366A8 /* ConversationsViewController.swift */,
+				E69AF4D825F6D8A400D366A8 /* ConversationsTableViewCell.swift */,
+				E69AF4DB25F6DA8B00D366A8 /* NewConversationViewController.swift */,
+				E69AF4DE25F6DBFF00D366A8 /* NewConversationTableViewCell.swift */,
+				E69AF4E125F6DC7E00D366A8 /* ChatViewController.swift */,
+				E69AF4E425F6DCAE00D366A8 /* ChatModels.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		E6BED11125F4355300A03720 /* Scout */ = {
+			isa = PBXGroup;
+			children = (
+				E6BED0D525F1F85E00A03720 /* ScoutViewController.swift */,
+				E6BED10E25F433F300A03720 /* ScoutCollectionViewCell.swift */,
+				E67AED5325F5615100BE5114 /* EditScoutInfoViewController.swift */,
+				E66C79CC260C398F007420D9 /* ScoutInfoCollectionReusableView.swift */,
+				E66C7AB2260E9A29007420D9 /* Game Logs */,
+			);
+			path = Scout;
+			sourceTree = "<group>";
+		};
+		E6C2F99625FD3069006ACED2 /* RecruiterHubTests */ = {
+			isa = PBXGroup;
+			children = (
+				E6C2F99925FD3069006ACED2 /* Info.plist */,
+				E6C2F9A125FD38D4006ACED2 /* DatabaseTests.swift */,
+			);
+			path = RecruiterHubTests;
+			sourceTree = "<group>";
+		};
+		EEE773A03100638033476483 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF7A5D147E3D111AF11D2A94 /* Pods-RecruiterHub.debug.xcconfig */,
+				EDDA3292CDA13AA52A8736EA /* Pods-RecruiterHub.release.xcconfig */,
+				CB80AD7D3CDE31250386C792 /* Pods-RecruiterHubTests.debug.xcconfig */,
+				286E171FDDE85FA93287EA19 /* Pods-RecruiterHubTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F3AEAF63AAF3B96300277F7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C93CAC1684AFA16D7D91075 /* Pods_RecruiterHub.framework */,
+				A5818E128F578169023D10D3 /* Pods_RecruiterHubTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E68B73DF25B11CB600D15230 /* RecruiterHub */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E68B73F425B11CBA00D15230 /* Build configuration list for PBXNativeTarget "RecruiterHub" */;
+			buildPhases = (
+				E5D9812B7F1D286C36E14F35 /* [CP] Check Pods Manifest.lock */,
+				E68B73DC25B11CB600D15230 /* Sources */,
+				E68B73DD25B11CB600D15230 /* Frameworks */,
+				E68B73DE25B11CB600D15230 /* Resources */,
+				A97AA46C2737A4EEC17769B0 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RecruiterHub;
+			productName = RecruiterHub;
+			productReference = E68B73E025B11CB600D15230 /* RecruiterHub.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E6C2F99425FD3069006ACED2 /* RecruiterHubTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6C2F99C25FD3069006ACED2 /* Build configuration list for PBXNativeTarget "RecruiterHubTests" */;
+			buildPhases = (
+				5CFDB4D9C398E56E7F3ACFC6 /* [CP] Check Pods Manifest.lock */,
+				E6C2F99125FD3069006ACED2 /* Sources */,
+				E6C2F99225FD3069006ACED2 /* Frameworks */,
+				E6C2F99325FD3069006ACED2 /* Resources */,
+				F9A5FC1F9CB7AA7C3436B443 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E6C2F99B25FD3069006ACED2 /* PBXTargetDependency */,
+			);
+			name = RecruiterHubTests;
+			productName = RecruiterHubTests;
+			productReference = E6C2F99525FD3069006ACED2 /* RecruiterHubTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E68B73D825B11CB600D15230 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					E68B73DF25B11CB600D15230 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					E6C2F99425FD3069006ACED2 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = E68B73DF25B11CB600D15230;
+					};
+				};
+			};
+			buildConfigurationList = E68B73DB25B11CB600D15230 /* Build configuration list for PBXProject "RecruiterHub" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E68B73D725B11CB600D15230;
+			productRefGroup = E68B73E125B11CB600D15230 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E68B73DF25B11CB600D15230 /* RecruiterHub */,
+				E6C2F99425FD3069006ACED2 /* RecruiterHubTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E68B73DE25B11CB600D15230 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E68B73F025B11CBA00D15230 /* LaunchScreen.storyboard in Resources */,
+				E68B741325B24CD500D15230 /* GoogleService-Info.plist in Resources */,
+				E68B73ED25B11CBA00D15230 /* Assets.xcassets in Resources */,
+				E68B73EB25B11CB600D15230 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C2F99325FD3069006ACED2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5CFDB4D9C398E56E7F3ACFC6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecruiterHubTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A97AA46C2737A4EEC17769B0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecruiterHub/Pods-RecruiterHub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5D9812B7F1D286C36E14F35 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecruiterHub-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9A5FC1F9CB7AA7C3436B443 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RecruiterHubTests/Pods-RecruiterHubTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E68B73DC25B11CB600D15230 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E636611425CA4983007A4EFD /* FeedHeaderCell.swift in Sources */,
+				E68B746125BFAC3900D15230 /* SearchUsersTableViewCell.swift in Sources */,
+				E69AF4E225F6DC7E00D366A8 /* ChatViewController.swift in Sources */,
+				E68B742D25B2502500D15230 /* DatabaseManager.swift in Sources */,
+				E68B743025B2527C00D15230 /* RegisterViewController.swift in Sources */,
+				E68B73E425B11CB600D15230 /* AppDelegate.swift in Sources */,
+				E6BED0D625F1F85E00A03720 /* ScoutViewController.swift in Sources */,
+				E69AF4DF25F6DBFF00D366A8 /* NewConversationTableViewCell.swift in Sources */,
+				E665688125DB537300F04EFA /* ContactInfoCell.swift in Sources */,
+				E63660DD25C61CD9007A4EFD /* FeedTableViewCell.swift in Sources */,
+				E68B743D25BA4D3400D15230 /* VideoCollectionViewCell.swift in Sources */,
+				E61273BE25F17707008F24AB /* Keyboard.swift in Sources */,
+				E68B743625B2615B00D15230 /* RHUser.swift in Sources */,
+				E68B73FD25B11D2A00D15230 /* ProfileViewController.swift in Sources */,
+				E65802E8261BF47100903F4B /* GameLogHeaderView.swift in Sources */,
+				E68B740525B124A700D15230 /* ProfileHeader.swift in Sources */,
+				E68B744625BB425600D15230 /* ViewPostViewController.swift in Sources */,
+				E636611125CA45BF007A4EFD /* FeedHeaderView.swift in Sources */,
+				E6BED10F25F433F300A03720 /* ScoutCollectionViewCell.swift in Sources */,
+				E68B741025B170C400D15230 /* ContactInformationViewController.swift in Sources */,
+				E612737B25EC3A57008F24AB /* NewCommentViewController.swift in Sources */,
+				E66C7ABA260F9182007420D9 /* PitcherGameLogTableViewCell.swift in Sources */,
+				E66C79CD260C398F007420D9 /* ScoutInfoCollectionReusableView.swift in Sources */,
+				E63660FF25C7C259007A4EFD /* ListsViewController.swift in Sources */,
+				E69AF4E525F6DCAE00D366A8 /* ChatModels.swift in Sources */,
+				E68B746425C0801C00D15230 /* OtherUserViewController.swift in Sources */,
+				E66C7AC4260FDB77007420D9 /* AddGameLogViewController.swift in Sources */,
+				E612737825EC1579008F24AB /* CommentsCell.swift in Sources */,
+				E67AED5425F5615100BE5114 /* EditScoutInfoViewController.swift in Sources */,
+				E68B746B25C0E6F500D15230 /* SettingsViewController.swift in Sources */,
+				E68B745E25BF8D2200D15230 /* SearchUsersViewController.swift in Sources */,
+				E68B73E625B11CB600D15230 /* SceneDelegate.swift in Sources */,
+				E62C957A25CB8EFA0050A6DA /* FeedActionsCell.swift in Sources */,
+				E66568AA25EACFA800F04EFA /* CommentsViewController.swift in Sources */,
+				E636610D25C8EA27007A4EFD /* FormTableViewCell.swift in Sources */,
+				E63660FC25C7906C007A4EFD /* ProfileConnections.swift in Sources */,
+				E636610325C8DD74007A4EFD /* EditProfileViewController.swift in Sources */,
+				E69AF4BE25F6D56000D366A8 /* ConversationsViewController.swift in Sources */,
+				E68B740025B120C100D15230 /* ViewExtension.swift in Sources */,
+				E66C7ABE260FD5DC007420D9 /* GameLog.swift in Sources */,
+				E68B744025BA90F100D15230 /* LoginViewController.swift in Sources */,
+				E63660E525C73C62007A4EFD /* ProfileTabs.swift in Sources */,
+				E68B742A25B24FE900D15230 /* AuthManager.swift in Sources */,
+				E62C957D25CB97670050A6DA /* FeedPostInfoCell.swift in Sources */,
+				E69AF4DC25F6DA8B00D366A8 /* NewConversationViewController.swift in Sources */,
+				E66C7B9A26113592007420D9 /* BatterGameLogTableViewCell.swift in Sources */,
+				E63660DA25C619A9007A4EFD /* FeedViewController.swift in Sources */,
+				E68B743325B25F7700D15230 /* StorageManager.swift in Sources */,
+				E68B743A25B7E1D400D15230 /* NewPostViewController.swift in Sources */,
+				E66C7AB4260E9A77007420D9 /* GameLogViewController.swift in Sources */,
+				E69AF4D925F6D8A400D366A8 /* ConversationsTableViewCell.swift in Sources */,
+				E69AF4BA25F5DBD200D366A8 /* AddCaptionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C2F99125FD3069006ACED2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6C2F9A225FD38D4006ACED2 /* DatabaseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E6C2F99B25FD3069006ACED2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E68B73DF25B11CB600D15230 /* RecruiterHub */;
+			targetProxy = E6C2F99A25FD3069006ACED2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E68B73E925B11CB600D15230 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E68B73EA25B11CB600D15230 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E68B73EE25B11CBA00D15230 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E68B73EF25B11CBA00D15230 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E68B73F225B11CBA00D15230 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E68B73F325B11CBA00D15230 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E68B73F525B11CBA00D15230 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF7A5D147E3D111AF11D2A94 /* Pods-RecruiterHub.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VY9FRH555S;
+				INFOPLIST_FILE = RecruiterHub/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ryan.RecruiterHub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E68B73F625B11CBA00D15230 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDDA3292CDA13AA52A8736EA /* Pods-RecruiterHub.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VY9FRH555S;
+				INFOPLIST_FILE = RecruiterHub/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ryan.RecruiterHub;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E6C2F99D25FD3069006ACED2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB80AD7D3CDE31250386C792 /* Pods-RecruiterHubTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VY9FRH555S;
+				INFOPLIST_FILE = RecruiterHubTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ryan.RecruiterHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecruiterHub.app/RecruiterHub";
+			};
+			name = Debug;
+		};
+		E6C2F99E25FD3069006ACED2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 286E171FDDE85FA93287EA19 /* Pods-RecruiterHubTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VY9FRH555S;
+				INFOPLIST_FILE = RecruiterHubTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ryan.RecruiterHubTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecruiterHub.app/RecruiterHub";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E68B73DB25B11CB600D15230 /* Build configuration list for PBXProject "RecruiterHub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E68B73F225B11CBA00D15230 /* Debug */,
+				E68B73F325B11CBA00D15230 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E68B73F425B11CBA00D15230 /* Build configuration list for PBXNativeTarget "RecruiterHub" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E68B73F525B11CBA00D15230 /* Debug */,
+				E68B73F625B11CBA00D15230 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6C2F99C25FD3069006ACED2 /* Build configuration list for PBXNativeTarget "RecruiterHubTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6C2F99D25FD3069006ACED2 /* Debug */,
+				E6C2F99E25FD3069006ACED2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E68B73D825B11CB600D15230 /* Project object */;
+}
